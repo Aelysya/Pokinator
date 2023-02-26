@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String APP_TAG = "Pokinator";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
             CSVReader reader = new CSVReader(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
             String[] nextLine;
             nextLine = reader.readNext();
-            Log.d("POKINATOR", nextLine[10]);
+            Log.d(APP_TAG, nextLine[0]);
         } catch (IOException e) {
-            Log.d("POKINATOR", "File not found.");
+            Log.d(APP_TAG, "File not found.");
         }
     }
 }

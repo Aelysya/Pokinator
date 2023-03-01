@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokinator</string>
+    <string name="next_step">Suivant</string>
+    <string name="previous_step">Précédent</string>
+</resources>

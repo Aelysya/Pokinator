@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pokinator</string>
+    <string name="next_step">Next Step</string>
+    <string name="previous_step">Previous Step</string>
 </resources>

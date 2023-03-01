@@ -15,4 +15,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

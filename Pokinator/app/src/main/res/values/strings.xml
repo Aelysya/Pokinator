@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Pokinator</string>
+    <string name="app_name" translatable="false">Pokinator</string>
+    <string name="logo_desc" translatable="false">Pokinator</string>
+    <string name="gift_desc" translatable="false">Mystery gift</string>
+    <string name="name_input_hint">Enter your name</string>
+    <string name="begin_button_text">Begin the test</string>
     <string name="next_step">Next Step</string>
     <string name="previous_step">Previous Step</string>
 </resources>

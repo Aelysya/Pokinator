@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pokinator</string>
     <string name="next_step">Suivant</string>
     <string name="previous_step">Précédent</string>
+    <string name="begin_button_text">Commencer le test</string>
+    <string name="name_input_hint">Entrez votre nom</string>
 </resources>

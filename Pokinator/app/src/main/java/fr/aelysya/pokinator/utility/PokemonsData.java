@@ -123,7 +123,7 @@ public class PokemonsData {
                 STATS.add(tempStats);
                 SIZES.add(Float.parseFloat(nextLine[29]));
                 WEIGHTS.add(Float.parseFloat(nextLine[30]));
-                LEGENDARY_STATUS.add(Boolean.parseBoolean(nextLine[31]));
+                LEGENDARY_STATUS.add(nextLine[31].equals("1"));
                 EGG_STEPS.add(Integer.parseInt(nextLine[32]));
                 CAPTURE_RATES.add(Integer.parseInt(nextLine[33]));
                 MAX_EXPERIENCE.add(Integer.parseInt(nextLine[34]));
@@ -132,26 +132,60 @@ public class PokemonsData {
 
             //Debug part to ensure the csv has correctly been loaded
             /*
-            Log.d("CSV DEBUG number", NUMBERS.get(1000).toString());
-            Log.d("CSV DEBUG name", NAMES.get(1000));
-            Log.d("CSV DEBUG gen", GENERATIONS.get(1000).toString());
-            Log.d("CSV DEBUG fType", FIRST_TYPES.get(1000));
-            Log.d("CSV DEBUG sType", SECONDARY_TYPES.get(1000));
-            for(int i = 0; i < 18; ++i){
-                Log.d("CSV DEBUG weaks", WEAKNESSES.get(1000)[i].toString());
+            for(int i = 0; i < 2; ++i){
+                Log.d("CSV DEBUG number", NUMBERS.get(1046).toString());
+                Log.d("CSV DEBUG name", NAMES.get(1046));
+                Log.d("CSV DEBUG gen", GENERATIONS.get(1046).toString());
+                Log.d("CSV DEBUG fType", FIRST_TYPES.get(1046));
+                Log.d("CSV DEBUG sType", SECONDARY_TYPES.get(1046));
+                for(int j = 0; j < 18; ++j){
+                    Log.d("CSV DEBUG weaks", WEAKNESSES.get(1046)[j].toString());
+                }
+                for(int j = 0; j < 6; ++j){
+                    Log.d("CSV DEBUG stats", STATS.get(1046)[j].toString());
+                }
+                Log.d("CSV DEBUG size", SIZES.get(1046).toString());
+                Log.d("CSV DEBUG weight", WEIGHTS.get(1046).toString());
+                Log.d("CSV DEBUG legendary", LEGENDARY_STATUS.get(1046).toString());
+                Log.d("CSV DEBUG egg", EGG_STEPS.get(1046).toString());
+                Log.d("CSV DEBUG capRate", CAPTURE_RATES.get(1046).toString());
+                Log.d("CSV DEBUG maxExp", MAX_EXPERIENCE.get(1046).toString());
+                removeLine(1046);
             }
-            for(int i = 0; i < 6; ++i){
-                Log.d("CSV DEBUG stats", STATS.get(1000)[i].toString());
-            }
-            Log.d("CSV DEBUG size", SIZES.get(1000).toString());
-            Log.d("CSV DEBUG weight", WEIGHTS.get(1000).toString());
-            Log.d("CSV DEBUG legendary", LEGENDARY_STATUS.get(1000).toString());
-            Log.d("CSV DEBUG egg", EGG_STEPS.get(1000).toString());
-            Log.d("CSV DEBUG capRate", CAPTURE_RATES.get(1000).toString());
-            Log.d("CSV DEBUG maxExp", MAX_EXPERIENCE.get(1000).toString());
-            */
+             */
+            filterLegendaries(true);
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
             Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflexivity didn't work :(");
         }
+    }
+
+    public void removeLine(int index){
+        try{
+            for(Field f : this.getClass().getDeclaredFields()){
+                Object fieldVal = f.get(this);
+                Class[] arg = new Class[1];
+                arg[0] = int.class;
+                Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("remove", arg);
+                method.invoke(fieldVal, index);
+            }
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
+            Log.d("Exception occurred", "Reflexivity didn't work :(");
+        }
+    }
+
+    public void filterLegendaries(boolean keepLegendaries){
+        Log.d("Data filter", "Legendaries filter begin, number of pokémons before: " + LEGENDARY_STATUS.size());
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < LEGENDARY_STATUS.size(); ++i){
+            if(keepLegendaries != LEGENDARY_STATUS.get(i)){
+                removeLine(i);
+                i--; //Rectify the index position
+            }
+        }
+        Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
+    }
+
+    public void filterString(Attribute ListToFilter, String valueToFilter){
+
     }
 }

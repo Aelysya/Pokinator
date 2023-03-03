@@ -11,9 +11,12 @@ import com.opencsv.CSVReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import fr.aelysya.pokinator.utility.PokemonsData;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String APP_TAG = "Pokinator";
+    public static final PokemonsData DATA = new PokemonsData();
     public static boolean isXavier;
 
     @Override
@@ -30,13 +33,6 @@ public class MainActivity extends AppCompatActivity {
             isXavier = !isXavier;
         });
 
-        try {
-            CSVReader reader = new CSVReader(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
-            String[] nextLine;
-            nextLine = reader.readNext();
-            Log.d(APP_TAG, nextLine[0]);
-        } catch (IOException e) {
-            Log.d(APP_TAG, "File not found.");
-        }
+        DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
     }
 }

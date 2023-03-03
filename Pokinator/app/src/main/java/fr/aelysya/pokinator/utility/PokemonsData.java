@@ -126,12 +126,13 @@ public class PokemonsData {
                 CAPTURE_RATES.add(Integer.parseInt(nextLine[33]));
                 MAX_EXPERIENCE.add(Integer.parseInt(nextLine[34]));
             }
+            Log.d("CSV loading", "CSV loading end");
             filterLegendaries(false);
             filterType("ghost");
+            filterGeneration(new int[]{1, 6, 9});
             for(String s : NAMES){
                 Log.d("DEBUG", s);
             }
-            Log.d("CSV loading", "CSV loading end");
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
             Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
         }
@@ -151,10 +152,14 @@ public class PokemonsData {
         }
     }
 
+    /** Filter the dataset based on the pokémons' legendary status
+     * @param keepLegendaries Whether to keep or remove the legendaries from the dataset
+     */
     public void filterLegendaries(boolean keepLegendaries){
         Log.d("Data filter", "Legendaries filter begin, number of pokémons before: " + LEGENDARY_STATUS.size());
         //Not using a forEach to track the index automatically
         for(int i = 0; i < LEGENDARY_STATUS.size(); ++i){
+            //If the pokémon's legendary status is different from the parameter, remove it from the dataset
             if(keepLegendaries != LEGENDARY_STATUS.get(i)){
                 removeLine(i);
                 i--; //Rectify the index position
@@ -163,10 +168,14 @@ public class PokemonsData {
         Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
     }
 
+    /** Filter the dataset based on the preferred type chosen by the user, removes all pokémons that doesn't possess it
+     * @param type The type to keep in the dataset
+     */
     public void filterType(String type){
         Log.d("Data filter", "Type filter begin, number of pokémons before: " + FIRST_TYPES.size());
         //Not using a forEach to track the index automatically
         for(int i = 0; i < FIRST_TYPES.size(); ++i){
+            //If the pokémon doesn't have the type in first or second, remove it from the dataset
             if(!(FIRST_TYPES.get(i).equals(type) || SECONDARY_TYPES.get(i).equals(type))){
                 removeLine(i);
                 i--; //Rectify the index position
@@ -175,7 +184,19 @@ public class PokemonsData {
         Log.d("Data filter", "Type filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
-    public void filterString(Attribute ListToFilter, String valueToFilter){
-
+    /** Filter the dataset based on the 3 most preferred generations of the user, removes all pokémons from other generations
+     * @param generations Array of three generations to keep in the dataset
+     */
+    public void filterGeneration(int[] generations){
+        Log.d("Data filter", "Generation filter begin, number of pokémons before: " + FIRST_TYPES.size());
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < GENERATIONS.size(); ++i){
+            //If the pokémon doesn't belong in one of the three generations, remove it from the dataset
+            if(!(GENERATIONS.get(i) == generations[0] || GENERATIONS.get(i) == generations[1] || GENERATIONS.get(i) == generations[2])){
+                removeLine(i);
+                i--; //Rectify the index position
+            }
+        }
+        Log.d("Data filter", "Generation filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 }

@@ -1,7 +1,5 @@
 package fr.aelysya.pokinator.utility;
 
-import static fr.aelysya.pokinator.MainActivity.APP_TAG;
-
 import android.util.Log;
 
 import com.opencsv.CSVReader;
@@ -128,34 +126,14 @@ public class PokemonsData {
                 CAPTURE_RATES.add(Integer.parseInt(nextLine[33]));
                 MAX_EXPERIENCE.add(Integer.parseInt(nextLine[34]));
             }
-            Log.d("CSV loading", "CSV loading end");
-
-            //Debug part to ensure the csv has correctly been loaded
-            /*
-            for(int i = 0; i < 2; ++i){
-                Log.d("CSV DEBUG number", NUMBERS.get(1046).toString());
-                Log.d("CSV DEBUG name", NAMES.get(1046));
-                Log.d("CSV DEBUG gen", GENERATIONS.get(1046).toString());
-                Log.d("CSV DEBUG fType", FIRST_TYPES.get(1046));
-                Log.d("CSV DEBUG sType", SECONDARY_TYPES.get(1046));
-                for(int j = 0; j < 18; ++j){
-                    Log.d("CSV DEBUG weaks", WEAKNESSES.get(1046)[j].toString());
-                }
-                for(int j = 0; j < 6; ++j){
-                    Log.d("CSV DEBUG stats", STATS.get(1046)[j].toString());
-                }
-                Log.d("CSV DEBUG size", SIZES.get(1046).toString());
-                Log.d("CSV DEBUG weight", WEIGHTS.get(1046).toString());
-                Log.d("CSV DEBUG legendary", LEGENDARY_STATUS.get(1046).toString());
-                Log.d("CSV DEBUG egg", EGG_STEPS.get(1046).toString());
-                Log.d("CSV DEBUG capRate", CAPTURE_RATES.get(1046).toString());
-                Log.d("CSV DEBUG maxExp", MAX_EXPERIENCE.get(1046).toString());
-                removeLine(1046);
+            filterLegendaries(false);
+            filterType("ghost");
+            for(String s : NAMES){
+                Log.d("DEBUG", s);
             }
-             */
-            filterLegendaries(true);
+            Log.d("CSV loading", "CSV loading end");
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
-            Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflexivity didn't work :(");
+            Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
         }
     }
 
@@ -169,7 +147,7 @@ public class PokemonsData {
                 method.invoke(fieldVal, index);
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
-            Log.d("Exception occurred", "Reflexivity didn't work :(");
+            Log.d("Exception occurred", "Reflection didn't work :(");
         }
     }
 
@@ -183,6 +161,18 @@ public class PokemonsData {
             }
         }
         Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
+    }
+
+    public void filterType(String type){
+        Log.d("Data filter", "Type filter begin, number of pokémons before: " + FIRST_TYPES.size());
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < FIRST_TYPES.size(); ++i){
+            if(!(FIRST_TYPES.get(i).equals(type) || SECONDARY_TYPES.get(i).equals(type))){
+                removeLine(i);
+                i--; //Rectify the index position
+            }
+        }
+        Log.d("Data filter", "Type filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
     public void filterString(Attribute ListToFilter, String valueToFilter){

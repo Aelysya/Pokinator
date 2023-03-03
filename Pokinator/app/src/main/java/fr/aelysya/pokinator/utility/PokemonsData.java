@@ -8,9 +8,12 @@ import com.opencsv.CSVReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class PokemonsData {
 
@@ -83,8 +86,19 @@ public class PokemonsData {
         MAX_EXPERIENCE = new ArrayList<>();
     }
 
+    /** Load a CSV file
+     * @param csvFile The CSV file to read in order to load data
+     */
     public void loadCSV(InputStreamReader csvFile){
         try {
+            //Using reflexivity to clear all lists before reading the csv
+            Log.d("CSV loading", "Clearing the lists");
+            for(Field f : this.getClass().getDeclaredFields()){
+                Object fieldVal = f.get(this);
+                Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("clear");
+                method.invoke(fieldVal);
+            }
+
             CSVReader reader = new CSVReader(csvFile);
             String[] nextLine;
             reader.readNext(); //Skip first line
@@ -136,8 +150,8 @@ public class PokemonsData {
             Log.d("CSV DEBUG capRate", CAPTURE_RATES.get(1000).toString());
             Log.d("CSV DEBUG maxExp", MAX_EXPERIENCE.get(1000).toString());
             */
-        } catch (IOException e) {
-            Log.d(APP_TAG, "CSV file not found.");
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
+            Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflexivity didn't work :(");
         }
     }
 }

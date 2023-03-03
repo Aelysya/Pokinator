@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String APP_TAG = "Pokinator";
     public static final PokemonsData DATA = new PokemonsData();
-    public static boolean isXavier;
+    private static boolean isXavier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

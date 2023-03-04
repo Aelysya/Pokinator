@@ -6,4 +6,6 @@
     <string name="name_input_hint">Entrez votre nom</string>
     <string name="gift_desc">Cadeau mystère</string>
     <string name="charm_desc">Charme chroma</string>
+    <string name="code_confirm">Confirmer</string>
+    <string name="code_cancel">Annuler</string>
 </resources>

@@ -10,8 +10,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class PokemonsData {
 
@@ -68,6 +70,32 @@ public class PokemonsData {
      */
     private final List<Integer> MAX_EXPERIENCE;
 
+    /**
+     * All existing types in Poképedia's order
+     */
+    private static final List<String> TYPES = new ArrayList<>();
+
+    static{
+        TYPES.add("normal");
+        TYPES.add("grass");
+        TYPES.add("fire");
+        TYPES.add("water");
+        TYPES.add("electric");
+        TYPES.add("ice");
+        TYPES.add("fighting");
+        TYPES.add("poison");
+        TYPES.add("ground");
+        TYPES.add("flying");
+        TYPES.add("psychic");
+        TYPES.add("bug");
+        TYPES.add("rock");
+        TYPES.add("ghost");
+        TYPES.add("dragon");
+        TYPES.add("dark");
+        TYPES.add("steel");
+        TYPES.add("fairy");
+    }
+
     public PokemonsData(){
         NUMBERS = new ArrayList<>();
         NAMES = new ArrayList<>();
@@ -92,9 +120,11 @@ public class PokemonsData {
             //Using reflexivity to clear all lists before reading the csv
             Log.d("CSV loading", "Clearing the lists");
             for(Field f : this.getClass().getDeclaredFields()){
-                Object fieldVal = f.get(this);
-                Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("clear");
-                method.invoke(fieldVal);
+                if(!f.getName().equals("TYPES")) {
+                    Object fieldVal = f.get(this);
+                    Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("clear");
+                    method.invoke(fieldVal);
+                }
             }
 
             CSVReader reader = new CSVReader(csvFile);
@@ -127,12 +157,18 @@ public class PokemonsData {
                 MAX_EXPERIENCE.add(Integer.parseInt(nextLine[34]));
             }
             Log.d("CSV loading", "CSV loading end");
+
+
+            //Debugging Part, to remove later
             filterLegendaries(false);
-            filterType("ghost");
+            filterPreferredType("ghost");
             filterGeneration(new int[]{1, 6, 9});
+            filterDislikedType("water");
             for(String s : NAMES){
                 Log.d("DEBUG", s);
             }
+
+
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
             Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
         }
@@ -141,11 +177,13 @@ public class PokemonsData {
     public void removeLine(int index){
         try{
             for(Field f : this.getClass().getDeclaredFields()){
-                Object fieldVal = f.get(this);
-                Class[] arg = new Class[1];
-                arg[0] = int.class;
-                Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("remove", arg);
-                method.invoke(fieldVal, index);
+                if(!f.getName().equals("TYPES")){
+                    Object fieldVal = f.get(this);
+                    Class[] arg = new Class[1];
+                    arg[0] = int.class;
+                    Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("remove", arg);
+                    method.invoke(fieldVal, index);
+                }
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
             Log.d("Exception occurred", "Reflection didn't work :(");
@@ -162,7 +200,7 @@ public class PokemonsData {
             //If the pokémon's legendary status is different from the parameter, remove it from the dataset
             if(keepLegendaries != LEGENDARY_STATUS.get(i)){
                 removeLine(i);
-                i--; //Rectify the index position
+                i--; //Rectify the iterator position
             }
         }
         Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
@@ -171,17 +209,17 @@ public class PokemonsData {
     /** Filter the dataset based on the preferred type chosen by the user, removes all pokémons that doesn't possess it
      * @param type The type to keep in the dataset
      */
-    public void filterType(String type){
-        Log.d("Data filter", "Type filter begin, number of pokémons before: " + FIRST_TYPES.size());
+    public void filterPreferredType(String type){
+        Log.d("Data filter", "Preferred type filter begin, number of pokémons before: " + FIRST_TYPES.size());
         //Not using a forEach to track the index automatically
         for(int i = 0; i < FIRST_TYPES.size(); ++i){
             //If the pokémon doesn't have the type in first or second, remove it from the dataset
             if(!(FIRST_TYPES.get(i).equals(type) || SECONDARY_TYPES.get(i).equals(type))){
                 removeLine(i);
-                i--; //Rectify the index position
+                i--; //Rectify the iterator position
             }
         }
-        Log.d("Data filter", "Type filter end, number of pokémons left: " + FIRST_TYPES.size());
+        Log.d("Data filter", "Preferred type filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
     /** Filter the dataset based on the 3 most preferred generations of the user, removes all pokémons from other generations
@@ -194,9 +232,40 @@ public class PokemonsData {
             //If the pokémon doesn't belong in one of the three generations, remove it from the dataset
             if(!(GENERATIONS.get(i) == generations[0] || GENERATIONS.get(i) == generations[1] || GENERATIONS.get(i) == generations[2])){
                 removeLine(i);
-                i--; //Rectify the index position
+                i--; //Rectify the iterator position
             }
         }
         Log.d("Data filter", "Generation filter end, number of pokémons left: " + FIRST_TYPES.size());
+    }
+
+    /** Filter the dataset based on the disliked type chosen by the user, keeps pokémons that most resists it
+     * @param type The type for which to find the Pokémons that are most resistant to it
+     */
+    public void filterDislikedType(String type){
+        Log.d("Data filter", "Disliked type filter begin, number of pokémons before: " + WEAKNESSES.size());
+        int typeIndex = getTypeIndex(type);
+        float maxResistance = 4; //A lower number means a higher resistance
+        for(Float[] f : WEAKNESSES){
+            maxResistance = Math.min(maxResistance, f[typeIndex]);
+        }
+
+        //If some of the pokémons are immune to the chosen type, we keep both the 0.25 and 0.5 resistances too
+        maxResistance = Math.max(maxResistance, 0.25f);
+
+        if(maxResistance < 2){
+            //Not using a forEach to track the index automatically
+            for(int i = 0; i < WEAKNESSES.size(); ++i){
+                //If the pokémon has a resistance of more than 2x the max of all the remaining ones, remove it from the dataset
+                if(WEAKNESSES.get(i)[typeIndex] > 2 * maxResistance){
+                    removeLine(i);
+                    i--; //Rectify the iterator position
+                }
+            }
+        }
+        Log.d("Data filter", "Disliked type filter end, number of pokémons left: " + WEAKNESSES.size());
+    }
+
+    private int getTypeIndex(String type){
+        return TYPES.indexOf(type);
     }
 }

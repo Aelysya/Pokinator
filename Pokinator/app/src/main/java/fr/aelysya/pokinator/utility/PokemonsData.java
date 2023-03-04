@@ -162,8 +162,11 @@ public class PokemonsData {
             //Debugging Part, to remove later
             filterLegendaries(false);
             filterPreferredType("ghost");
-            filterGeneration(new int[]{1, 6, 9});
+            filterGeneration(new int[]{1, 6, 2});
             filterDislikedType("water");
+            filterSpeed(false);
+            filterCaptureRate(true);
+            filterEggSteps(true);
             for(String s : NAMES){
                 Log.d("DEBUG", s);
             }
@@ -190,20 +193,20 @@ public class PokemonsData {
         }
     }
 
-    /** Filter the dataset based on the pokémons' legendary status
-     * @param keepLegendaries Whether to keep or remove the legendaries from the dataset
+    /** Filter the dataset based on the 3 most preferred generations of the user, removes all pokémons from other generations
+     * @param generations Array of three generations to keep in the dataset
      */
-    public void filterLegendaries(boolean keepLegendaries){
-        Log.d("Data filter", "Legendaries filter begin, number of pokémons before: " + LEGENDARY_STATUS.size());
+    public void filterGeneration(int[] generations){
+        Log.d("Data filter", "Generation filter begin, number of pokémons before: " + FIRST_TYPES.size());
         //Not using a forEach to track the index automatically
-        for(int i = 0; i < LEGENDARY_STATUS.size(); ++i){
-            //If the pokémon's legendary status is different from the parameter, remove it from the dataset
-            if(keepLegendaries != LEGENDARY_STATUS.get(i)){
+        for(int i = 0; i < GENERATIONS.size(); ++i){
+            //If the pokémon doesn't belong in one of the three generations, remove it from the dataset
+            if(!(GENERATIONS.get(i) == generations[0] || GENERATIONS.get(i) == generations[1] || GENERATIONS.get(i) == generations[2])){
                 removeLine(i);
                 i--; //Rectify the iterator position
             }
         }
-        Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
+        Log.d("Data filter", "Generation filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
     /** Filter the dataset based on the preferred type chosen by the user, removes all pokémons that doesn't possess it
@@ -220,22 +223,6 @@ public class PokemonsData {
             }
         }
         Log.d("Data filter", "Preferred type filter end, number of pokémons left: " + FIRST_TYPES.size());
-    }
-
-    /** Filter the dataset based on the 3 most preferred generations of the user, removes all pokémons from other generations
-     * @param generations Array of three generations to keep in the dataset
-     */
-    public void filterGeneration(int[] generations){
-        Log.d("Data filter", "Generation filter begin, number of pokémons before: " + FIRST_TYPES.size());
-        //Not using a forEach to track the index automatically
-        for(int i = 0; i < GENERATIONS.size(); ++i){
-            //If the pokémon doesn't belong in one of the three generations, remove it from the dataset
-            if(!(GENERATIONS.get(i) == generations[0] || GENERATIONS.get(i) == generations[1] || GENERATIONS.get(i) == generations[2])){
-                removeLine(i);
-                i--; //Rectify the iterator position
-            }
-        }
-        Log.d("Data filter", "Generation filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
     /** Filter the dataset based on the disliked type chosen by the user, keeps pokémons that most resists it
@@ -267,5 +254,95 @@ public class PokemonsData {
 
     private int getTypeIndex(String type){
         return TYPES.indexOf(type);
+    }
+
+    /** Filter the dataset based on the pokémons speed, keeps the slowest or the fastest ones
+     * @param keepSlow Whether to keep the slowest or the fastest pokémons
+     */
+    private void filterSpeed(boolean keepSlow){
+        Log.d("Data filter", "Speed stat filter begin, number of pokémons before: " + STATS.size());
+        int highestSpeed = 0;
+        int lowestSpeed = 1000;
+        for(Integer[] i : STATS){
+            highestSpeed = Math.max(highestSpeed, i[5]);
+            lowestSpeed = Math.min(lowestSpeed, i[5]);
+        }
+
+        int thirdsThreshold = (highestSpeed - lowestSpeed) / 3;
+
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < STATS.size(); ++i){
+            if((keepSlow && STATS.get(i)[5] > highestSpeed - thirdsThreshold) || (!keepSlow && STATS.get(i)[5] < lowestSpeed + thirdsThreshold)){
+                removeLine(i);
+                i--; //Rectify the iterator position
+            }
+        }
+        Log.d("Data filter", "Speed stat filter end, number of pokémons left: " + STATS.size());
+    }
+
+    /** Filter the dataset based on the pokémons' legendary status
+     * @param keepLegendaries Whether to keep or remove the legendaries from the dataset
+     */
+    public void filterLegendaries(boolean keepLegendaries){
+        Log.d("Data filter", "Legendaries filter begin, number of pokémons before: " + LEGENDARY_STATUS.size());
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < LEGENDARY_STATUS.size(); ++i){
+            //If the pokémon's legendary status is different from the parameter, remove it from the dataset
+            if(keepLegendaries != LEGENDARY_STATUS.get(i)){
+                removeLine(i);
+                i--; //Rectify the iterator position
+            }
+        }
+        Log.d("Data filter", "Legendaries filter end, number of pokémons left: " + LEGENDARY_STATUS.size());
+    }
+
+    /** Filter the dataset based on the pokémons egg steps, keeps the slowest or the fastest to hatch
+     * @param keepSlow Whether to keep the slowest or the fastest pokémons to hatch
+     */
+    private void filterEggSteps(boolean keepSlow){
+        Log.d("Data filter", "Egg steps filter begin, number of pokémons before: " + EGG_STEPS.size());
+        int mostSteps = 0;
+        int leastSteps = 100000;
+        for(Integer i : EGG_STEPS){
+            mostSteps = Math.max(mostSteps, i);
+            leastSteps = Math.min(leastSteps, i);
+        }
+
+        //Divide the difference by three to use it to remove pokémons in the excluded third later
+        int thirdsThreshold = (mostSteps - leastSteps) / 3;
+
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < EGG_STEPS.size(); ++i){
+            if((keepSlow && EGG_STEPS.get(i) > mostSteps - thirdsThreshold) || (!keepSlow && EGG_STEPS.get(i) < leastSteps + thirdsThreshold)){
+                removeLine(i);
+                i--; //Rectify the iterator position
+            }
+        }
+        Log.d("Data filter", "Egg steps filter end, number of pokémons left: " + EGG_STEPS.size());
+    }
+
+    /** Filter the dataset based on the pokémons capture rate, keeps the hardest or the easiest to capture
+     * @param keepHard Whether to keep the hardest or the easiest pokémons to capture
+     */
+    private void filterCaptureRate(boolean keepHard){
+        Log.d("Data filter", "Capture rate filter begin, number of pokémons before: " + CAPTURE_RATES.size());
+        int highestRate = 0;
+        int lowestRate = 1000;
+        for(Integer i : CAPTURE_RATES){
+            highestRate = Math.max(highestRate, i);
+            lowestRate = Math.min(lowestRate, i);
+        }
+
+        //Divide the difference by three to use it to remove pokémons in the excluded third later
+        int thirdsThreshold = (highestRate - lowestRate) / 3;
+
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < CAPTURE_RATES.size(); ++i){
+            if((keepHard && CAPTURE_RATES.get(i) > highestRate - thirdsThreshold) || (!keepHard && CAPTURE_RATES.get(i) < lowestRate + thirdsThreshold)){
+                removeLine(i);
+                i--; //Rectify the iterator position
+            }
+        }
+        Log.d("Data filter", "Capture rate filter end, number of pokémons left: " + CAPTURE_RATES.size());
     }
 }

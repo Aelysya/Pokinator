@@ -162,7 +162,7 @@ public class PokemonsData {
             //Debugging Part, to remove later
             filterLegendaries(false);
             filterPreferredType("ghost");
-            filterGeneration(new int[]{1, 6, 2});
+            filterGeneration(new int[]{1, 6, 9});
             filterDislikedType("water");
             filterSpeed(false);
             filterCaptureRate(true);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.opencsv.CSVReader;
@@ -27,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
         isXavier = true;
 
         ImageView logo = findViewById(R.id.logo);
+        ImageView mysteryGift = findViewById(R.id.mysteryGift);
+        ImageView shinyCharm = findViewById(R.id.shinyCharm);
 
         logo.setOnClickListener(view -> {
             logo.setImageResource(isXavier ? R.drawable.pokemon_hakim_clear : R.drawable.pokemon_xavier_clear);
             isXavier = !isXavier;
         });
+
+        mysteryGift.setOnClickListener(view -> shinyCharm.setVisibility(View.VISIBLE));
 
         DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
     }

@@ -39,4 +39,134 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/A"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="85dp"
+        android:contentDescription="@string/a"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/a" />
+
+    <ImageView
+        android:id="@+id/B"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/b"
+        app:layout_constraintStart_toEndOf="@+id/A"
+        app:layout_constraintTop_toTopOf="@+id/A"
+        app:srcCompat="@drawable/b" />
+
+    <ImageView
+        android:id="@+id/C"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/c"
+        app:layout_constraintStart_toEndOf="@+id/B"
+        app:layout_constraintTop_toTopOf="@+id/B"
+        app:srcCompat="@drawable/c" />
+
+    <ImageView
+        android:id="@+id/D"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/d"
+        app:layout_constraintStart_toEndOf="@+id/C"
+        app:layout_constraintTop_toTopOf="@+id/C"
+        app:srcCompat="@drawable/D" />
+
+    <ImageView
+        android:id="@+id/E"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/e"
+        app:layout_constraintStart_toEndOf="@+id/D"
+        app:layout_constraintTop_toTopOf="@+id/D"
+        app:srcCompat="@drawable/E" />
+
+    <ImageView
+        android:id="@+id/F"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/f"
+        app:layout_constraintStart_toEndOf="@+id/E"
+        app:layout_constraintTop_toTopOf="@+id/E"
+        app:srcCompat="@drawable/F" />
+
+    <ImageView
+        android:id="@+id/G"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/g"
+        app:layout_constraintStart_toEndOf="@+id/F"
+        app:layout_constraintTop_toTopOf="@+id/F"
+        app:srcCompat="@drawable/G" />
+
+    <ImageView
+        android:id="@+id/H"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/h"
+        app:layout_constraintStart_toEndOf="@+id/G"
+        app:layout_constraintTop_toTopOf="@+id/G"
+        app:srcCompat="@drawable/H" />
+
+    <ImageView
+        android:id="@+id/I"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/i"
+        app:layout_constraintStart_toEndOf="@+id/H"
+        app:layout_constraintTop_toTopOf="@+id/H"
+        app:srcCompat="@drawable/i" />
+
+    <ImageView
+        android:id="@+id/J"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/j"
+        app:layout_constraintStart_toEndOf="@+id/I"
+        app:layout_constraintTop_toTopOf="@+id/I"
+        app:srcCompat="@drawable/j" />
+
+    <ImageView
+        android:id="@+id/delButton"
+        android:layout_width="85dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/del_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eff"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/K"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/k"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/A"
+        app:srcCompat="@drawable/k" />
+
+    <ImageView
+        android:id="@+id/L"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/k"
+        app:layout_constraintStart_toEndOf="@+id/K"
+        app:layout_constraintTop_toBottomOf="@+id/B"
+        app:srcCompat="@drawable/l" />
+
+    <ImageView
+        android:id="@+id/M"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/m"
+        app:layout_constraintStart_toEndOf="@+id/L"
+        app:layout_constraintTop_toBottomOf="@+id/C"
+        app:srcCompat="@drawable/m" />
 </androidx.constraintlayout.widget.ConstraintLayout>

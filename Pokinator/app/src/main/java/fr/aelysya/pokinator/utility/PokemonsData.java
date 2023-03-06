@@ -162,11 +162,11 @@ public class PokemonsData {
             //Debugging Part, to remove later
             filterLegendaries(false);
             filterPreferredType("ghost");
-            filterGeneration(new int[]{1, 6, 9});
+            filterGeneration(new int[]{1, 6, 7});
             filterDislikedType("water");
             filterSpeed(false);
             filterCaptureRate(true);
-            filterEggSteps(true);
+            filterEggSteps(false);
             for(String s : NAMES){
                 Log.d("DEBUG", s);
             }

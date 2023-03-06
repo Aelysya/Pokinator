@@ -48,5 +48,15 @@
     <string name="x" translatable="false">X</string>
     <string name="y" translatable="false">Y</string>
     <string name="z" translatable="false">Z</string>
+    <string name="zero" translatable="false">zero</string>
+    <string name="one" translatable="false">one</string>
+    <string name="two" translatable="false">two</string>
+    <string name="three" translatable="false">three</string>
+    <string name="four" translatable="false">four</string>
+    <string name="five" translatable="false">five</string>
+    <string name="six" translatable="false">six</string>
+    <string name="seven" translatable="false">seven</string>
+    <string name="eight" translatable="false">eight</string>
+    <string name="nine" translatable="false">nine</string>
 
 </resources>

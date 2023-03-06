@@ -162,11 +162,12 @@ public class PokemonsData {
             //Debugging Part, to remove later
             filterLegendaries(false);
             filterPreferredType("ghost");
-            filterGeneration(new int[]{1, 6, 7});
-            filterDislikedType("water");
-            filterSpeed(false);
-            filterCaptureRate(true);
-            filterEggSteps(false);
+            filterGeneration(new int[]{1, 6, 9});
+            filterDislikedType("grass");
+            filterAtkDef(false, false);
+            filterSpeed(true);
+            filterCaptureRate(false);
+            filterEggSteps(true);
             for(String s : NAMES){
                 Log.d("DEBUG", s);
             }
@@ -254,6 +255,27 @@ public class PokemonsData {
 
     private int getTypeIndex(String type){
         return TYPES.indexOf(type);
+    }
+
+    /** Filter the dataset based on the pokémons attacks and defenses, keeps the ones that fit the user's choices
+     * @param checkSpecial Whether to compare special or physical stats
+     * @param prefAttack Whether to keep pokémons with a higher attack than defense or the contrary
+     */
+    private void filterAtkDef(boolean checkSpecial, boolean prefAttack){
+        Log.d("Data filter", "Attacks and defenses stat filter begin, number of pokémons before: " + STATS.size());
+
+        //Not using a forEach to track the index automatically
+        for(int i = 0; i < STATS.size(); ++i){
+            if((checkSpecial && prefAttack && (STATS.get(i)[4] > STATS.get(i)[3])) //special and prefer SP-ATK and (SP-DEF > SP-ATK)
+            || (checkSpecial && !prefAttack && (STATS.get(i)[4] < STATS.get(i)[3])) //special and prefer SP-DEF and (SP-ATK > SP-DEF)
+            || (!checkSpecial && prefAttack && (STATS.get(i)[2] > STATS.get(i)[1])) //physical and prefer ATK and (DEF > ATK)
+            || (!checkSpecial && !prefAttack && (STATS.get(i)[2] < STATS.get(i)[1])) //physical and prefer DEF and (ATK > DEF)
+            ){
+                removeLine(i);
+                i--; //Rectify the iterator position
+            }
+        }
+        Log.d("Data filter", "Attacks and defenses stat filter end, number of pokémons left: " + STATS.size());
     }
 
     /** Filter the dataset based on the pokémons speed, keeps the slowest or the fastest ones

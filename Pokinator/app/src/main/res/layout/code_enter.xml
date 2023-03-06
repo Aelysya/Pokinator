@@ -84,4 +84,58 @@
         app:srcCompat="@drawable/eff"
         tools:ignore="ImageContrastCheck" />
 
+    <ImageView
+        android:id="@+id/D"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/C"
+        app:layout_constraintTop_toTopOf="@+id/C"
+        app:srcCompat="@drawable/d" />
+
+    <ImageView
+        android:id="@+id/E"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/D"
+        app:layout_constraintTop_toTopOf="@+id/D"
+        app:srcCompat="@drawable/e" />
+
+    <ImageView
+        android:id="@+id/F"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/E"
+        app:layout_constraintTop_toTopOf="@+id/E"
+        app:srcCompat="@drawable/f" />
+
+    <ImageView
+        android:id="@+id/G"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/F"
+        app:layout_constraintTop_toTopOf="@+id/F"
+        app:srcCompat="@drawable/g" />
+
+    <ImageView
+        android:id="@+id/H"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/G"
+        app:layout_constraintTop_toTopOf="@+id/G"
+        app:srcCompat="@drawable/h" />
+
+    <ImageView
+        android:id="@+id/I"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@+id/H"
+        app:layout_constraintTop_toTopOf="@+id/H"
+        app:srcCompat="@drawable/i" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

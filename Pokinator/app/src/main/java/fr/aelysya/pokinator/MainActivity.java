@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         ImageView mysteryGift = findViewById(R.id.mysteryGift);
         shinyCharm = findViewById(R.id.shinyCharm);
         shinyCharm.setEnabled(false);
+        Button beginButton = findViewById(R.id.beginButton);
+        EditText nameInput = findViewById(R.id.nameInput);
+        DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
 
         logo.setOnClickListener(view -> {
             Log.d("Action detected", "Switching version");
@@ -67,7 +73,12 @@ public class MainActivity extends AppCompatActivity {
             shinyCharmEnabled = !shinyCharmEnabled;
         });
 
-        DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
+        beginButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, PreferencesActivity.class);
+            intent.putExtra("userName", nameInput.getText().toString());
+            startActivity(intent);
+        });
+
     }
 
     public void vibrate(long duration_ms) {
@@ -111,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(view -> {
             if(checkCode()){
                 currentToast.cancel();
-                currentToast.setText("Congratulations, you unlocked the shiny charm !");
+                currentToast.setText(R.string.code_congrat);
                 currentToast.show();
                 popupWindow.dismiss();
                 vibrate(50);
             } else {
                 currentToast.cancel();
-                currentToast.setText("Unknown code, try again");
+                currentToast.setText(R.string.code_fail);
                 currentToast.show();
                 vibrate(100);
             }

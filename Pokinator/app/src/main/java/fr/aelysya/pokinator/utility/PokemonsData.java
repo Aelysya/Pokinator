@@ -157,26 +157,6 @@ public class PokemonsData {
                 MAX_EXPERIENCE.add(Integer.parseInt(nextLine[34]));
             }
             Log.d("CSV loading", "CSV loading end");
-
-
-            //Debugging Part, to remove later
-            filterLegendaries(false);
-            filterPreferredType("fighting");
-            filterGeneration(new int[]{8, 4, 5});
-            filterDislikedType("rock");
-            //filterHP(false);
-            filterAtkDef(false, true);
-            filterSpeed(true);
-            filterCaptureRate(true);
-            filterEggSteps(true);
-            filterMaxExperience(true);
-            filterSize(100);
-            filterWeight(49);
-            for(int i = 0; i < NAMES.size(); ++i){
-                Log.d("DEBUG", NAMES.get(i) + " " + SIZES.get(i) + " " + WEIGHTS.get(i));
-            }
-
-
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
             Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
         }

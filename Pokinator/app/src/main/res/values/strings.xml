@@ -9,6 +9,22 @@
     <string name="previous_step">Previous Step</string>
     <string name="code_confirm">Confirm</string>
     <string name="code_cancel">Cancel</string>
+    <string name="code_congrat">Congratulations, you unlocked the shiny charm !</string>
+    <string name="code_fail">Unknown code, try again</string>
+
+    <string name="category_preferences">Preferences</string>
+    <string name="question_legendaries">Do you want your pokémon to be legendary ?</string>
+    <string name="question_generations">What are your favorite generations ? (pick 3)</string>
+    <string name="generation_one" translatable="false">Gen 1</string>
+    <string name="generation_two" translatable="false">Gen 2</string>
+    <string name="generation_three" translatable="false">Gen 3</string>
+    <string name="generation_four" translatable="false">Gen 4</string>
+    <string name="generation_five" translatable="false">Gen 5</string>
+    <string name="generation_six" translatable="false">Gen 6</string>
+    <string name="generation_seven" translatable="false">Gen 7</string>
+    <string name="generation_eight" translatable="false">Gen 8</string>
+    <string name="generation_nine" translatable="false">Gen 9</string>
+    <string name="too_many_generations">Too many generations choosed</string>
 
 
 

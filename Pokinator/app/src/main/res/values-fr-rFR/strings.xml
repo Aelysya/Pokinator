@@ -8,4 +8,10 @@
     <string name="charm_desc">Charme chroma</string>
     <string name="code_confirm">Confirmer</string>
     <string name="code_cancel">Annuler</string>
+    <string name="category_preferences">Préférences</string>
+    <string name="question_legendaries">Voulez-vous que votre pokémon soit légendaire ?</string>
+    <string name="question_generations">Quelles sont vos générations favorites ? (choisissez-en 3)</string>
+    <string name="code_congrat">Félicitations, vous avez débloqué le charme chroma !</string>
+    <string name="code_fail">Code inconnu, réessayez</string>
+    <string name="too_many_generations">Vous avez choisi trop de générations</string>
 </resources>

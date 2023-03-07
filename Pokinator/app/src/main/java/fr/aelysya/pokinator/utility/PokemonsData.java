@@ -161,17 +161,17 @@ public class PokemonsData {
 
             //Debugging Part, to remove later
             filterLegendaries(false);
-            filterPreferredType("ghost");
-            filterGeneration(new int[]{1, 6, 9});
-            filterDislikedType("grass");
-            filterSize(55);
-            //filterWeight(50);
+            filterPreferredType("fighting");
+            filterGeneration(new int[]{8, 4, 5});
+            filterDislikedType("rock");
             //filterHP(false);
-            //filterAtkDef(false, false);
-            //filterSpeed(true);
-            //filterCaptureRate(false);
-            //filterEggSteps(true);
-            //filterMaxExperience(false);
+            filterAtkDef(false, true);
+            filterSpeed(true);
+            filterCaptureRate(true);
+            filterEggSteps(true);
+            filterMaxExperience(true);
+            filterSize(100);
+            filterWeight(49);
             for(int i = 0; i < NAMES.size(); ++i){
                 Log.d("DEBUG", NAMES.get(i) + " " + SIZES.get(i) + " " + WEIGHTS.get(i));
             }
@@ -182,7 +182,7 @@ public class PokemonsData {
         }
     }
 
-    public void removeLine(int index){
+    private void removeLine(int index){
         try{
             for(Field f : this.getClass().getDeclaredFields()){
                 if(!f.getName().equals("TYPES")){
@@ -442,7 +442,7 @@ public class PokemonsData {
 
         //Not using a forEach to track the index automatically
         for(int i = 0; i < EGG_STEPS.size(); ++i){
-            if((keepSlow && EGG_STEPS.get(i) > mostSteps - thirdsThreshold) || (!keepSlow && EGG_STEPS.get(i) < leastSteps + thirdsThreshold)){
+            if((!keepSlow && EGG_STEPS.get(i) > mostSteps - thirdsThreshold) || (keepSlow && EGG_STEPS.get(i) < leastSteps + thirdsThreshold)){
                 removeLine(i);
                 i--; //Rectify the iterator position
             }

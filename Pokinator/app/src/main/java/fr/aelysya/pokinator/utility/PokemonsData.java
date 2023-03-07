@@ -96,6 +96,9 @@ public class PokemonsData {
         TYPES.add("fairy");
     }
 
+    /**
+     * Create a new instance of PokemonsData
+     */
     public PokemonsData(){
         NUMBERS = new ArrayList<>();
         NAMES = new ArrayList<>();
@@ -112,6 +115,9 @@ public class PokemonsData {
         MAX_EXPERIENCE = new ArrayList<>();
     }
 
+    /** Create a new instance of PokemonsData from copying another instance
+     * @param copy The PokemonsData instance to copy
+     */
     public PokemonsData(PokemonsData copy){
         NUMBERS = new ArrayList<>(copy.NUMBERS);
         NAMES = new ArrayList<>(copy.NAMES);

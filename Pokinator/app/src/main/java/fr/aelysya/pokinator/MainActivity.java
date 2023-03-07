@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_TAG = "Pokinator";
     public static final PokemonsData DATA = new PokemonsData();
     private static boolean isXavier;
+    private static boolean shinyCharmEnabled;
     private ImageView shinyCharm;
     private Toast currentToast;
 
@@ -43,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
         isXavier = true;
+        shinyCharmEnabled = true;
         ImageView logo = findViewById(R.id.logo);
         ImageView mysteryGift = findViewById(R.id.mysteryGift);
         shinyCharm = findViewById(R.id.shinyCharm);
+        shinyCharm.setEnabled(false);
 
         logo.setOnClickListener(view -> {
             Log.d("Action detected", "Switching version");
@@ -56,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
         mysteryGift.setOnClickListener(view -> {
             Log.d("Action detected", "Launch code window");
             launchCodeWindow(view);
+        });
+
+        shinyCharm.setOnClickListener(view -> {
+            Log.d("Action detected", "Switching shiny charm state");
+            shinyCharm.setImageResource(shinyCharmEnabled ? R.drawable.shiny_charm_crossed : R.drawable.shiny_charm);
+            shinyCharmEnabled = !shinyCharmEnabled;
         });
 
         DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
@@ -70,13 +79,6 @@ public class MainActivity extends AppCompatActivity {
                     VibrationEffect.DEFAULT_AMPLITUDE));
         }
     }
-
-
-
-
-
-
-
 
 
     //Mystery gift code management part
@@ -169,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkCode(){
         boolean codeOk = false;
         if(stringCode.equals("HAXACOEUR")){
+            shinyCharm.setEnabled(true);
             shinyCharm.setVisibility(View.VISIBLE);
             codeOk = true;
             Log.d("Mystery gift code", "Code valid, enabling shiny charm");

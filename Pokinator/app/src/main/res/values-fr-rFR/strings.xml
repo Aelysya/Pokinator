@@ -14,4 +14,5 @@
     <string name="code_congrat">Félicitations, vous avez débloqué le charme chroma !</string>
     <string name="code_fail">Code inconnu, réessayez</string>
     <string name="too_many_generations">Vous avez choisi trop de générations</string>
+    <string name="empty_name_input">Entrez votre nom avant de commencer le test</string>
 </resources>

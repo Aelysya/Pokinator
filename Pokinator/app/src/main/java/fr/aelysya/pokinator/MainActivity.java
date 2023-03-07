@@ -1,14 +1,10 @@
 package fr.aelysya.pokinator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -21,9 +17,6 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.opencsv.CSVReader;
-
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +26,11 @@ import fr.aelysya.pokinator.utility.PokemonsData;
 public class MainActivity extends AppCompatActivity {
 
     public static final String APP_TAG = "Pokinator";
-    public static final PokemonsData DATA = new PokemonsData();
+    public static PokemonsData data = new PokemonsData();
     private static boolean isXavier;
     private static boolean shinyCharmEnabled;
     private ImageView shinyCharm;
+    EditText nameInput;
     private Toast currentToast;
 
     @Override
@@ -48,13 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         isXavier = true;
         shinyCharmEnabled = true;
+
         ImageView logo = findViewById(R.id.logo);
         ImageView mysteryGift = findViewById(R.id.mysteryGift);
         shinyCharm = findViewById(R.id.shinyCharm);
         shinyCharm.setEnabled(false);
         Button beginButton = findViewById(R.id.beginButton);
-        EditText nameInput = findViewById(R.id.nameInput);
-        DATA.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
+        nameInput = findViewById(R.id.nameInput);
+
+        //Load the CSV with all the data
+        data.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
 
         logo.setOnClickListener(view -> {
             Log.d("Action detected", "Switching version");
@@ -74,13 +71,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         beginButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, PreferencesActivity.class);
-            intent.putExtra("userName", nameInput.getText().toString());
-            startActivity(intent);
+            String userName = nameInput.getText().toString();
+            if(userName.equals("")){
+                currentToast.cancel();
+                currentToast.setText(R.string.empty_name_input);
+                currentToast.show();
+            } else {
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
+            }
         });
-
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        nameInput.setText("");
+    }
+
+    /** Make the phone vibrate
+     * @param duration_ms Vibration duration in milliseconds
+     */
     public void vibrate(long duration_ms) {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if(duration_ms < 1)
@@ -96,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
     private List<ImageView> codeImageViews;
     private String stringCode;
 
+    /** Show the popup window containing the mystery gift code keyboard
+     * @param v The view to show the popup window in
+     */
     public void launchCodeWindow(View v) {
         codeImageViews = new ArrayList<>();
         stringCode = "";
@@ -148,6 +163,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /** Construct and show the code when a key is clicked in the mystery gift code keyboard
+     * @param v The ImageView that was clicked on
+     */
     public void codeKeyboardOnClick(View v){
         if(stringCode.length() < 9){
             String fullName = getResources().getResourceName(v.getId());
@@ -179,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Verify the current code and compare it the the known ones
+     * @return Whether the current code is valid or not
+     */
     public boolean checkCode(){
         boolean codeOk = false;
         if(stringCode.equals("HAXACOEUR")){

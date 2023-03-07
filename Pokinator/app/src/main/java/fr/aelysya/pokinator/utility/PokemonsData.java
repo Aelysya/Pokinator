@@ -112,6 +112,22 @@ public class PokemonsData {
         MAX_EXPERIENCE = new ArrayList<>();
     }
 
+    public PokemonsData(PokemonsData copy){
+        NUMBERS = new ArrayList<>(copy.NUMBERS);
+        NAMES = new ArrayList<>(copy.NAMES);
+        GENERATIONS = new ArrayList<>(copy.GENERATIONS);
+        FIRST_TYPES = new ArrayList<>(copy.FIRST_TYPES);
+        SECONDARY_TYPES = new ArrayList<>(copy.SECONDARY_TYPES);
+        WEAKNESSES = new ArrayList<>(copy.WEAKNESSES);
+        STATS = new ArrayList<>(copy.STATS);
+        SIZES = new ArrayList<>(copy.SIZES);
+        WEIGHTS = new ArrayList<>(copy.WEIGHTS);
+        LEGENDARY_STATUS = new ArrayList<>(copy.LEGENDARY_STATUS);
+        EGG_STEPS = new ArrayList<>(copy.EGG_STEPS);
+        CAPTURE_RATES = new ArrayList<>(copy.CAPTURE_RATES);
+        MAX_EXPERIENCE = new ArrayList<>(copy.MAX_EXPERIENCE);
+    }
+
     /** Load a CSV file
      * @param csvFile The CSV file to read in order to load data
      */
@@ -244,7 +260,7 @@ public class PokemonsData {
     /** Filter the dataset based on the pokémons HP, keeps the ones with the most or the least amount of HP
      * @param keepLow Whether to keep the pokémons with the most or the least amount of HP
      */
-    private void filterHP(boolean keepLow){
+    public void filterHP(boolean keepLow){
         Log.d("Data filter", "HP stat filter begin, number of pokémons before: " + STATS.size());
         int highestHp = 0;
         int lowestHp = 1000;
@@ -269,7 +285,7 @@ public class PokemonsData {
      * @param checkSpecial Whether to compare special or physical stats
      * @param prefAttack Whether to keep pokémons with a higher attack than defense or the contrary
      */
-    private void filterAtkDef(boolean checkSpecial, boolean prefAttack){
+    public void filterAtkDef(boolean checkSpecial, boolean prefAttack){
         Log.d("Data filter", "Attacks and defenses stat filter begin, number of pokémons before: " + STATS.size());
         //Not using a forEach to track the index automatically
         for(int i = 0; i < STATS.size(); ++i){
@@ -288,7 +304,7 @@ public class PokemonsData {
     /** Filter the dataset based on the pokémons speed, keeps the slowest or the fastest ones
      * @param keepSlow Whether to keep the slowest or the fastest pokémons
      */
-    private void filterSpeed(boolean keepSlow){
+    public void filterSpeed(boolean keepSlow){
         Log.d("Data filter", "Speed stat filter begin, number of pokémons before: " + STATS.size());
         int highestSpeed = 0;
         int lowestSpeed = 1000;
@@ -408,7 +424,7 @@ public class PokemonsData {
     /** Filter the dataset based on the pokémons egg steps, keeps the slowest or the fastest to hatch
      * @param keepSlow Whether to keep the slowest or the fastest pokémons to hatch
      */
-    private void filterEggSteps(boolean keepSlow){
+    public void filterEggSteps(boolean keepSlow){
         Log.d("Data filter", "Egg steps filter begin, number of pokémons before: " + EGG_STEPS.size());
         int mostSteps = 0;
         int leastSteps = 100000;
@@ -433,7 +449,7 @@ public class PokemonsData {
     /** Filter the dataset based on the pokémons capture rate, keeps the hardest or the easiest to capture
      * @param keepHard Whether to keep the hardest or the easiest pokémons to capture
      */
-    private void filterCaptureRate(boolean keepHard){
+    public void filterCaptureRate(boolean keepHard){
         Log.d("Data filter", "Capture rate filter begin, number of pokémons before: " + CAPTURE_RATES.size());
         int highestRate = 0;
         int lowestRate = 1000;
@@ -458,7 +474,7 @@ public class PokemonsData {
     /** Filter the dataset based on the pokémons max experience, keeps the longest or the fastest to level up
      * @param keepLong Whether to keep the longest or the fastest pokémons to level up
      */
-    private void filterMaxExperience(boolean keepLong){
+    public void filterMaxExperience(boolean keepLong){
         Log.d("Data filter", "Max experience filter begin, number of pokémons before: " + MAX_EXPERIENCE.size());
         int highestXp = 0;
         int lowestXp = 2000000;
@@ -477,5 +493,11 @@ public class PokemonsData {
             }
         }
         Log.d("Data filter", "Max experience filter end, number of pokémons left: " + MAX_EXPERIENCE.size());
+    }
+
+    public void logData(){
+        for(String s : NAMES){
+            Log.d("Log Names left", s);
+        }
     }
 }

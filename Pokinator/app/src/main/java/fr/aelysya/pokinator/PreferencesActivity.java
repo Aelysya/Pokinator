@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import fr.aelysya.pokinator.utility.PokemonsData;
 public class PreferencesActivity extends AppCompatActivity {
 
     private Toast currentToast;
-    public static final PokemonsData DATA = MainActivity.DATA;
+    public static PokemonsData data;
     private List<CheckBox> generationBoxes;
     private int boxesChecked;
 
@@ -30,6 +31,8 @@ public class PreferencesActivity extends AppCompatActivity {
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
         Button previousStep = findViewById(R.id.previousStep);
+        Button nextStep = findViewById(R.id.nextStep);
+        Switch keepLegendaries = findViewById(R.id.keepLegendaries);
         generationBoxes = new ArrayList<>();
         generationBoxes.add(findViewById(R.id.generation1));
         generationBoxes.add(findViewById(R.id.generation2));
@@ -46,9 +49,34 @@ public class PreferencesActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
+        nextStep.setOnClickListener(view -> {
+            //Filter the data
+            data.filterLegendaries(keepLegendaries.isChecked());
+            int[] generations = new int[3];
+            int genCpt = 0;
+            for(CheckBox c : generationBoxes){
+                if(c.isChecked()){
+                    String fullName = getResources().getResourceName(c.getId());
+                    //Keep only the generation number
+                    String number = fullName.substring(fullName.lastIndexOf("n") + 1);
+                    generations[genCpt] = Integer.parseInt(number);
+                    genCpt++;
+                }
+            }
+            data.filterGeneration(generations);
+            data.logData();
+        });
     }
 
-    public void checkAmountOfBoxesChecked(View v){
+    @Override
+    public void onStart(){
+        super.onStart();
+        //Reset the data to the previous state in case of the user goes back in the app
+        data = new PokemonsData(MainActivity.data);
+        data.logData();
+    }
+
+    public void verifyAmountOfCheckedBoxes(View v){
         CheckBox box = (CheckBox) v;
         if(box.isChecked()){
             if(boxesChecked < 3){

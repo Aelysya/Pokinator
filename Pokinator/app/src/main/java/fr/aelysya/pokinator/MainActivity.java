@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 currentToast.setText("Congratulations, you unlocked the shiny charm !");
                 currentToast.show();
                 popupWindow.dismiss();
+                vibrate(50);
             } else {
                 currentToast.cancel();
                 currentToast.setText("Unknown code, try again");
@@ -123,8 +124,12 @@ public class MainActivity extends AppCompatActivity {
         delButton.setOnClickListener(view -> {
             //Remove the last character
             if(!stringCode.equals("")){
+                vibrate(20);
                 stringCode = stringCode.substring(0, stringCode.length()-1);
                 codeImageViews.get(stringCode.length()).setImageResource(R.drawable.blank);
+            }
+            else{
+                vibrate(100);
             }
             Log.d("Mystery gift code", "Removing last character, current code: " + stringCode);
         });
@@ -154,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
             ImageView img = (ImageView) v;
             codeImageViews.get(stringCode.length()-1).setImageDrawable(img.getDrawable());
+            vibrate(20);
             Log.d("Mystery gift code", "Current code: " + stringCode);
         } else {
             Log.d("Mystery gift code", "Max code size reached, ignored input");
@@ -169,4 +175,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return codeOk;
     }
+
 }

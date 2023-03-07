@@ -30,8 +30,8 @@ public class PreferencesActivity extends AppCompatActivity {
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
-        Button previousStep = findViewById(R.id.previousStep);
-        Button nextStep = findViewById(R.id.nextStep);
+        Button previousStep = findViewById(R.id.previousStepPref);
+        Button nextStep = findViewById(R.id.nextStepPref);
         Switch keepLegendaries = findViewById(R.id.keepLegendaries);
         generationBoxes = new ArrayList<>();
         generationBoxes.add(findViewById(R.id.generation1));
@@ -65,13 +65,15 @@ public class PreferencesActivity extends AppCompatActivity {
             }
             data.filterGeneration(generations);
             data.logData();
+            Intent intent = new Intent(this, TypesActivity.class);
+            startActivity(intent);
         });
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        //Reset the data to the previous state in case of the user goes back in the app
+        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(MainActivity.data);
         data.logData();
     }

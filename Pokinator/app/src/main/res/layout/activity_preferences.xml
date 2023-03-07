@@ -7,7 +7,7 @@
     android:background="@drawable/background_preferences" >
 
     <Button
-        android:id="@+id/previousStep"
+        android:id="@+id/previousStepPref"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/nextStep"
+        android:id="@+id/nextStepPref"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginEnd="10dp"

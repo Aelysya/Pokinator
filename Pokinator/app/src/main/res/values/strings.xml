@@ -27,7 +27,8 @@
     <string name="generation_nine" translatable="false">Gen 9</string>
     <string name="too_many_generations">Too many generations choosed</string>
 
-
+    <string name="category_types" translatable="false">Types</string>
+    <string name="types_back_desc" translatable="false">Types back</string>
 
 
 

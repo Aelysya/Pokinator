@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/drawable/button_background.xml" value="0.2805" />
+        <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/drawable/button_background_base.xml" value="0.256" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/drawable/button_background_test.xml" value="0.2805" />
+        <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/drawable/type_background.xml" value="0.256" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/font/pokemon_font.xml" value="0.3958333333333333" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout-land/activity_main.xml" value="0.3106796116504854" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout/activity_preferences.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout/activity_types.xml" value="0.275" />
+        <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout/activity_types.xml" value="0.33" />
         <entry key="..\:/Users/maxim/Desktop/Pokinator/Pokinator/app/src/main/res/layout/code_enter.xml" value="0.67" />
       </map>
     </option>

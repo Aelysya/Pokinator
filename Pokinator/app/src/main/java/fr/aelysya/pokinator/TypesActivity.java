@@ -72,7 +72,6 @@ public class TypesActivity extends AppCompatActivity {
         data = new PokemonsData(PreferencesActivity.data);
     }
 
-    //TODO add remembering af the type last selected
     public void computeTopBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text
@@ -116,7 +115,6 @@ public class TypesActivity extends AppCompatActivity {
         manageDislikeImages();
     }
 
-    //TODO add remembering af the type last selected
     public void computeBottomBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text

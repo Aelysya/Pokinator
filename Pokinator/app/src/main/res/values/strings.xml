@@ -15,7 +15,7 @@
 
     <string name="category_preferences">Preferences</string>
     <string name="category_types" translatable="false">Types</string>
-    <string name="category_stats" translatable="false">Stats</string>
+    <string name="category_stats">Statistics</string>
     <string name="category_perso">Personal</string>
     <string name="category_phys">Physic</string>
 

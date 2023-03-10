@@ -176,7 +176,53 @@ public class TypesActivity extends AppCompatActivity {
         matchingDisImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);
         //Disable the immunities of the preferred type
         switch (prefType){
-            
+            case "normal" :
+                textId = this.getResources().getIdentifier("ghostText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disGhost", "id", this.getPackageName());
+                break;
+            case "ground" :
+                textId = this.getResources().getIdentifier("electricText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disElectric", "id", this.getPackageName());
+                break;
+            case "flying" :
+                textId = this.getResources().getIdentifier("groundText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disGround", "id", this.getPackageName());
+                break;
+            case "ghost" :
+                textId = this.getResources().getIdentifier("normalText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disNormal", "id", this.getPackageName());
+
+                matchingDisText = findViewById(textId);
+                lastDisabledTexts.add(matchingDisText);
+                matchingDisImage = findViewById(imageId);
+                lastDisabledImages.add(matchingDisImage);
+                matchingDisText.setEnabled(false);
+                matchingDisText.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
+                matchingDisImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);
+
+                textId = this.getResources().getIdentifier("fightingText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disFighting", "id", this.getPackageName());
+                break;
+            case "dark" :
+                textId = this.getResources().getIdentifier("psychicText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disPsychic", "id", this.getPackageName());
+                break;
+            case "steel" :
+                textId = this.getResources().getIdentifier("poisonText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disPoison", "id", this.getPackageName());
+                break;
+            case "fairy" :
+                textId = this.getResources().getIdentifier("dragonText2", "id", this.getPackageName());
+                imageId = this.getResources().getIdentifier("disDragon", "id", this.getPackageName());
+                break;
         }
+
+        matchingDisText = findViewById(textId);
+        lastDisabledTexts.add(matchingDisText);
+        matchingDisImage = findViewById(imageId);
+        lastDisabledImages.add(matchingDisImage);
+        matchingDisText.setEnabled(false);
+        matchingDisText.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
+        matchingDisImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);
     }
 }

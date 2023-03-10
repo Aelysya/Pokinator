@@ -41,4 +41,5 @@
     <string name="stat_toggle_attack">Attaque</string>
     <string name="stat_toggle_defense">Défense</string>
     <string name="stat_toggle_melee">Corps à corps</string>
+    <string name="category_stats">Statistiques</string>
 </resources>

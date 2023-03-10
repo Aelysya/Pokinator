@@ -39,14 +39,14 @@ public class PersoActivity extends AppCompatActivity {
         });
         nextStep.setOnClickListener(view -> {
             //Filter the data
-            if(eggBar.getRating() != 2.0f){ //If middle value, do not filter
-                data.filterEggSteps(eggBar.getRating() == 1.0f);
+            if(eggBar.getRating() < 2.0f || eggBar.getRating() > 3.0f){ //If in the middle, do not filter
+                data.filterEggSteps(eggBar.getRating() < 2.0f);
             }
-            if(capBar.getRating() != 2.0f){
-                data.filterCaptureRate(capBar.getRating() == 3.0f);
+            if(capBar.getRating() < 2.0f || capBar.getRating() > 3.0f){
+                data.filterCaptureRate(capBar.getRating() > 3.0f);
             }
-            if(expBar.getRating() != 2.0f){
-                data.filterMaxExperience(expBar.getRating() == 3.0f);
+            if(expBar.getRating() < 2.0f || expBar.getRating() > 3.0f){
+                data.filterMaxExperience(expBar.getRating() > 3.0f);
             }
             data.logData();
             Log.d("Form progression", "Proceeding to physic activity");

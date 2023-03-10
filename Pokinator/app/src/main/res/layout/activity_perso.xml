@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_perso">
+
+    <TextView
+        android:id="@+id/eggQuestion"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/pokemon_font"
+        android:padding="5dp"
+        android:text="@string/question_egg"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/persoTitle"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/experienceQuestion"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/pokemon_font"
+        android:padding="5dp"
+        android:text="@string/question_experience"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/captureQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/captureRating"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/captureQuestion"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/pokemon_font"
+        android:padding="5dp"
+        android:text="@string/question_capture"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/eggQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/eggRating"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/nextStepPerso"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/previousStepPerso"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/previous_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/persoTitle"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:text="@string/category_perso"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <RatingBar
+        android:id="@+id/eggRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/egg_rating"
+        android:progressTint="@color/gold"
+        android:rating="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eggQuestion" />
+
+    <RatingBar
+        android:id="@+id/captureRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/capture_rating"
+        android:progressTint="@color/gold"
+        android:rating="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/captureQuestion" />
+
+    <RatingBar
+        android:id="@+id/experienceRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/egg_rating"
+        android:progressTint="@color/gold"
+        android:rating="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/experienceQuestion" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

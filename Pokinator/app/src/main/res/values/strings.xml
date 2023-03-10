@@ -56,7 +56,12 @@
     <string name="fairy_type">Fairy</string>
     <string name="type_missing">Please pick two types before proceeding</string>
 
-
+    <string name="question_egg">On a scale from 1 to 3, how would rate your last walking experience ?</string>
+    <string name="question_capture">On a scale from 1 to 3, how would rate your last sportive experience besides walking ?</string>
+    <string name="question_experience">On a scale from 1 to 3, how would rate your appreciation of challenges ?</string>
+    <string name="egg_rating" translatable="false">Egg rating bar</string>
+    <string name="capture_rating" translatable="false">Capture rate rating bar</string>
+    <string name="experience_rating" translatable="false">Experience rating bar</string>
 
 
 

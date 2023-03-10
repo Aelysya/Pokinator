@@ -7,7 +7,7 @@
     android:background="@drawable/background_stats">
 
     <Button
-        android:id="@+id/nextStepStat"
+        android:id="@+id/nextStepStats"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginEnd="10dp"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/previousStepStat"
+        android:id="@+id/previousStepStats"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"

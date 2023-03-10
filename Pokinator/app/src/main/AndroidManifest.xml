@@ -36,6 +36,10 @@
             android:name=".StatsActivity"
             android:launchMode="singleInstance">
         </activity>
+        <activity
+            android:name=".PersoActivity"
+            android:launchMode="singleInstance">
+        </activity>
     </application>
 
 </manifest>

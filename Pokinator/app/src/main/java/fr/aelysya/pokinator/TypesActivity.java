@@ -113,7 +113,7 @@ public class TypesActivity extends AppCompatActivity {
 
         //Change text color to mark the type picked
         TextView text = (TextView) v;
-        text.setTextColor(getResources().getColor(R.color.black));
+        text.setTextColor(ContextCompat.getColor(context, R.color.black));
 
         manageDislikeImages();
     }
@@ -155,7 +155,7 @@ public class TypesActivity extends AppCompatActivity {
 
         //Change text color to mark the type picked
         TextView text = (TextView) v;
-        text.setTextColor(getResources().getColor(R.color.black));
+        text.setTextColor(ContextCompat.getColor(context, R.color.black));
     }
 
     /**

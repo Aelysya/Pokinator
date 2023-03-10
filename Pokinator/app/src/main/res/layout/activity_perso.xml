@@ -22,7 +22,7 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/experienceQuestion"
+        android:id="@+id/captureQuestion"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -31,12 +31,12 @@
         android:text="@string/question_experience"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/captureQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/captureRating"
+        app:layout_constraintStart_toStartOf="@+id/eggQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/eggRating"
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/captureQuestion"
+        android:id="@+id/experienceQuestion"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -45,8 +45,8 @@
         android:text="@string/question_capture"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/eggQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/eggRating"
+        app:layout_constraintStart_toStartOf="@+id/captureQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/captureRating"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/eggQuestion" />
 
     <RatingBar
-        android:id="@+id/captureRating"
+        android:id="@+id/experienceRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -120,10 +120,10 @@
         android:rating="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/captureQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/experienceQuestion" />
 
     <RatingBar
-        android:id="@+id/experienceRating"
+        android:id="@+id/captureRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -132,6 +132,6 @@
         android:rating="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/experienceQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/captureQuestion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     <string name="name_input_hint">Entrez votre nom</string>
     <string name="gift_desc">Cadeau mystère</string>
     <string name="charm_desc">Charme chroma</string>
-    <string name="code_confirm">Confirmer</string>
+    <string name="confirm">Confirmer</string>
     <string name="code_cancel">Annuler</string>
     <string name="category_preferences">Préférences</string>
     <string name="question_legendaries">Voulez-vous que votre pokémon soit légendaire ?</string>
@@ -36,8 +36,8 @@
     <string name="category_phys">Physique</string>
     <string name="question_dis_type">Choisissez le type que vous aimez le moins</string>
     <string name="type_missing">Veuillez choisir deux types avant de continuer</string>
-    <string name="question_stat_attack_def">Attaque ou Défense ?</string>
-    <string name="question_stat_melee_dist">Corps à corps ou Distance ?</string>
+    <string name="question_stat_attack_def">Préférez-vous attaquer ou encaisser des dégâts ?</string>
+    <string name="question_stat_melee_dist">Préférez-vous le combat au corps à corps ou à distance ?</string>
     <string name="stat_toggle_attack">Attaque</string>
     <string name="stat_toggle_defense">Défense</string>
     <string name="stat_toggle_melee">Corps à corps</string>
@@ -45,5 +45,4 @@
     <string name="question_egg">Comment évaluez-vous votre dernière expérience avec le fait de marcher ?</string>
     <string name="question_capture">Comment évaluez-vous votre dernière expérience sportive hors-marche ?</string>
     <string name="question_experience">Comment évaluez-vous votre appréciation des challenges ?</string>
-    <string name="validation_stat_butt">Confimer</string>
 </resources>

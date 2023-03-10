@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/preferencesTitle2"
+        android:id="@+id/statsTitle"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -57,66 +57,70 @@
     <ToggleButton
         android:id="@+id/statToggleAttackDef"
         android:layout_width="100dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="60dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="10sp"
         android:textOff="@string/stat_toggle_attack"
         android:textOn="@string/stat_toggle_defense"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/statAttackDefQuestion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/statAttackDefQuestion"
         app:layout_constraintTop_toTopOf="@+id/statAttackDefQuestion" />
 
     <ToggleButton
         android:id="@+id/statToggleMeleeDist"
         android:layout_width="100dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="40dp"
+        android:layout_height="60dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="10sp"
         android:textOff="@string/stat_toggle_melee"
         android:textOn="@string/stat_toggle_distance"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/statMeleeDistQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/statToggleAttackDef"
         app:layout_constraintTop_toTopOf="@+id/statMeleeDistQuestion" />
 
     <TextView
         android:id="@+id/statAttackDefQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/pokemon_font"
         android:text="@string/question_stat_attack_def"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preferencesTitle2" />
+        app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
 
     <TextView
         android:id="@+id/statMeleeDistQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/pokemon_font"
         android:text="@string/question_stat_melee_dist"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statAttackDefQuestion" />
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/statAttackDefQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/statToggleAttackDef" />
 
     <Button
         android:id="@+id/validationStatBut"
-        android:layout_width="126dp"
-        android:layout_height="52dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
-        android:onClick="validationStat"
-        android:text="@string/validation_stat_butt"
+        android:gravity="center_horizontal|top"
+        android:onClick="showMiniGame"
+        android:paddingVertical="10sp"
+        android:text="@string/confirm"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

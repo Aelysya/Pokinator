@@ -8,7 +8,7 @@
     <string name="empty_name_input">Please enter your name before beginning the test</string>
     <string name="next_step">Next Step</string>
     <string name="previous_step">Previous Step</string>
-    <string name="code_confirm">Confirm</string>
+    <string name="confirm">Confirm</string>
     <string name="code_cancel">Cancel</string>
     <string name="code_congrat">Congratulations, you unlocked the shiny charm !</string>
     <string name="code_fail">Unknown code, try again</string>
@@ -18,7 +18,6 @@
     <string name="category_stats">Statistics</string>
     <string name="category_perso">Personal</string>
     <string name="category_phys">Physic</string>
-
 
     <string name="question_legendaries">Do you want your pokémon to be legendary ?</string>
     <string name="question_generations">What are your favorite generations ? (pick 3)</string>
@@ -56,20 +55,19 @@
     <string name="fairy_type">Fairy</string>
     <string name="type_missing">Please pick two types before proceeding</string>
 
+    <string name="question_stat_attack_def">Do you prefer attacking or withstand damage ?</string>
+    <string name="question_stat_melee_dist">Do you prefer to fight in melee or at a distance ?</string>
+    <string name="stat_toggle_attack">Attack</string>
+    <string name="stat_toggle_defense">Defense</string>
+    <string name="stat_toggle_melee">Melee</string>
+    <string name="stat_toggle_distance" translatable="false">Distance</string>
+
     <string name="question_egg">How would rate your last walking experience ?</string>
     <string name="question_capture">How would rate your last sportive experience besides walking ?</string>
     <string name="question_experience">How would rate your appreciation of challenges ?</string>
     <string name="egg_rating" translatable="false">Egg rating bar</string>
     <string name="capture_rating" translatable="false">Capture rate rating bar</string>
     <string name="experience_rating" translatable="false">Experience rating bar</string>
-
-    <string name="question_stat_attack_def">Attack or Defense ?</string>
-    <string name="question_stat_melee_dist">Melee or Distance ?</string>
-    <string name="stat_toggle_attack">Attack</string>
-    <string name="stat_toggle_defense">Defense</string>
-    <string name="stat_toggle_melee">Melee</string>
-    <string name="stat_toggle_distance" translatable="false">Distance</string>
-    <string name="validation_stat_butt" translatable="true">Confirm</string>
 
     <string name="del_button" translatable="false">Eff</string>
     <string name="a" translatable="false">A</string>

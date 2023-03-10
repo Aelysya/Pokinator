@@ -53,27 +53,78 @@ public class StatsActivity extends AppCompatActivity {
         data = new PokemonsData(TypesActivity.data);
     }
 
-    public void validationStat(View view){
-
+    public void showMiniGame(View view){
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         if(attackDef.isChecked()){
-
-            Log.d("validationStat", "Defense is chosen");
+            Log.d("Mini game", "Defense chosen, showing HP mini game");
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
                     .replace(R.id.statFragment, HpTestFragment.class, null, "statFragment")
                     .commit();
-
         }
         else{
-
-            Log.d("validationStat", "Attack is chosen");
+            Log.d("Mini game", "Attack chosen, showing SPEED mini game");
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
                     .replace(R.id.statFragment, SpeedTestFragment.class, null, "statFragment")
                     .commit();
         }
     }
+
+    /*
+    public void startSpeedMiniGameThread(View view) {
+
+        Thread thread;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+
+        Runnable t = () -> {
+
+            SeekBar seekBar = fragmentManager.findFragmentByTag("Squidward").getActivity().findViewById(R.id.seekBar);;
+            boolean dir = true;
+
+            for (int i = 0; i < 250; i++) {
+
+                if(seekBar.getProgress() == 100){
+
+                    dir = false;
+                }
+                else if(seekBar.getProgress() == 0){
+
+                    dir = true;
+                }
+
+                if (dir) {
+
+                    seekBar.setProgress(seekBar.getProgress() + 1);
+                } else {
+
+                    seekBar.setProgress(seekBar.getProgress() - 1);
+                }
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        };
+
+        thread = new Thread(t);
+        thread.start();
+
+        try {
+            thread.join(1);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+     */
 
 }

@@ -17,7 +17,7 @@
         android:gravity="start|top"
         android:paddingHorizontal="20sp"
         android:paddingVertical="10sp"
-        android:text="@string/code_confirm"
+        android:text="@string/confirm"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

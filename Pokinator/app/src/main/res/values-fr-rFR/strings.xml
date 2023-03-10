@@ -45,4 +45,5 @@
     <string name="question_egg">Sur une échelle de 1 à 3, comment évaluez-vous votre dernière expérience avec le fait de marcher ?</string>
     <string name="question_capture">Sur une échelle de 1 à 3, comment évaluez-vous votre dernière expérience sportive hors-marche ?</string>
     <string name="question_experience">Sur une échelle de 1 à 3, comment évaluez-vous votre appréciation des challenges ?</string>
+    <string name="validation_stat_butt">Confimer</string>
 </resources>

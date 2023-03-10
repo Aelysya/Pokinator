@@ -15,4 +15,24 @@
     <string name="code_fail">Code inconnu, réessayez</string>
     <string name="too_many_generations">Vous avez choisi trop de générations</string>
     <string name="empty_name_input">Entrez votre nom avant de commencer le test</string>
+    <string name="grass_type">Plante</string>
+    <string name="fire_type">Feu</string>
+    <string name="water_type">Eau</string>
+    <string name="electric_type">Électrik</string>
+    <string name="ice_type">Glace</string>
+    <string name="fighting_type">Combat</string>
+    <string name="poison_type">Poison</string>
+    <string name="ground_type">Sol</string>
+    <string name="flying_type">Vol</string>
+    <string name="psychic_type">Psy</string>
+    <string name="bug_type">Insecte</string>
+    <string name="rock_type">Roche</string>
+    <string name="ghost_type">Spectre</string>
+    <string name="dark_type">Ténèbres</string>
+    <string name="steel_type">Acier</string>
+    <string name="fairy_type">Fée</string>
+    <string name="question_pref_type">Choisissez votre type préféré</string>
+    <string name="category_perso">Personnel</string>
+    <string name="category_phys">Physique</string>
+    <string name="question_dis_type">Choisissez le type que vous aimez le moins</string>
 </resources>

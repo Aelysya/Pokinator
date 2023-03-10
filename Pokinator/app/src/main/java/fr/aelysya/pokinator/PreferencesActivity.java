@@ -50,6 +50,7 @@ public class PreferencesActivity extends AppCompatActivity {
             startActivity(intent);
         });
         nextStep.setOnClickListener(view -> {
+            //TODO ensure there are 3 boxes checked, cancel the form advancement if not
             //Filter the data
             data.filterLegendaries(keepLegendaries.isChecked());
             int[] generations = new int[3];

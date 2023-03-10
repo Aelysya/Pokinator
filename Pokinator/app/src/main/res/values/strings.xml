@@ -14,6 +14,12 @@
     <string name="code_fail">Unknown code, try again</string>
 
     <string name="category_preferences">Preferences</string>
+    <string name="category_types" translatable="false">Types</string>
+    <string name="category_stats" translatable="false">Stats</string>
+    <string name="category_perso">Personal</string>
+    <string name="category_phys">Physic</string>
+
+
     <string name="question_legendaries">Do you want your pokémon to be legendary ?</string>
     <string name="question_generations">What are your favorite generations ? (pick 3)</string>
     <string name="generation_one" translatable="false">Gen 1</string>
@@ -27,8 +33,27 @@
     <string name="generation_nine" translatable="false">Gen 9</string>
     <string name="too_many_generations">Too many generations choosed</string>
 
-    <string name="category_types" translatable="false">Types</string>
     <string name="types_back_desc" translatable="false">Types back</string>
+    <string name="question_pref_type">Pick your favorite type</string>
+    <string name="question_dis_type">Pick your least favorite type</string>
+    <string name="normal_type" translatable="false">Normal</string>
+    <string name="grass_type">Grass</string>
+    <string name="fire_type">Fire</string>
+    <string name="water_type">Water</string>
+    <string name="electric_type">Electric</string>
+    <string name="ice_type">Ice</string>
+    <string name="fighting_type">Fighting</string>
+    <string name="poison_type">Poison</string>
+    <string name="ground_type">Ground</string>
+    <string name="flying_type">Flying</string>
+    <string name="psychic_type">Psychic</string>
+    <string name="bug_type">Bug</string>
+    <string name="rock_type">Rock</string>
+    <string name="ghost_type">Ghost</string>
+    <string name="dragon_type" translatable="false">Dragon</string>
+    <string name="dark_type">Dark</string>
+    <string name="steel_type">Steel</string>
+    <string name="fairy_type">Fairy</string>
 
 
 

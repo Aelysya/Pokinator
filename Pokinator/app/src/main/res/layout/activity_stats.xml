@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="ToggleButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="300dp" />
+        tools:layout_editor_absoluteY="275dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

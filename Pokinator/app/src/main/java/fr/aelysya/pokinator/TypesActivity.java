@@ -31,6 +31,7 @@ public class TypesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_types);
         prefType = "";
         disType = "";
+        currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
 
         Button previousStep = findViewById(R.id.previousStepTypes);
         Button nextStep = findViewById(R.id.nextStepTypes);
@@ -52,6 +53,8 @@ public class TypesActivity extends AppCompatActivity {
                 data.filterDislikedType(disType);
                 data.logData();
                 Log.d("Form progression", "Proceeding to stats activity");
+                Intent intent = new Intent(this, StatsActivity.class);
+                startActivity(intent);
             }
         });
     }

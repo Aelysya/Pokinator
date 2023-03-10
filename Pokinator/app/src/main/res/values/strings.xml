@@ -55,12 +55,18 @@
     <string name="fairy_type">Fairy</string>
     <string name="type_missing">Please pick two types before proceeding</string>
 
-    <string name="question_stat_attack_def">Do you prefer attacking or withstand damage ?</string>
+    <string name="question_stat_attack_def">Do you prefer to deal or withstand damage ?</string>
     <string name="question_stat_melee_dist">Do you prefer to fight in melee or at a distance ?</string>
     <string name="stat_toggle_attack">Attack</string>
     <string name="stat_toggle_defense">Defense</string>
     <string name="stat_toggle_melee">Melee</string>
     <string name="stat_toggle_distance" translatable="false">Distance</string>
+    <string name="speed_test_center_desc" translatable="false">Speed test button</string>
+    <string name="speed_test_time_text">Time left: %1$d s</string>
+    <string name="speed_test_time_text_base">Time left: 10s</string>
+    <string name="speed_test_clicks_text" translatable="false">Clicks: %1$d</string>
+    <string name="speed_test_clicks_text_base" translatable="false">Clicks: 0</string>
+    <string name="speed_test_explain_text">When you are ready, start tapping the Pokéball\'s center as fast as you can</string>
 
     <string name="question_egg">How would rate your last walking experience ?</string>
     <string name="question_capture">How would rate your last sportive experience besides walking ?</string>

@@ -45,4 +45,7 @@
     <string name="question_egg">Comment évaluez-vous votre dernière expérience avec le fait de marcher ?</string>
     <string name="question_capture">Comment évaluez-vous votre dernière expérience sportive hors-marche ?</string>
     <string name="question_experience">Comment évaluez-vous votre appréciation des challenges ?</string>
+    <string name="speed_test_time_text">Temps restant: %1$d s</string>
+    <string name="speed_test_explain_text">Quand vous êtes prêt, tapez le centre de la Pokéball le plus vite possible</string>
+    <string name="speed_test_time_text_base">Temps restant: 10s</string>
 </resources>

@@ -2,14 +2,19 @@ package fr.aelysya.pokinator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
+import java.util.Objects;
 
 import fr.aelysya.pokinator.utility.PokemonsData;
 
@@ -18,11 +23,14 @@ public class StatsActivity extends AppCompatActivity {
     private Toast currentToast;
     private ToggleButton attackDef;
 
+    private CountDownTimer chrono;
+    private long speedTestTimeLimit; //10s
+    private int score; //10s
+
     public static PokemonsData data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
@@ -53,8 +61,12 @@ public class StatsActivity extends AppCompatActivity {
         data = new PokemonsData(TypesActivity.data);
     }
 
+    /** Show the mini game corresponding to the attack or defense choice
+     * @param view The ATTACK/DEFENSE button that has been pressed
+     */
     public void showMiniGame(View view){
         FragmentManager fragmentManager = getSupportFragmentManager();
+
         if(attackDef.isChecked()){
             Log.d("Mini game", "Defense chosen, showing HP mini game");
             fragmentManager.beginTransaction()
@@ -71,60 +83,40 @@ public class StatsActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    public void startSpeedMiniGameThread(View view) {
-
-        Thread thread;
-
+    /** Start the countdown of the speed clicker mini game
+     * @param view The Pokéball's center button that has been pressed
+     */
+    public void startSpeedMiniGame(View view) {
+        view.setVisibility(View.GONE);
         FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("statFragment")).requireActivity();
 
+        TextView speedExplain= frag.findViewById(R.id.speedExplain);
+        speedExplain.setVisibility(View.INVISIBLE);
+        TextView timeLeft = frag.findViewById(R.id.timeLeft);
+        TextView clickAmount = frag.findViewById(R.id.clickAmount);
+        score = 0;
+        speedTestTimeLimit = 10000;
 
+        Button speedTestButton = frag.findViewById(R.id.speedButton);
+        speedTestButton.setEnabled(true);
+        speedTestButton.setOnClickListener(v -> {
+            score++;
+            clickAmount.setText(getString(R.string.speed_test_clicks_text, score));
+        });
 
-        Runnable t = () -> {
-
-            SeekBar seekBar = fragmentManager.findFragmentByTag("Squidward").getActivity().findViewById(R.id.seekBar);;
-            boolean dir = true;
-
-            for (int i = 0; i < 250; i++) {
-
-                if(seekBar.getProgress() == 100){
-
-                    dir = false;
-                }
-                else if(seekBar.getProgress() == 0){
-
-                    dir = true;
-                }
-
-                if (dir) {
-
-                    seekBar.setProgress(seekBar.getProgress() + 1);
-                } else {
-
-                    seekBar.setProgress(seekBar.getProgress() - 1);
-                }
-
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+        chrono = new CountDownTimer(speedTestTimeLimit, 1000) {
+            @Override
+            public void onTick(long l) {
+                speedTestTimeLimit = l;
+                timeLeft.setText(getString(R.string.speed_test_time_text, (speedTestTimeLimit / 1000)));
             }
 
-        };
-
-        thread = new Thread(t);
-        thread.start();
-
-        try {
-            thread.join(1);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onFinish() {
+                speedTestButton.setEnabled(false);
+            }
+        }.start();
     }
-
-     */
 
 }

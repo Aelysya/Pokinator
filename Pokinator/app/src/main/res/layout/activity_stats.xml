@@ -123,9 +123,11 @@
 
     <FrameLayout
         android:layout_width="409dp"
-        android:layout_height="331dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="319dp">
+        android:layout_height="285dp"
+        app:layout_constraintBottom_toTopOf="@+id/previousStepStats"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/validationStatBut">
 
     </FrameLayout>
 

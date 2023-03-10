@@ -22,22 +22,28 @@
 
     <ToggleButton
         android:id="@+id/statToggleAttackDef"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_width="100dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
         android:textOff="@string/stat_toggle_attack"
         android:textOn="@string/stat_toggle_defense"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/statAttackDefQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/statAttackDefQuestion" />
 
     <ToggleButton
         android:id="@+id/statToggleMeleeDist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_width="100dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
         android:textOff="@string/stat_toggle_melee"
         android:textOn="@string/stat_toggle_distance"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/statMeleeDistQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/statMeleeDistQuestion" />

@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 currentToast.setText(R.string.empty_name_input);
                 currentToast.show();
             } else {//TODO Find how to use the userName, currently, passing it between activities is useless and tedious
+                Log.d("Form progression", "Proceeding to preferences activity");
                 Intent intent = new Intent(this, PreferencesActivity.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);

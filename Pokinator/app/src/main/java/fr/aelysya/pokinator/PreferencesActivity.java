@@ -46,6 +46,7 @@ public class PreferencesActivity extends AppCompatActivity {
         boxesChecked = 0;
 
         previousStep.setOnClickListener(view -> {
+            Log.d("Form progression", "Going back to main activity");
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
@@ -66,6 +67,7 @@ public class PreferencesActivity extends AppCompatActivity {
             }
             data.filterGeneration(generations);
             data.logData();
+            Log.d("Form progression", "Proceeding to types activity");
             Intent intent = new Intent(this, TypesActivity.class);
             startActivity(intent);
         });
@@ -76,7 +78,6 @@ public class PreferencesActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(MainActivity.data);
-        data.logData();
     }
 
     public void verifyAmountOfCheckedBoxes(View v){

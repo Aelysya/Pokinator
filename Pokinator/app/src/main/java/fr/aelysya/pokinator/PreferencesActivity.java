@@ -80,6 +80,9 @@ public class PreferencesActivity extends AppCompatActivity {
         data = new PokemonsData(MainActivity.data);
     }
 
+    /** Verify that the total amount of checkBoxes checked is not over 3
+     * @param v The checkBox that was clicked
+     */
     public void verifyAmountOfCheckedBoxes(View v){
         CheckBox box = (CheckBox) v;
         if(box.isChecked()){

@@ -49,7 +49,7 @@ public class TypesActivity extends AppCompatActivity {
         });
         nextStep.setOnClickListener(view -> {
             if(prefType.equals("") || disType.equals("")){
-                Log.d("Generation boxes", "Can't go to next step, at least one type is missing");
+                Log.d("Type missing", "Can't go to next step, at least one type is missing");
                 currentToast.cancel();
                 currentToast.setText(R.string.type_missing);
                 currentToast.show();
@@ -72,6 +72,9 @@ public class TypesActivity extends AppCompatActivity {
         data = new PokemonsData(PreferencesActivity.data);
     }
 
+    /** Change the activity background's top part depending on the chosen type
+     * @param v The text that was pressed
+     */
     public void computeTopBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text
@@ -115,6 +118,9 @@ public class TypesActivity extends AppCompatActivity {
         manageDislikeImages();
     }
 
+    /** Change the activity background's bottom part depending on the chosen type
+     * @param v The text that was pressed
+     */
     public void computeBottomBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text
@@ -152,6 +158,9 @@ public class TypesActivity extends AppCompatActivity {
         text.setTextColor(getResources().getColor(R.color.black));
     }
 
+    /**
+     * Manage the disabling of dislike images after clicking on a preferred one
+     */
     public void manageDislikeImages(){
         //Re-enable last disabled images and texts
         for(TextView t : lastDisabledTexts){
@@ -203,6 +212,10 @@ public class TypesActivity extends AppCompatActivity {
         }
     }
 
+    /** Disable a text and an image based on their ID
+     * @param textId The text ID
+     * @param imageId The image ID
+     */
     private void disableType(int textId, int imageId){
         TextView matchingDisText = findViewById(textId);
         lastDisabledTexts.add(matchingDisText);

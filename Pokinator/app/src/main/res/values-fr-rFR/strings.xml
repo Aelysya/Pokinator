@@ -35,4 +35,5 @@
     <string name="category_perso">Personnel</string>
     <string name="category_phys">Physique</string>
     <string name="question_dis_type">Choisissez le type que vous aimez le moins</string>
+    <string name="type_missing">Veuillez choisir deux types avant de continuer</string>
 </resources>

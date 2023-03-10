@@ -54,6 +54,7 @@
     <string name="dark_type">Dark</string>
     <string name="steel_type">Steel</string>
     <string name="fairy_type">Fairy</string>
+    <string name="type_missing">Please pick two types before proceeding</string>
 
 
 

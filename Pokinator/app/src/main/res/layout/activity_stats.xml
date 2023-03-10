@@ -6,6 +6,40 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_stats">
 
+    <Button
+        android:id="@+id/nextStepStat"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/previousStepStat"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/previous_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/preferencesTitle2"
         android:layout_width="300dp"

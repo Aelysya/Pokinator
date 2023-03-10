@@ -36,4 +36,9 @@
     <string name="category_phys">Physique</string>
     <string name="question_dis_type">Choisissez le type que vous aimez le moins</string>
     <string name="type_missing">Veuillez choisir deux types avant de continuer</string>
+    <string name="question_stat_attack_def">Attaque ou Défense ?</string>
+    <string name="question_stat_melee_dist">Corps à corps ou Distance ?</string>
+    <string name="stat_toggle_attack">Attaque</string>
+    <string name="stat_toggle_defense">Défense</string>
+    <string name="stat_toggle_melee">Corps à corps</string>
 </resources>

@@ -102,5 +102,11 @@
     <string name="seven" translatable="false">seven</string>
     <string name="eight" translatable="false">eight</string>
     <string name="nine" translatable="false">nine</string>
+    <string name="question_stat_attack_def">Attack or Defense ?</string>
+    <string name="question_stat_melee_dist">Melee or Distance ?</string>
+    <string name="stat_toggle_attack">Attack</string>
+    <string name="stat_toggle_defense">Defense</string>
+    <string name="stat_toggle_melee">Melee</string>
+    <string name="stat_toggle_distance" translatable="false">Distance</string>
 
 </resources>

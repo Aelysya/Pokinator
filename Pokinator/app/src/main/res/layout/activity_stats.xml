@@ -6,6 +6,40 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_stats">
 
+    <Button
+        android:id="@+id/nextStepStat"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/previousStepStat"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/previous_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/preferencesTitle2"
         android:layout_width="300dp"
@@ -21,22 +55,57 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ToggleButton
-        android:id="@+id/toggleButton"
+        android:id="@+id/statToggleAttackDef"
+        android:layout_width="100dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:textOff="@string/stat_toggle_attack"
+        android:textOn="@string/stat_toggle_defense"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/statAttackDefQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/statAttackDefQuestion" />
+
+    <ToggleButton
+        android:id="@+id/statToggleMeleeDist"
+        android:layout_width="100dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:textOff="@string/stat_toggle_melee"
+        android:textOn="@string/stat_toggle_distance"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/statMeleeDistQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/statMeleeDistQuestion" />
+
+    <TextView
+        android:id="@+id/statAttackDefQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="ToggleButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:text="@string/question_stat_attack_def"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/preferencesTitle2" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton2"
+    <TextView
+        android:id="@+id/statMeleeDistQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:text="@string/question_stat_melee_dist"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="275dp" />
+        app:layout_constraintTop_toBottomOf="@+id/statAttackDefQuestion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

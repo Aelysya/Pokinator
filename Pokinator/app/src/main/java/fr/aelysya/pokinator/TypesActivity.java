@@ -102,10 +102,20 @@ public class TypesActivity extends AppCompatActivity {
             int bottomId = context.getResources().getIdentifier(disType + "_bottom", "drawable", context.getPackageName());
             layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(context, bottomId));
         }
-        if(disType.equals(prefType)){
+        if(disType.equals(prefType)
+                || (disType.equals("ghost") && prefType.equals("normal"))
+                || (disType.equals("electric") && prefType.equals("ground"))
+                || (disType.equals("ground") && prefType.equals("flying"))
+                || (disType.equals("psychic") && prefType.equals("dark"))
+                || (disType.equals("normal") && prefType.equals("ghost"))
+                || (disType.equals("fighting") && prefType.equals("ghost"))
+                || (disType.equals("poison") && prefType.equals("steel"))
+                || (disType.equals("dragon") && prefType.equals("fairy"))
+        ){
             layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(context, R.drawable.blank));
             disType = "";
         }
+
 
         //Set the new image
         ImageView typeBack = findViewById(R.id.backgroundType);

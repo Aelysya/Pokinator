@@ -67,6 +67,11 @@
     <string name="speed_test_clicks_text" translatable="false">Clicks: %1$d</string>
     <string name="speed_test_clicks_text_base" translatable="false">Clicks: 0</string>
     <string name="speed_test_explain_text">When you are ready, start tapping the Pokéball\'s center as fast as you can</string>
+    <string name="hp_test_explain_text">When you are ready, click the button above to launch the mini game.\nThen, click again to stop the cursor and try to aim for the target zone</string>
+    <string name="hp_test_launch_button">Start</string>
+    <string name="hp_test_stop_button" translatable="false">Stop</string>
+    <string name="hp_test_success">Success</string>
+    <string name="hp_test_fail">Failed</string>
 
     <string name="question_egg">How would rate your last walking experience ?</string>
     <string name="question_capture">How would rate your last sportive experience besides walking ?</string>

@@ -48,4 +48,8 @@
     <string name="speed_test_time_text">Temps restant: %1$d s</string>
     <string name="speed_test_explain_text">Quand vous êtes prêt, tapez le centre de la Pokéball le plus vite possible</string>
     <string name="speed_test_time_text_base">Temps restant: 10s</string>
+    <string name="hp_test_explain_text">Quand vous êtes prêt, cliquez sur le bouton pour démarrer le mini jeu.\nEnsuite, rappuyez sur le bouton pour arrêter le curseur en visant la zone cible</string>
+    <string name="hp_test_launch_button">Démarrer</string>
+    <string name="hp_test_success">Succès</string>
+    <string name="hp_test_fail">Raté</string>
 </resources>

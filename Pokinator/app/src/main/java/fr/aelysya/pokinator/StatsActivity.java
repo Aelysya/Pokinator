@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import org.w3c.dom.Text;
+
 import java.util.Objects;
 
 import fr.aelysya.pokinator.utility.PokemonsData;
@@ -25,9 +27,12 @@ public class StatsActivity extends AppCompatActivity {
     private Toast currentToast;
     private ToggleButton attackDef;
 
-    private CountDownTimer chrono;
-    private long speedTestTimeLimit; //10s
+    private CountDownTimer speedChrono;
+    private CountDownTimer hpChrono;
+    private long speedTestTimeLimit;
+    private long hpTestTimeLimit;
     private int speedTestScore;
+    private int seekbarAdd;
 
     public static PokemonsData data;
 
@@ -85,10 +90,18 @@ public class StatsActivity extends AppCompatActivity {
         }
     }
 
-    public void changeThumbSeekBar(View view){
+    /** Start the hp SeekBar mini game
+     * @param view The mini game start button that has been pressed
+     */
+    public void startHpMiniGame(View view) {
+        view.setVisibility(View.GONE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("hpFragment")).requireActivity();
         SeekBar hpBar = frag.findViewById(R.id.hpBar);
+        TextView result = frag.findViewById(R.id.hpTestResult);
+        Button stopButton = frag.findViewById(R.id.stopButton);
+        hpBar.setEnabled(false);
+        hpBar.setProgress(0);
 
         int randomImage = (int)(Math.random() * 4);
         switch (randomImage){
@@ -97,8 +110,41 @@ public class StatsActivity extends AppCompatActivity {
             case 2: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_hyper)); break;
             case 3: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_master)); break;
         }
-    }
 
+        hpTestTimeLimit = 30000; //30s
+        seekbarAdd = 1;
+
+        stopButton.setOnClickListener(v-> {
+            stopButton.setVisibility(View.GONE);
+            hpChrono.cancel();
+            if(hpBar.getProgress() >= 70 && hpBar.getProgress() <= 79){
+                result.setText(R.string.hp_test_success);
+                result.setTextColor(ContextCompat.getColor(this, R.color.green));
+            } else {
+                result.setText(R.string.hp_test_fail);
+                result.setTextColor(ContextCompat.getColor(this, R.color.red));
+            }
+        });
+
+        hpChrono = new CountDownTimer(hpTestTimeLimit, 7) {
+            @Override
+            public void onTick(long l) {
+                hpTestTimeLimit = l;
+                hpBar.setProgress(hpBar.getProgress() + seekbarAdd);
+                if(hpBar.getProgress() == 100){
+                    seekbarAdd = -1;
+                }
+                if(hpBar.getProgress() == 0){
+                    seekbarAdd = 1;
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
 
     /** Start the countdown of the speed clicker mini game
      * @param view The Pokéball's center button that has been pressed
@@ -122,7 +168,7 @@ public class StatsActivity extends AppCompatActivity {
             clickAmount.setText(getString(R.string.speed_test_clicks_text, speedTestScore));
         });
 
-        chrono = new CountDownTimer(speedTestTimeLimit, 1000) {
+        speedChrono = new CountDownTimer(speedTestTimeLimit, 1000) {
             @Override
             public void onTick(long l) {
                 speedTestTimeLimit = l;

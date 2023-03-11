@@ -6,11 +6,13 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -25,7 +27,7 @@ public class StatsActivity extends AppCompatActivity {
 
     private CountDownTimer chrono;
     private long speedTestTimeLimit; //10s
-    private int score; //10s
+    private int speedTestScore;
 
     public static PokemonsData data;
 
@@ -71,17 +73,32 @@ public class StatsActivity extends AppCompatActivity {
             Log.d("Mini game", "Defense chosen, showing HP mini game");
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.statFragment, HpTestFragment.class, null, "statFragment")
+                    .replace(R.id.statFragment, HpTestFragment.class, null, "hpFragment")
                     .commit();
         }
         else{
             Log.d("Mini game", "Attack chosen, showing SPEED mini game");
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.statFragment, SpeedTestFragment.class, null, "statFragment")
+                    .replace(R.id.statFragment, SpeedTestFragment.class, null, "speedFragment")
                     .commit();
         }
     }
+
+    public void changeThumbSeekBar(View view){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("hpFragment")).requireActivity();
+        SeekBar hpBar = frag.findViewById(R.id.hpBar);
+
+        int randomImage = (int)(Math.random() * 4);
+        switch (randomImage){
+            case 0: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_poke)); break;
+            case 1: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_super)); break;
+            case 2: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_hyper)); break;
+            case 3: hpBar.setThumb(ContextCompat.getDrawable(this, R.drawable.hp_test_thumb_master)); break;
+        }
+    }
+
 
     /** Start the countdown of the speed clicker mini game
      * @param view The Pokéball's center button that has been pressed
@@ -89,20 +106,20 @@ public class StatsActivity extends AppCompatActivity {
     public void startSpeedMiniGame(View view) {
         view.setVisibility(View.GONE);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("statFragment")).requireActivity();
+        FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("speedFragment")).requireActivity();
 
         TextView speedExplain= frag.findViewById(R.id.speedExplain);
         speedExplain.setVisibility(View.INVISIBLE);
         TextView timeLeft = frag.findViewById(R.id.timeLeft);
         TextView clickAmount = frag.findViewById(R.id.clickAmount);
-        score = 0;
+        speedTestScore = 0;
         speedTestTimeLimit = 10000;
 
         Button speedTestButton = frag.findViewById(R.id.speedButton);
         speedTestButton.setEnabled(true);
         speedTestButton.setOnClickListener(v -> {
-            score++;
-            clickAmount.setText(getString(R.string.speed_test_clicks_text, score));
+            speedTestScore++;
+            clickAmount.setText(getString(R.string.speed_test_clicks_text, speedTestScore));
         });
 
         chrono = new CountDownTimer(speedTestTimeLimit, 1000) {

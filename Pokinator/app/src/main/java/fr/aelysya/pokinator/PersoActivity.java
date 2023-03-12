@@ -33,9 +33,15 @@ public class PersoActivity extends AppCompatActivity {
         RatingBar expBar = findViewById(R.id.experienceRating);
 
         previousStep.setOnClickListener(view -> {
-            Log.d("Form progression", "Going back to stats activity");
-            Intent intent = new Intent(this, StatsActivity.class);
-            startActivity(intent);
+            if(getIntent().getBooleanExtra("skippedStats", true)){
+                Log.d("Form progression", "Going back to types activity");
+                Intent intent = new Intent(this, TypesActivity.class);
+                startActivity(intent);
+            } else {
+                Log.d("Form progression", "Going back to stats activity");
+                Intent intent = new Intent(this, StatsActivity.class);
+                startActivity(intent);
+            }
         });
         nextStep.setOnClickListener(view -> {
             //Filter the data
@@ -59,6 +65,10 @@ public class PersoActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        data = new PokemonsData(StatsActivity.data);
+        if(getIntent().getBooleanExtra("skippedStats", true)){
+            data = new PokemonsData(TypesActivity.data);
+        } else {
+            data = new PokemonsData(StatsActivity.data);
+        }
     }
 }

@@ -52,4 +52,8 @@
     <string name="hp_test_launch_button">Démarrer</string>
     <string name="hp_test_success">Succès</string>
     <string name="hp_test_fail">Raté</string>
+    <string name="before_stats_do">Oui</string>
+    <string name="before_stats_skip">Non</string>
+    <string name="before_stats_question">Voulez-vous répondre à des questions en rapport avec les statistiques de votre pokémon ?</string>
+    <string name="not_enough_boxes_checkd">Vous devez choisir 3 générations avant de continuer</string>
 </resources>

@@ -31,6 +31,7 @@
     <string name="generation_eight" translatable="false">Gen 8</string>
     <string name="generation_nine" translatable="false">Gen 9</string>
     <string name="too_many_generations">You chose too many generations</string>
+    <string name="not_enough_boxes_checkd">Please pick 3 generations before proceeding</string>
 
     <string name="types_back_desc" translatable="false">Types back</string>
     <string name="question_pref_type">Pick your favorite type</string>
@@ -54,6 +55,11 @@
     <string name="steel_type">Steel</string>
     <string name="fairy_type">Fairy</string>
     <string name="type_missing">Please pick two types before proceeding</string>
+
+    <string name="before_stats_do">Yes</string>
+    <string name="before_stats_skip">No</string>
+    <string name="before_stats_question">Do you want to answer questions about your pokémon\'s statistics ?</string>
+
 
     <string name="question_stat_attack_def">Do you prefer to deal or withstand damage ?</string>
     <string name="question_stat_melee_dist">Do you prefer to fight in melee or at a distance ?</string>

@@ -51,25 +51,30 @@ public class PreferencesActivity extends AppCompatActivity {
             startActivity(intent);
         });
         nextStep.setOnClickListener(view -> {
-            //TODO ensure there are 3 boxes checked, cancel the form advancement if not
-            //Filter the data
-            data.filterLegendaries(keepLegendaries.isChecked());
-            int[] generations = new int[3];
-            int genCpt = 0;
-            for(CheckBox c : generationBoxes){
-                if(c.isChecked()){
-                    String fullName = getResources().getResourceName(c.getId());
-                    //Keep only the generation number
-                    String number = fullName.substring(fullName.lastIndexOf("n") + 1);
-                    generations[genCpt] = Integer.parseInt(number);
-                    genCpt++;
+            if(boxesChecked != 3){
+                currentToast.cancel();
+                currentToast.setText(R.string.not_enough_boxes_checkd);
+                currentToast.show();
+            } else {
+                //Filter the data
+                data.filterLegendaries(keepLegendaries.isChecked());
+                int[] generations = new int[3];
+                int genCpt = 0;
+                for(CheckBox c : generationBoxes){
+                    if(c.isChecked()){
+                        String fullName = getResources().getResourceName(c.getId());
+                        //Keep only the generation number
+                        String number = fullName.substring(fullName.lastIndexOf("n") + 1);
+                        generations[genCpt] = Integer.parseInt(number);
+                        genCpt++;
+                    }
                 }
+                data.filterGeneration(generations);
+                data.logData();
+                Log.d("Form progression", "Proceeding to types activity");
+                Intent intent = new Intent(this, TypesActivity.class);
+                startActivity(intent);
             }
-            data.filterGeneration(generations);
-            data.logData();
-            Log.d("Form progression", "Proceeding to types activity");
-            Intent intent = new Intent(this, TypesActivity.class);
-            startActivity(intent);
         });
     }
 

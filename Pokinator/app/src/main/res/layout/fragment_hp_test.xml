@@ -48,11 +48,11 @@
 
     <Button
         android:id="@+id/stopButton"
-        android:layout_width="130dp"
+        android:layout_width="110dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
-        android:gravity="center_horizontal|top"
+        android:gravity="start|top"
         android:paddingHorizontal="20sp"
         android:paddingVertical="10sp"
         android:text="@string/hp_test_stop_button"
@@ -66,11 +66,11 @@
 
     <Button
         android:id="@+id/hpTestLaunch"
-        android:layout_width="130dp"
+        android:layout_width="110dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
-        android:gravity="center_horizontal|top"
+        android:gravity="start|top"
         android:onClick="startHpMiniGame"
         android:paddingHorizontal="20sp"
         android:paddingVertical="10sp"

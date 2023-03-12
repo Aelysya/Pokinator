@@ -6,9 +6,12 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +61,8 @@ public class TypesActivity extends AppCompatActivity {
                 data.filterPreferredType(prefType);
                 data.filterDislikedType(disType);
                 data.logData();
-                Log.d("Form progression", "Proceeding to stats activity");
-                Intent intent = new Intent(this, StatsActivity.class);
-                startActivity(intent);
+                //Start the popup window to ask the user if they want to answer stats questions
+                launchPopupWindow(findViewById(R.id.backgroundType));
             }
         });
     }
@@ -70,6 +72,30 @@ public class TypesActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(PreferencesActivity.data);
+    }
+
+    private void launchPopupWindow(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.ask_before_stats, null);
+        final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 600, true);
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 400);
+
+        Button yesButton = popupView.findViewById(R.id.beforeStatsYes);
+        Button noButton = popupView.findViewById(R.id.beforeStatsNo);
+
+        noButton.setOnClickListener(v -> {
+            popupWindow.dismiss();
+            Log.d("Form progression", "Proceeding to perso activity");
+            Intent intent = new Intent(this, PersoActivity.class);
+            intent.putExtra("skippedStats", true);
+            startActivity(intent);
+        });
+        yesButton.setOnClickListener(v -> {
+            popupWindow.dismiss();
+            Log.d("Form progression", "Proceeding to stats activity");
+            Intent intent = new Intent(this, StatsActivity.class);
+            startActivity(intent);
+        });
     }
 
     /** Change the activity background's top part depending on the chosen type

@@ -4,12 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Objects;
-
-import fr.aelysya.pokinator.utility.PokemonsData;
 
 public class StatsActivity extends AppCompatActivity {
 

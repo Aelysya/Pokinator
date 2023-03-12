@@ -21,8 +21,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.aelysya.pokinator.utility.PokemonsData;
-
 public class MainActivity extends AppCompatActivity {
 
     public static final String APP_TAG = "Pokinator";

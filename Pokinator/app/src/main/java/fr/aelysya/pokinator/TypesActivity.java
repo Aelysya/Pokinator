@@ -21,8 +21,6 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.aelysya.pokinator.utility.PokemonsData;
-
 public class TypesActivity extends AppCompatActivity {
 
     private Toast currentToast;

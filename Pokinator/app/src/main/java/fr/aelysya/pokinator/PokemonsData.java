@@ -1,4 +1,4 @@
-package fr.aelysya.pokinator.utility;
+package fr.aelysya.pokinator;
 
 import android.util.Log;
 
@@ -68,11 +68,11 @@ public class PokemonsData {
      */
     private final List<Integer> MAX_EXPERIENCE;
 
+
     /**
      * All existing types in Poképedia's order
      */
     private static final List<String> TYPES = new ArrayList<>();
-
     static{
         TYPES.add("normal");
         TYPES.add("grass");
@@ -178,23 +178,24 @@ public class PokemonsData {
             }
             Log.d("CSV loading", "CSV loading end");
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException e) {
-            Log.d("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
+            Log.e("Exception occurred", e instanceof IOException ? "CSV file not found" : "Reflection didn't work :(");
         }
     }
 
+    /** Remove a Pokémon from the dataset
+     * @param index The Pokémon's index
+     */
     private void removeLine(int index){
         try{
             for(Field f : this.getClass().getDeclaredFields()){
                 if(!f.getName().equals("TYPES")){
                     Object fieldVal = f.get(this);
-                    Class[] arg = new Class[1];
-                    arg[0] = int.class;
-                    Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("remove", arg);
+                    Method method = Objects.requireNonNull(fieldVal).getClass().getMethod("remove", int.class);
                     method.invoke(fieldVal, index);
                 }
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
-            Log.d("Exception occurred", "Reflection didn't work :(");
+            Log.e("Exception occurred", "Reflection didn't work :(");
         }
     }
 
@@ -214,7 +215,7 @@ public class PokemonsData {
         Log.d("Data filter", "Generation filter end, number of pokémons left: " + FIRST_TYPES.size());
     }
 
-    /** Filter the dataset based on the preferred type chosen by the user, removes all pokémons that doesn't possess it
+    /** Filter the dataset based on the preferred type chosen by the user, removes all pokémons that don't possess it
      * @param type The type to keep in the dataset
      */
     public void filterPreferredType(String type){
@@ -257,6 +258,10 @@ public class PokemonsData {
         Log.d("Data filter", "Disliked type filter end, number of pokémons left: " + WEAKNESSES.size());
     }
 
+    /** Get the position of a type in the TYPES ArrayList
+     * @param type the type to find the index of
+     * @return The index of the searched type
+     */
     private int getTypeIndex(String type){
         return TYPES.indexOf(type);
     }
@@ -499,9 +504,19 @@ public class PokemonsData {
         Log.d("Data filter", "Max experience filter end, number of pokémons left: " + MAX_EXPERIENCE.size());
     }
 
+    /**
+     * Print the names of the pokémons that are still in the dataset in the log console
+     */
     public void logData(){
         for(String s : NAMES){
             Log.d("Log Names left", s);
         }
+    }
+
+    /** Get the number of pokémons left in the dataset
+     * @return The number of pokémons
+     */
+    public int getAmountOfPokemonsLeft(){
+        return NAMES.size();
     }
 }

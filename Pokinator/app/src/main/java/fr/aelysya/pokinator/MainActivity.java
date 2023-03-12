@@ -23,13 +23,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String APP_TAG = "Pokinator";
+    private Toast currentToast;
     public static PokemonsData data = new PokemonsData();
-    private static boolean isXavier;
+    public static boolean versionIsXavier;
     private static boolean shinyCharmEnabled;
     private ImageView shinyCharm;
-    EditText nameInput;
-    private Toast currentToast;
+    private EditText nameInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
-        isXavier = true;
+        versionIsXavier = true;
         shinyCharmEnabled = true;
 
         ImageView logo = findViewById(R.id.logo);
-        ImageView mysteryGift = findViewById(R.id.mysteryGift);
-        shinyCharm = findViewById(R.id.shinyCharm);
+        ImageView mysteryGift = findViewById(R.id.mysteryGiftImage);
+        shinyCharm = findViewById(R.id.shinyCharmImage);
         shinyCharm.setEnabled(false);
         Button beginButton = findViewById(R.id.beginButton);
         nameInput = findViewById(R.id.nameInput);
@@ -52,18 +51,18 @@ public class MainActivity extends AppCompatActivity {
         data.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
 
         logo.setOnClickListener(view -> {
-            Log.d("Action detected", "Switching version");
-            logo.setImageResource(isXavier ? R.drawable.pokemon_hakim_clear : R.drawable.pokemon_xavier_clear);
-            isXavier = !isXavier;
+            Log.d("Main logo clicked", "Switching version");
+            logo.setImageResource(versionIsXavier ? R.drawable.pokemon_hakim_clear : R.drawable.pokemon_xavier_clear);
+            versionIsXavier = !versionIsXavier;
         });
 
         mysteryGift.setOnClickListener(view -> {
-            Log.d("Action detected", "Launch code window");
+            Log.d("Mystery gift clicked", "Launching code window");
             launchCodeWindow(view);
         });
 
         shinyCharm.setOnClickListener(view -> {
-            Log.d("Action detected", "Switching shiny charm state");
+            Log.d("Shiny charm clicked", "Switching shiny charm state");
             shinyCharm.setImageResource(shinyCharmEnabled ? R.drawable.shiny_charm_crossed : R.drawable.shiny_charm);
             shinyCharmEnabled = !shinyCharmEnabled;
         });
@@ -74,19 +73,12 @@ public class MainActivity extends AppCompatActivity {
                 currentToast.cancel();
                 currentToast.setText(R.string.empty_name_input);
                 currentToast.show();
-            } else {//TODO Find how to use the userName, currently, passing it between activities is useless and tedious
+            } else {
                 Log.d("Form progression", "Proceeding to preferences activity");
                 Intent intent = new Intent(this, PreferencesActivity.class);
-                intent.putExtra("userName", userName);
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        nameInput.setText("");
     }
 
     /** Make the phone vibrate
@@ -163,11 +155,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** Construct and show the code when a key is clicked in the mystery gift code keyboard
-     * @param v The ImageView that was clicked on
+     * @param view The key ImageView that was clicked
      */
-    public void codeKeyboardOnClick(View v){
+    public void codeKeyboardOnClick(View view){
         if(stringCode.length() < 9){
-            String fullName = getResources().getResourceName(v.getId());
+            String fullName = getResources().getResourceName(view.getId());
             String name = fullName.substring(fullName.lastIndexOf("/") + 1);
             //If the clicked image is a digit
             if(name.length() > 1){
@@ -187,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 stringCode += name;
             }
-            ImageView img = (ImageView) v;
+            ImageView img = (ImageView) view;
             codeImageViews.get(stringCode.length()-1).setImageDrawable(img.getDrawable());
             vibrate(20);
             Log.d("Mystery gift code", "Current code: " + stringCode);

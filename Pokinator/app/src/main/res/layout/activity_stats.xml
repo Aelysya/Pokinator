@@ -8,7 +8,7 @@
     android:background="@drawable/background_stats">
 
     <Button
-        android:id="@+id/nextStepStats"
+        android:id="@+id/nextStepButtonStats"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginEnd="10dp"
@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/previousStepStats"
+        android:id="@+id/previousStepButtonStats"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ToggleButton
-        android:id="@+id/statToggleAttackDef"
+        android:id="@+id/toggleButtonAttackDef"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="@+id/statAttackDefQuestion" />
 
     <ToggleButton
-        android:id="@+id/statToggleMeleeDist"
+        android:id="@+id/toggleButtonMeleeDist"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
@@ -85,7 +85,7 @@
         android:textOn="@string/stat_toggle_distance"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/statMeleeDistQuestion"
-        app:layout_constraintStart_toStartOf="@+id/statToggleAttackDef"
+        app:layout_constraintStart_toStartOf="@+id/toggleButtonAttackDef"
         app:layout_constraintTop_toTopOf="@+id/statMeleeDistQuestion" />
 
     <TextView
@@ -111,10 +111,10 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="@+id/statAttackDefQuestion"
-        app:layout_constraintTop_toBottomOf="@+id/statToggleAttackDef" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonAttackDef" />
 
     <Button
-        android:id="@+id/validationStatBut"
+        android:id="@+id/confirmButtonStats"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
@@ -128,16 +128,16 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statToggleMeleeDist" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButtonMeleeDist" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/statFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/previousStepStats"
+        app:layout_constraintBottom_toTopOf="@+id/previousStepButtonStats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/validationStatBut">
+        app:layout_constraintTop_toBottomOf="@+id/confirmButtonStats">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

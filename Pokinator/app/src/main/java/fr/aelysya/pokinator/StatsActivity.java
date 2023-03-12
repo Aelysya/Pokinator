@@ -21,13 +21,14 @@ import java.util.Objects;
 public class StatsActivity extends AppCompatActivity {
 
     private Toast currentToast;
-    private ToggleButton attackDef;
+    private ToggleButton attackDefenseButton;
 
     private CountDownTimer speedChrono;
     private CountDownTimer hpChrono;
     private long speedTestTimeLimit;
     private long hpTestTimeLimit;
     private int speedTestScore;
+    private int hpTestScore;
     private int seekbarAdd;
 
     public static PokemonsData data;
@@ -38,10 +39,13 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
-        attackDef = findViewById(R.id.statToggleAttackDef);
+        attackDefenseButton = findViewById(R.id.toggleButtonAttackDef);
+        speedTestScore = -1;
+        hpTestScore = -1;
 
-        Button previousStep = findViewById(R.id.previousStepStats);
-        Button nextStep = findViewById(R.id.nextStepStats);
+        Button previousStep = findViewById(R.id.previousStepButtonStats);
+        Button nextStep = findViewById(R.id.nextStepButtonStats);
+        ToggleButton meleeDistanceButton = findViewById(R.id.toggleButtonMeleeDist);
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to types activity");
@@ -50,11 +54,24 @@ public class StatsActivity extends AppCompatActivity {
         });
 
         nextStep.setOnClickListener(view -> {
-            //Filter the data
-            Log.d("Form progression", "Proceeding to perso activity");
-            Intent intent = new Intent(this, PersoActivity.class);
-            intent.putExtra("skippedStats", false);
-            startActivity(intent);
+            if((speedTestScore == -1 && !attackDefenseButton.isChecked()) || (hpTestScore == -1 && attackDefenseButton.isChecked())){
+                currentToast.cancel();
+                currentToast.setText(R.string.minigame_not_done);
+                currentToast.show();
+            } else {
+                //Filter the data
+                data.filterAtkDef(meleeDistanceButton.isChecked(), !attackDefenseButton.isChecked());
+                if(!attackDefenseButton.isChecked()){
+                    data.filterSpeed(speedTestScore <= 70);
+                } else {
+                    data.filterHP(hpTestScore == 0);
+                }
+                data.logData();
+                Log.d("Form progression", "Proceeding to perso activity");
+                Intent intent = new Intent(this, PersoActivity.class);
+                intent.putExtra("skippedStats", false);
+                startActivity(intent);
+            }
         });
 
     }
@@ -72,7 +89,7 @@ public class StatsActivity extends AppCompatActivity {
     public void showMiniGame(View view){
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if(attackDef.isChecked()){
+        if(attackDefenseButton.isChecked()){
             Log.d("Mini game", "Defense chosen, showing HP mini game");
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
@@ -92,12 +109,11 @@ public class StatsActivity extends AppCompatActivity {
      * @param view The mini game start button that has been pressed
      */
     public void startHpMiniGame(View view) {
-        view.setVisibility(View.GONE);
+        Button gameButton = (Button) view;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("hpFragment")).requireActivity();
         SeekBar hpBar = frag.findViewById(R.id.hpBar);
         TextView result = frag.findViewById(R.id.hpTestResult);
-        Button stopButton = frag.findViewById(R.id.stopButton);
         hpBar.setEnabled(false);
         hpBar.setProgress(0);
 
@@ -111,16 +127,18 @@ public class StatsActivity extends AppCompatActivity {
 
         hpTestTimeLimit = 30000; //30s
         seekbarAdd = 1;
-
-        stopButton.setOnClickListener(v-> {
-            stopButton.setVisibility(View.GONE);
+        gameButton.setText(R.string.hp_test_stop_button);
+        gameButton.setOnClickListener(v-> {
+            gameButton.setVisibility(View.GONE);
             hpChrono.cancel();
             if(hpBar.getProgress() >= 70 && hpBar.getProgress() <= 79){
                 result.setText(R.string.hp_test_success);
                 result.setTextColor(ContextCompat.getColor(this, R.color.green));
+                hpTestScore = 1;
             } else {
                 result.setText(R.string.hp_test_fail);
                 result.setTextColor(ContextCompat.getColor(this, R.color.red));
+                hpTestScore = 0;
             }
         });
 
@@ -148,7 +166,7 @@ public class StatsActivity extends AppCompatActivity {
      * @param view The Pokéball's center button that has been pressed
      */
     public void startSpeedMiniGame(View view) {
-        view.setVisibility(View.GONE);
+        Button gameButton = (Button) view;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentActivity frag = Objects.requireNonNull(fragmentManager.findFragmentByTag("speedFragment")).requireActivity();
 
@@ -159,9 +177,7 @@ public class StatsActivity extends AppCompatActivity {
         speedTestScore = 0;
         speedTestTimeLimit = 10000;
 
-        Button speedTestButton = frag.findViewById(R.id.speedButton);
-        speedTestButton.setEnabled(true);
-        speedTestButton.setOnClickListener(v -> {
+        gameButton.setOnClickListener(v -> {
             speedTestScore++;
             clickAmount.setText(getString(R.string.speed_test_clicks_text, speedTestScore));
         });
@@ -175,7 +191,10 @@ public class StatsActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                speedTestButton.setEnabled(false);
+                gameButton.setEnabled(false);
+                speedExplain.setVisibility(View.VISIBLE);
+                speedExplain.setText(getString(R.string.speed_test_result_text, speedTestScore));
+                speedExplain.setTextColor(speedTestScore <= 70 ? ContextCompat.getColor(getBaseContext(), R.color.red) : ContextCompat.getColor(getBaseContext(), R.color.green));
             }
         }.start();
     }

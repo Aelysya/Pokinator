@@ -8,18 +8,6 @@
     tools:context=".SpeedTestFragment">
 
     <Button
-        android:id="@+id/speedButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/speed_test_button"
-        android:contentDescription="@string/speed_test_center_desc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RedundantDescriptionCheck,DuplicateClickableBoundsCheck,DuplicateSpeakableTextCheck" />
-
-    <Button
         android:id="@+id/launchMiniGame"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -71,6 +59,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speedButton" />
+        app:layout_constraintTop_toBottomOf="@+id/launchMiniGame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

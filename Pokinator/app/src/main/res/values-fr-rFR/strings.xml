@@ -56,4 +56,6 @@
     <string name="before_stats_skip">Non</string>
     <string name="before_stats_question">Voulez-vous répondre à des questions en rapport avec les statistiques de votre pokémon ?</string>
     <string name="not_enough_boxes_checkd">Vous devez choisir 3 générations avant de continuer</string>
+    <string name="minigame_not_done">Jouez au mini-jeu correspondant à vos choix avant de continuer</string>
+    <string name="speed_test_result_text">Votre score est de %1$d clicks</string>
 </resources>

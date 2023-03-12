@@ -29,7 +29,6 @@ public class PersoActivity extends AppCompatActivity {
         RatingBar expBar = findViewById(R.id.experienceRating);
 
         previousStep.setOnClickListener(view -> {
-            //TODO find a way to change the Extra boolean value to take account of the user doing back and forth moves
             if(getIntent().getBooleanExtra("skippedStats", true)){
                 Log.d("Form progression", "Going back to types activity");
                 Intent intent = new Intent(this, TypesActivity.class);
@@ -67,5 +66,11 @@ public class PersoActivity extends AppCompatActivity {
         } else {
             data = new PokemonsData(StatsActivity.data);
         }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 }

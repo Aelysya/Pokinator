@@ -19,7 +19,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <Button
-        android:id="@+id/previousStepTypes"
+        android:id="@+id/previousStepButtonTypes"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/nextStepTypes"
+        android:id="@+id/nextStepButtonTypes"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginEnd="10dp"

@@ -25,8 +25,8 @@ public class TypesActivity extends AppCompatActivity {
 
     private Toast currentToast;
     public static PokemonsData data;
-    private String prefType;
-    private String disType;
+    private String preferredType;
+    private String dislikedType;
     private List<TextView> lastDisabledTexts;
     private List<ImageView> lastDisabledImages;
 
@@ -34,14 +34,14 @@ public class TypesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_types);
-        prefType = "";
-        disType = "";
+        preferredType = "";
+        dislikedType = "";
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
         lastDisabledImages = new ArrayList<>();
         lastDisabledTexts = new ArrayList<>();
 
-        Button previousStep = findViewById(R.id.previousStepTypes);
-        Button nextStep = findViewById(R.id.nextStepTypes);
+        Button previousStep = findViewById(R.id.previousStepButtonTypes);
+        Button nextStep = findViewById(R.id.nextStepButtonTypes);
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to preferences activity");
@@ -49,15 +49,15 @@ public class TypesActivity extends AppCompatActivity {
             startActivity(intent);
         });
         nextStep.setOnClickListener(view -> {
-            if(prefType.equals("") || disType.equals("")){
+            if(preferredType.equals("") || dislikedType.equals("")){
                 Log.d("Type missing", "Can't go to next step, at least one type is missing");
                 currentToast.cancel();
                 currentToast.setText(R.string.type_missing);
                 currentToast.show();
             } else {
                 //Filter the data
-                data.filterPreferredType(prefType);
-                data.filterDislikedType(disType);
+                data.filterPreferredType(preferredType);
+                data.filterDislikedType(dislikedType);
                 data.logData();
                 //Start the popup window to ask the user if they want to answer stats questions
                 launchPopupWindow(findViewById(R.id.backgroundType));
@@ -83,7 +83,7 @@ public class TypesActivity extends AppCompatActivity {
 
         noButton.setOnClickListener(v -> {
             popupWindow.dismiss();
-            Log.d("Form progression", "Proceeding to perso activity");
+            Log.d("Form progression", "Proceeding to perso activity, skipping stats activity");
             Intent intent = new Intent(this, PersoActivity.class);
             intent.putExtra("skippedStats", true);
             startActivity(intent);
@@ -102,15 +102,15 @@ public class TypesActivity extends AppCompatActivity {
     public void computeTopBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text
-        if(!prefType.equals("")){
-            int textId = this.getResources().getIdentifier(prefType + "Text", "id", context.getPackageName());
+        if(!preferredType.equals("")){
+            int textId = this.getResources().getIdentifier(preferredType + "Text", "id", context.getPackageName());
             TextView lastText = findViewById(textId);
             lastText.setTextColor(ContextCompat.getColor(context, R.color.white));
         }
 
         String fullName = getResources().getResourceName(v.getId());
         String type = fullName.substring(fullName.indexOf("/") + 1, fullName.lastIndexOf("Text"));
-        prefType = type;
+        preferredType = type;
         Log.d("Type background changing", "Changing top part to " + type + " type");
 
         //Find the xml background
@@ -122,33 +122,29 @@ public class TypesActivity extends AppCompatActivity {
         layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(context, topId));
 
         //Re-find the bottom image to not override it
-        if(!disType.equals((""))){
-            int bottomId = context.getResources().getIdentifier(disType + "_bottom", "drawable", context.getPackageName());
+        if(!dislikedType.equals((""))){
+            int bottomId = context.getResources().getIdentifier(dislikedType + "_bottom", "drawable", context.getPackageName());
             layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(context, bottomId));
         }
-        if(disType.equals(prefType)
-                || (disType.equals("ghost") && prefType.equals("normal"))
-                || (disType.equals("electric") && prefType.equals("ground"))
-                || (disType.equals("ground") && prefType.equals("flying"))
-                || (disType.equals("psychic") && prefType.equals("dark"))
-                || (disType.equals("normal") && prefType.equals("ghost"))
-                || (disType.equals("fighting") && prefType.equals("ghost"))
-                || (disType.equals("poison") && prefType.equals("steel"))
-                || (disType.equals("dragon") && prefType.equals("fairy"))
+        if(dislikedType.equals(preferredType)
+                || (dislikedType.equals("ghost") && preferredType.equals("normal"))
+                || (dislikedType.equals("electric") && preferredType.equals("ground"))
+                || (dislikedType.equals("ground") && preferredType.equals("flying"))
+                || (dislikedType.equals("psychic") && preferredType.equals("dark"))
+                || (dislikedType.equals("normal") && preferredType.equals("ghost"))
+                || (dislikedType.equals("fighting") && preferredType.equals("ghost"))
+                || (dislikedType.equals("poison") && preferredType.equals("steel"))
+                || (dislikedType.equals("dragon") && preferredType.equals("fairy"))
         ){
             layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(context, R.drawable.blank));
-            disType = "";
+            dislikedType = "";
         }
-
-
         //Set the new image
         ImageView typeBack = findViewById(R.id.backgroundType);
         typeBack.setImageDrawable(layerDrawable);
-
         //Change text color to mark the type picked
         TextView text = (TextView) v;
         text.setTextColor(ContextCompat.getColor(context, R.color.black));
-
         manageDislikeImages();
     }
 
@@ -158,15 +154,15 @@ public class TypesActivity extends AppCompatActivity {
     public void computeBottomBackground(View v){
         Context context = v.getContext();
         //Revert last type selected to white text
-        if(!disType.equals("")){
-            int textId = this.getResources().getIdentifier(disType + "Text2", "id", context.getPackageName());
+        if(!dislikedType.equals("")){
+            int textId = this.getResources().getIdentifier(dislikedType + "Text2", "id", context.getPackageName());
             TextView lastText = findViewById(textId);
             lastText.setTextColor(ContextCompat.getColor(context, R.color.white));
         }
 
         String fullName = getResources().getResourceName(v.getId());
         String type = fullName.substring(fullName.indexOf("/") + 1, fullName.lastIndexOf("Text"));
-        disType = type;
+        dislikedType = type;
         Log.d("Type background changing", "Changing bottom part to " + type + " type");
 
         //Find the xml background
@@ -178,8 +174,8 @@ public class TypesActivity extends AppCompatActivity {
         layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(context, bottomId));
 
         //Re-find the top part to not override it with blank image
-        if(!prefType.equals((""))){
-            int topId = context.getResources().getIdentifier(prefType + "_top", "drawable", context.getPackageName());
+        if(!preferredType.equals((""))){
+            int topId = context.getResources().getIdentifier(preferredType + "_top", "drawable", context.getPackageName());
             layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(context, topId));
         }
 
@@ -207,11 +203,11 @@ public class TypesActivity extends AppCompatActivity {
         lastDisabledImages.clear();
         lastDisabledTexts.clear();
         //Disable the matching image of the preferred type
-        disableType(this.getResources().getIdentifier(prefType + "Text2", "id", this.getPackageName()),
-                this.getResources().getIdentifier("dis" + prefType.substring(0,1).toUpperCase() + prefType.substring(1), "id", this.getPackageName()));
+        disableType(this.getResources().getIdentifier(preferredType + "Text2", "id", this.getPackageName()),
+                this.getResources().getIdentifier("dis" + preferredType.substring(0,1).toUpperCase() + preferredType.substring(1), "id", this.getPackageName()));
 
         //Disable the immunities of the preferred type
-        switch (prefType){
+        switch (preferredType){
             case "normal" :
                 disableType(this.getResources().getIdentifier("ghostText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disGhost", "id", this.getPackageName()));

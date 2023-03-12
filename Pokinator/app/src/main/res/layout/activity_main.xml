@@ -54,7 +54,7 @@
         app:srcCompat="@drawable/pokemon_xavier_clear" />
 
     <ImageView
-        android:id="@+id/mysteryGift"
+        android:id="@+id/mysteryGiftImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -65,7 +65,7 @@
         app:srcCompat="@drawable/mystery_gift" />
 
     <ImageView
-        android:id="@+id/shinyCharm"
+        android:id="@+id/shinyCharmImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"

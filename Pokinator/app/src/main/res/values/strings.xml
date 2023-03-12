@@ -12,6 +12,7 @@
     <string name="code_cancel">Cancel</string>
     <string name="code_congrat">Congratulations, you unlocked the shiny charm !</string>
     <string name="code_fail">Unknown code, try again</string>
+    <string name="code_char_desc" translatable="false">Code char</string>
 
     <string name="category_preferences">Preferences</string>
     <string name="category_types" translatable="false">Types</string>

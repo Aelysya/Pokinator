@@ -6,10 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,9 @@ public class PreferencesActivity extends AppCompatActivity {
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
-        Button previousStep = findViewById(R.id.previousStepPref);
-        Button nextStep = findViewById(R.id.nextStepPref);
-        Switch keepLegendaries = findViewById(R.id.keepLegendaries);
+        Button previousStep = findViewById(R.id.previousStepButtonPref);
+        Button nextStep = findViewById(R.id.nextStepButtonPref);
+        SwitchCompat keepLegendaries = findViewById(R.id.keepLegendariesSwitch);
         generationBoxes = new ArrayList<>();
         generationBoxes.add(findViewById(R.id.generation1));
         generationBoxes.add(findViewById(R.id.generation2));

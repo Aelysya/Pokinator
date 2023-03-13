@@ -21,8 +21,8 @@ public class PersoActivity extends AppCompatActivity {
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
 
-        Button previousStep = findViewById(R.id.previousStepPerso);
-        Button nextStep = findViewById(R.id.nextStepPerso);
+        Button previousStep = findViewById(R.id.previousStepButtonPerso);
+        Button nextStep = findViewById(R.id.nextStepButtonPerso);
 
         RatingBar eggBar = findViewById(R.id.eggRating);
         RatingBar capBar = findViewById(R.id.captureRating);
@@ -52,8 +52,8 @@ public class PersoActivity extends AppCompatActivity {
             }
             data.logData();
             Log.d("Form progression", "Proceeding to physic activity");
-            //Intent intent = new Intent(this, PhysicActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, PhysicActivity.class);
+            startActivity(intent);
         });
     }
 

@@ -40,6 +40,10 @@
             android:name=".PersoActivity"
             android:launchMode="singleInstance">
         </activity>
+        <activity
+            android:name=".PhysicActivity"
+            android:launchMode="singleInstance">
+        </activity>
     </application>
 
 </manifest>

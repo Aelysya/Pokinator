@@ -89,6 +89,8 @@
     <string name="capture_rating" translatable="false">Capture rate rating bar</string>
     <string name="experience_rating" translatable="false">Experience rating bar</string>
 
+    <string name="question_size_weight">Use the sliders below to determine the size and weight of your pokémon</string>
+
     <string name="del_button" translatable="false">Eff</string>
     <string name="a" translatable="false">A</string>
     <string name="b" translatable="false">B</string>

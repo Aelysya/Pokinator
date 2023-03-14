@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Toast currentToast;
     public static PokemonsData data = new PokemonsData();
     public static boolean versionIsXavier;
-    private static boolean shinyCharmEnabled;
+    public static boolean shinyCharmEnabled;
     private ImageView shinyCharm;
     private EditText nameInput;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
 
         versionIsXavier = true;
-        shinyCharmEnabled = true;
+        shinyCharmEnabled = false;
 
         ImageView logo = findViewById(R.id.logo);
         ImageView mysteryGift = findViewById(R.id.mysteryGiftImage);
@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
         boolean codeOk = false;
         if(stringCode.equals("HAXACOEUR")){
             shinyCharm.setEnabled(true);
+            shinyCharmEnabled = true;
             shinyCharm.setVisibility(View.VISIBLE);
             codeOk = true;
             Log.d("Mystery gift code", "Code valid, enabling shiny charm");

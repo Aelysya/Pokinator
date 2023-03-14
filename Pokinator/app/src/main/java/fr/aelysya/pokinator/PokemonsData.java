@@ -513,10 +513,17 @@ public class PokemonsData {
         }
     }
 
-    /** Get the number of pokémons left in the dataset
-     * @return The number of pokémons
+    /** Get the name of the last pokémon left in the dataset
+     * @return The pokémon's name
      */
-    public int getAmountOfPokemonsLeft(){
-        return NAMES.size();
+    public String getLastPokemonName(){
+        return NAMES.get(0);
+    }
+
+    /** Get the number of the last pokémon left in the dataset
+     * @return The pokémon's number
+     */
+    public int getLastPokemonNumber(){
+        return NUMBERS.get(0);
     }
 }

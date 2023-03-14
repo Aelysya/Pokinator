@@ -92,8 +92,8 @@ public class PhysicActivity extends AppCompatActivity {
             data.filterWeight(weightBar.getProgress());
             data.logData();
             Log.d("Form progression", "Proceeding to results activity");
-            //Intent intent = new Intent(this, ResultsActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, ResultActivity.class);
+            startActivity(intent);
         });
     }
 

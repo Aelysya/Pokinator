@@ -19,6 +19,7 @@
     <string name="category_stats">Statistics</string>
     <string name="category_perso">Personal</string>
     <string name="category_phys">Physic</string>
+    <string name="category_res">Caught !</string>
 
     <string name="question_legendaries">Do you want your pokémon to be legendary ?</string>
     <string name="question_generations">What are your favorite generations ? (pick 3)</string>
@@ -93,6 +94,10 @@
     <string name="scale_foot_desc" translatable="false">scale foot</string>
     <string name="scale_plates_desc" translatable="false">scale plates</string>
     <string name="pokemon_body_desc" translatable="false">pokémon body</string>
+
+    <string name="res_text">You managed to catch a new Pokémon</string>
+    <string name="pokemon_image_desc" translatable="false">pokémon image</string>
+    <string name="pokemon_info" translatable="false">N°%1$d - %2$s</string>
 
     <string name="del_button" translatable="false">Eff</string>
     <string name="a" translatable="false">A</string>

@@ -67,21 +67,7 @@ public class PhysicActivity extends AppCompatActivity {
                 //Rotate the plates image from -20 to 20
                 scalePlates.setRotation((seekBar.getProgress() * -0.4f) + 20.0f);
                 //Move body image between 40 and 200 layout margin bottom
-                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) bodyImage.getLayoutParams();
-                params.setMargins(
-                        (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        10,
-                        getResources().getDisplayMetrics()
-                        ),
-                        0,
-                        0,
-                        (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        (int) (120 + ((-1.6 * weightBar.getProgress()) + 80)),
-                        getResources().getDisplayMetrics()
-                ));
-                bodyImage.setLayoutParams(params);
+                bodyImage.setTranslationY((int) ((1.6 * weightBar.getProgress()) - 80));
             }
 
             @Override

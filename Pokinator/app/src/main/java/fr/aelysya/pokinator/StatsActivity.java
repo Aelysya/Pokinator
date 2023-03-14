@@ -142,7 +142,7 @@ public class StatsActivity extends AppCompatActivity {
             }
         });
 
-        hpChrono = new CountDownTimer(hpTestTimeLimit, 7) {
+        hpChrono = new CountDownTimer(hpTestTimeLimit, 1) {
             @Override
             public void onTick(long l) {
                 hpTestTimeLimit = l;

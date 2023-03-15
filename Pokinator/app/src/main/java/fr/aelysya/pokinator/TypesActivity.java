@@ -27,8 +27,10 @@ public class TypesActivity extends AppCompatActivity {
     public static PokemonsData data;
     private String preferredType;
     private String dislikedType;
-    private List<TextView> lastDisabledTexts;
-    private List<ImageView> lastDisabledImages;
+    private List<TextView> lastDisabledTextsTop;
+    private List<TextView> lastDisabledTextsBottom;
+    private List<ImageView> lastDisabledImagesTop;
+    private List<ImageView> lastDisabledImagesBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +39,11 @@ public class TypesActivity extends AppCompatActivity {
         preferredType = "";
         dislikedType = "";
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
-        lastDisabledImages = new ArrayList<>();
-        lastDisabledTexts = new ArrayList<>();
+        lastDisabledImagesBottom = new ArrayList<>();
+        lastDisabledImagesTop = new ArrayList<>();
+        lastDisabledTextsBottom = new ArrayList<>();
+        lastDisabledTextsTop = new ArrayList<>();
+        data = new PokemonsData(PreferencesActivity.data);
 
         Button previousStep = findViewById(R.id.previousStepButtonTypes);
         Button nextStep = findViewById(R.id.nextStepButtonTypes);
@@ -70,6 +75,53 @@ public class TypesActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(PreferencesActivity.data);
+
+        //Re-enable text and image for preferred types in case the user changes its previous choices and came back
+        for(TextView t : lastDisabledTextsTop){
+            t.setEnabled(true);
+            t.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+
+        for(ImageView i : lastDisabledImagesTop){
+            i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
+        }
+        lastDisabledImagesBottom.clear();
+        lastDisabledTextsBottom.clear();
+        disableAbsentTypes();
+    }
+
+    private void disableAbsentTypes(){
+        List<String> existingTypes = new ArrayList<>();
+        for(String s : data.getFirstTypes()){
+            if(!existingTypes.contains(s)){
+                existingTypes.add(s);
+            }
+        }
+
+        for(String s : data.getSecondTypes()){
+            if(!existingTypes.contains(s) && !s.equals("")){
+                existingTypes.add(s);
+            }
+        }
+
+        for(String s : data.getTypes()){
+            if(!existingTypes.contains(s)){
+                disableTopType(this.getResources().getIdentifier(s + "Text", "id", this.getPackageName()),
+                        this.getResources().getIdentifier("pref" + s.substring(0, 1).toUpperCase() + s.substring(1), "id", this.getPackageName()));
+                if(preferredType.equals(s)){
+                    //If a previously selected type is now absent, unselect it
+                    //Find the xml background
+                    LayerDrawable layerDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.type_background);
+                    assert layerDrawable != null;
+                    //Modify image
+                    layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(this, R.drawable.blank));
+                    //Set the new image
+                    ImageView typeBack = findViewById(R.id.backgroundType);
+                    typeBack.setImageDrawable(layerDrawable);
+                    preferredType = "";
+                }
+            }
+        }
     }
 
     private void launchPopupWindow(View view){
@@ -193,66 +245,80 @@ public class TypesActivity extends AppCompatActivity {
      */
     public void manageDislikeImages(){
         //Re-enable last disabled images and texts
-        for(TextView t : lastDisabledTexts){
+        for(TextView t : lastDisabledTextsBottom){
             t.setEnabled(true);
             t.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
-        for(ImageView i : lastDisabledImages){
+        for(ImageView i : lastDisabledImagesBottom){
             i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
         }
-        lastDisabledImages.clear();
-        lastDisabledTexts.clear();
+        lastDisabledImagesBottom.clear();
+        lastDisabledTextsBottom.clear();
         //Disable the matching image of the preferred type
-        disableType(this.getResources().getIdentifier(preferredType + "Text2", "id", this.getPackageName()),
+        disableBottomType(this.getResources().getIdentifier(preferredType + "Text2", "id", this.getPackageName()),
                 this.getResources().getIdentifier("dis" + preferredType.substring(0,1).toUpperCase() + preferredType.substring(1), "id", this.getPackageName()));
 
         //Disable the immunities of the preferred type
         switch (preferredType){
             case "normal" :
-                disableType(this.getResources().getIdentifier("ghostText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("ghostText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disGhost", "id", this.getPackageName()));
                 break;
             case "ground" :
-                disableType(this.getResources().getIdentifier("electricText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("electricText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disElectric", "id", this.getPackageName()));
                 break;
             case "flying" :
-                disableType(this.getResources().getIdentifier("groundText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("groundText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disGround", "id", this.getPackageName()));
                 break;
             case "ghost" :
-                disableType(this.getResources().getIdentifier("normalText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("normalText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disNormal", "id", this.getPackageName()));
 
-                disableType(this.getResources().getIdentifier("fightingText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("fightingText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disFighting", "id", this.getPackageName()));
                 break;
             case "dark" :
-                disableType(this.getResources().getIdentifier("psychicText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("psychicText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disPsychic", "id", this.getPackageName()));
                 break;
             case "steel" :
-                disableType(this.getResources().getIdentifier("poisonText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("poisonText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disPoison", "id", this.getPackageName()));
                 break;
             case "fairy" :
-                disableType(this.getResources().getIdentifier("dragonText2", "id", this.getPackageName()),
+                disableBottomType(this.getResources().getIdentifier("dragonText2", "id", this.getPackageName()),
                         this.getResources().getIdentifier("disDragon", "id", this.getPackageName()));
                 break;
         }
     }
 
-    /** Disable a text and an image based on their ID
+    /** Disable a text and an image based on their ID in the bottom part
      * @param textId The text ID
      * @param imageId The image ID
      */
-    private void disableType(int textId, int imageId){
+    private void disableBottomType(int textId, int imageId){
         TextView matchingDisText = findViewById(textId);
-        lastDisabledTexts.add(matchingDisText);
+        lastDisabledTextsBottom.add(matchingDisText);
         ImageView matchingDisImage = findViewById(imageId);
-        lastDisabledImages.add(matchingDisImage);
+        lastDisabledImagesBottom.add(matchingDisImage);
         matchingDisText.setEnabled(false);
         matchingDisText.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
         matchingDisImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);
+    }
+
+    /** Disable a text and an image based on their ID in the top part
+     * @param textId The text ID
+     * @param imageId The image ID
+     */
+    private void disableTopType(int textId, int imageId){
+        TextView prefText = findViewById(textId);
+        lastDisabledTextsTop.add(prefText);
+        ImageView prefImage = findViewById(imageId);
+        lastDisabledImagesTop.add(prefImage);
+        prefText.setEnabled(false);
+        prefText.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
+        prefImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);
     }
 }

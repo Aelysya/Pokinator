@@ -513,6 +513,27 @@ public class PokemonsData {
         }
     }
 
+    /** Getter for pokémons' first types
+     * @return The FIRST_TYPES list
+     */
+    public List<String> getFirstTypes(){
+        return FIRST_TYPES;
+    }
+
+    /** Getter for pokémons' secondary types
+     * @return The SECONDARY_TYPES list
+     */
+    public List<String> getSecondTypes(){
+        return SECONDARY_TYPES;
+    }
+
+    /** Getter for the existing types
+     * @return The TYPES list
+     */
+    public List<String> getTypes(){
+        return TYPES;
+    }
+
     /** Get the name of the last pokémon left in the dataset
      * @return The pokémon's name
      */

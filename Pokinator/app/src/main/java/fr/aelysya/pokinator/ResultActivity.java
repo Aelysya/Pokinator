@@ -17,12 +17,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class ResultActivity extends AppCompatActivity {
 
     private Toast currentToast;
     public static PokemonsData data;
-    private ImageView pokemonImage;
 
 
     @Override
@@ -34,58 +34,107 @@ public class ResultActivity extends AppCompatActivity {
         data = new PokemonsData(PhysicActivity.data);
 
         TextView pokemonInfo = findViewById(R.id.pokemonInfo);
-        pokemonImage = findViewById(R.id.pokemonImage);
+        ImageView pokemonImage = findViewById(R.id.pokemonImage);
         pokemonInfo.setText(getString(R.string.pokemon_info, data.getLastPokemonNumber(), data.getLastPokemonName()));
 
-        new PokeRequest(data.getLastPokemonName()).execute();
+
+        Glide.with(ResultActivity.this).load(constructURL(data.getLastPokemonNumber())).into(pokemonImage);
     }
 
-    class PokeRequest extends AsyncTask<Void,Integer,Void> {
-        private final String NAME;
-        private String imageURL;
-
-        public PokeRequest(String name) {
-            this.NAME = name;
-            imageURL = null;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                Document doc = Jsoup.connect("https://bulbapedia.bulbagarden.net/wiki/" + NAME + "_(Pokémon)").get();
-                Elements images = doc.select("img");
-                if(MainActivity.shinyCharmEnabled){
-                    for(Element e : images){
-                        if(e.attr("src").contains("HOME") && e.attr("src").endsWith("_s.png")){
-                            imageURL = e.attr("src");
-                            Log.d("Found image", e.attr("alt") + " " + e.attr("src"));
-                        }
-                    }
-                } else {
-                    for(Element e : images){
-                        if(e.attr("src").contains("HOME") && !e.attr("src").endsWith("_s.png")){
-                            imageURL = e.attr("src");
-                            Log.d("Found image", e.attr("alt") + " " + e.attr("src"));
-                        }
-                    }
-                }
-            } catch ( IOException e) {
-                e.printStackTrace();
+    /** Compute the URL to find the final pokémon image and show it
+     * @param number The pokémon's pokédex number
+     * @return The URL to find the pokémon's sprite
+     */
+    private String constructURL(int number){
+        StringBuilder url = new StringBuilder("https://projectpokemon.org/images/sprites-models/sv-sprites-home/");
+        if(number < 1000){
+            if (number < 100){
+                url.append("0");
             }
+            url.append("0");
+        }
+        url.append(number);
+        url.append(checkIrregularPokemons(data.getLastPokemonName()));
+        url.append(".png");
+        return url.toString();
+    }
 
-            return null;
+    /** Completes the URL for irregular pokémons like those with multiple forms
+     * @param name The pokémon's name
+     * @return An URL optional part if the pokémon is irregular
+     */
+    private String checkIrregularPokemons(String name){
+        String optionalPart = ""; //Doesn't change if the pokémon is regular
+
+        if(name.contains("Mega ") ||
+                name.contains("Alolan ") ||
+                name.contains("Galarian ") ||
+                name.contains("Hisuian ") ||
+                name.contains("Paldean ") ||
+                name.contains("Origin ") ||         //Giratina, Dialga and Palkia
+                name.contains("Sky ") ||            //Shaymin
+                name.contains("Sunny ") ||          //Castform
+                name.contains("Primal ") ||         //Kyogre and Groudon
+                name.contains("Attack ") ||         //Deoxys
+                name.contains("Sandy ") ||          //Wormadam
+                name.contains("Heat ") ||           //Rotom
+                name.contains("Therian ") ||        //Tornadus, Thundurus, Landorus
+                name.contains("White ") ||          //Kyurem
+                name.contains("Pirouette ") ||      //Meloetta
+                name.contains("Unbound ") ||        //Hoopa
+                name.contains("Pom-Pom ") ||        //Oricorio
+                name.contains("Dusk Mane ") ||      //Necrozma
+                name.contains("Female ") ||         //Indeedee, Basculegion and Oinkologne
+                name.contains("Crowned ") ||        //Zacian and Zamazenta
+                name.contains("Ice Rider ") ||      //Calyrex
+                name.equals("Hero Palafin")         //Palafin
+        ){
+            optionalPart = "_01";
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
+        if(name.endsWith(" Y") ||                   //Mega Charizard Y and Mega Mewtwo Y
+                name.contains("Blaze Breed ") ||    //Paldean Tauros
+                name.equals("Galarian Meowth") ||
+                name.equals("Galarian Slowbro") ||
+                name.contains("Defense ") ||        //Deoxys
+                name.contains("Rainy ") ||          //Castform
+                name.contains("Trash ") ||          //Wormadam
+                name.contains("Wash ") ||           //Rotom
+                name.contains("Black ") ||          //Kyurem
+                name.contains("Ash-") ||            //Greninja
+                name.contains("Pa'u") ||            //Oricorio
+                name.contains("Dawn Wings ") ||     //Necrozma
+                name.contains("Shadow Rider ")      //Calyrex
+        ){
+            optionalPart = "_02";
         }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //Associate image
-            Glide.with(ResultActivity.this).load("https:" + imageURL).into(pokemonImage);
+        if(name.contains("Aqua Breed ") ||          //Paldean Tauros
+                name.contains("Snowy ") ||          //Castform
+                name.contains("Speed ") ||          //Deoxys
+                name.contains("Frost ") ||          //Rotom
+                name.contains("Sensu ") ||          //Oricorio
+                name.equals("Ultra Necrozma")       //Necrozma
+        ){
+            optionalPart = "_03";
         }
+
+        if(name.contains("Fan ")){                  //Rotom
+            optionalPart = "_04";
+        }
+
+        if(name.contains("Mow ")){                  //Rotom
+            optionalPart = "_05";
+        }
+
+        //If Unown if found, return a random form
+        if(name.equals("Unown")){
+            Random r = new Random();
+            int randomNumber = r.nextInt(28);
+            if(randomNumber != 0){ //If 0, keep the A form which has no additional part in its URL
+                optionalPart = "_" + (randomNumber < 10 ? "0" + randomNumber : randomNumber);
+            }
+        }
+        return optionalPart;
     }
 }

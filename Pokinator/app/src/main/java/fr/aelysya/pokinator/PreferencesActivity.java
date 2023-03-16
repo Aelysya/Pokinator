@@ -50,7 +50,7 @@ public class PreferencesActivity extends AppCompatActivity {
         nextStep.setOnClickListener(view -> {
             if(boxesChecked != 3){
                 currentToast.cancel();
-                currentToast.setText(R.string.not_enough_boxes_checkd);
+                currentToast.setText(R.string.not_enough_boxes_checked);
                 currentToast.show();
             } else {
                 //Filter the data

@@ -33,7 +33,7 @@
     <string name="generation_eight" translatable="false">Gen 8</string>
     <string name="generation_nine" translatable="false">Gen 9</string>
     <string name="too_many_generations">You chose too many generations</string>
-    <string name="not_enough_boxes_checkd">Please pick 3 generations before proceeding</string>
+    <string name="not_enough_boxes_checked">Please pick 3 generations before proceeding</string>
 
     <string name="types_back_desc" translatable="false">Types back</string>
     <string name="question_pref_type">Pick your favorite type</string>
@@ -81,7 +81,7 @@
     <string name="hp_test_stop_button" translatable="false">Stop</string>
     <string name="hp_test_success">Success</string>
     <string name="hp_test_fail">Failed</string>
-    <string name="minigame_not_done">Please play the mini game corresponding to your choices before proceeding</string>
+    <string name="mini_game_not_done">Please play the mini game before proceeding</string>
 
     <string name="question_egg">How would rate your last walking experience ?</string>
     <string name="question_capture">How would rate your last sportive experience besides walking ?</string>

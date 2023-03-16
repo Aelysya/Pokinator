@@ -55,7 +55,7 @@ public class StatsActivity extends AppCompatActivity {
         nextStep.setOnClickListener(view -> {
             if((speedTestScore == -1 && !attackDefenseButton.isChecked()) || (hpTestScore == -1 && attackDefenseButton.isChecked())){
                 currentToast.cancel();
-                currentToast.setText(R.string.minigame_not_done);
+                currentToast.setText(R.string.mini_game_not_done);
                 currentToast.show();
             } else {
                 //Filter the data

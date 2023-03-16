@@ -55,8 +55,8 @@
     <string name="before_stats_do">Oui</string>
     <string name="before_stats_skip">Non</string>
     <string name="before_stats_question">Voulez-vous répondre à des questions en rapport avec les statistiques de votre pokémon ?</string>
-    <string name="not_enough_boxes_checkd">Vous devez choisir 3 générations avant de continuer</string>
-    <string name="minigame_not_done">Jouez au mini-jeu correspondant à vos choix avant de continuer</string>
+    <string name="not_enough_boxes_checked">Vous devez choisir 3 générations avant de continuer</string>
+    <string name="mini_game_not_done">Jouez au mini-jeu avant de continuer</string>
     <string name="speed_test_result_text">Votre score est de %1$d clicks</string>
     <string name="question_size_weight">Utilisez les sliders ci-dessous pour déterminer la taille et le poids de votre pokémon</string>
     <string name="category_res">Et hop !</string>

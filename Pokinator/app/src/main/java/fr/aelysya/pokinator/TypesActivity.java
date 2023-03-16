@@ -36,14 +36,13 @@ public class TypesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_types);
-        preferredType = "";
-        dislikedType = "";
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
         lastDisabledImagesBottom = new ArrayList<>();
         lastDisabledImagesTop = new ArrayList<>();
         lastDisabledTextsBottom = new ArrayList<>();
         lastDisabledTextsTop = new ArrayList<>();
-        data = new PokemonsData(PreferencesActivity.data);
+        preferredType = "";
+        dislikedType = "";
 
         Button previousStep = findViewById(R.id.previousStepButtonTypes);
         Button nextStep = findViewById(R.id.nextStepButtonTypes);
@@ -76,8 +75,12 @@ public class TypesActivity extends AppCompatActivity {
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(PreferencesActivity.data);
 
-        //Re-enable text and image for preferred types in case the user changes its previous choices and came back
+        //Reset the widgets
         for(TextView t : lastDisabledTextsTop){
+            t.setEnabled(true);
+            t.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+        for(TextView t : lastDisabledTextsBottom){
             t.setEnabled(true);
             t.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
@@ -85,11 +88,43 @@ public class TypesActivity extends AppCompatActivity {
         for(ImageView i : lastDisabledImagesTop){
             i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
         }
-        lastDisabledImagesBottom.clear();
+        for(ImageView i : lastDisabledImagesBottom){
+            i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
+        }
         lastDisabledTextsBottom.clear();
+        lastDisabledImagesBottom.clear();
+        lastDisabledTextsTop.clear();
+        lastDisabledImagesTop.clear();
+
+        LayerDrawable layerDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.type_background);
+        assert layerDrawable != null;
+        //Reset background to full blank
+        layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(this, R.drawable.blank));
+        layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(this, R.drawable.blank));
+        ImageView typeBack = findViewById(R.id.backgroundType);
+        typeBack.setImageDrawable(layerDrawable);
+
+        if(!preferredType.equals("")){
+            int textId = this.getResources().getIdentifier(preferredType + "Text", "id", getPackageName());
+            TextView lastText = findViewById(textId);
+            lastText.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+        if(!dislikedType.equals("")){
+            int textId = this.getResources().getIdentifier(dislikedType + "Text2", "id", getPackageName());
+            TextView lastText = findViewById(textId);
+            lastText.setTextColor(ContextCompat.getColor(this, R.color.white));
+        }
+
+        preferredType = "";
+        dislikedType = "";
+
         disableAbsentTypes();
     }
 
+    /**
+     * If the user wants to get a legendary pokémon, nearly all set of 3 generations will lack some types that are possible to chose from.
+     * Disables the types that are absent in the generation set chosen
+     */
     private void disableAbsentTypes(){
         List<String> existingTypes = new ArrayList<>();
         for(String s : data.getFirstTypes()){
@@ -108,26 +143,17 @@ public class TypesActivity extends AppCompatActivity {
             if(!existingTypes.contains(s)){
                 disableTopType(this.getResources().getIdentifier(s + "Text", "id", this.getPackageName()),
                         this.getResources().getIdentifier("pref" + s.substring(0, 1).toUpperCase() + s.substring(1), "id", this.getPackageName()));
-                if(preferredType.equals(s)){
-                    //If a previously selected type is now absent, unselect it
-                    //Find the xml background
-                    LayerDrawable layerDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.type_background);
-                    assert layerDrawable != null;
-                    //Modify image
-                    layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(this, R.drawable.blank));
-                    //Set the new image
-                    ImageView typeBack = findViewById(R.id.backgroundType);
-                    typeBack.setImageDrawable(layerDrawable);
-                    preferredType = "";
-                }
             }
         }
     }
 
+    /** Launch the popup window to ask the user if they want to answer questions on their pokémon's statistics
+     * @param view The NextStep button that was pressed
+     */
     private void launchPopupWindow(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.ask_before_stats, null);
-        final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 600, true);
+        final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 700, true);
         popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 400);
 
         Button yesButton = popupView.findViewById(R.id.beforeStatsYes);

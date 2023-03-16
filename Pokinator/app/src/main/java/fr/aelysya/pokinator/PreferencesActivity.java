@@ -16,8 +16,8 @@ import java.util.List;
 
 public class PreferencesActivity extends AppCompatActivity {
 
-    private Toast currentToast;
     public static PokemonsData data;
+    private Toast currentToast;
     private List<CheckBox> generationBoxes;
     private int boxesChecked;
 
@@ -41,7 +41,6 @@ public class PreferencesActivity extends AppCompatActivity {
         generationBoxes.add(findViewById(R.id.generation7));
         generationBoxes.add(findViewById(R.id.generation8));
         generationBoxes.add(findViewById(R.id.generation9));
-        boxesChecked = 0;
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to main activity");
@@ -81,6 +80,11 @@ public class PreferencesActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(MainActivity.data);
+        //Reset the widgets
+        for(CheckBox c : generationBoxes){
+            c.setChecked(false);
+        }
+        boxesChecked = 0;
     }
 
     /** Verify that the total amount of checkBoxes checked is not over 3

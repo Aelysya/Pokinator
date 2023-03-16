@@ -20,8 +20,10 @@ import java.util.Objects;
 
 public class StatsActivity extends AppCompatActivity {
 
+    public static PokemonsData data;
     private Toast currentToast;
     private ToggleButton attackDefenseButton;
+    private ToggleButton meleeDistanceButton;
 
     private CountDownTimer speedChrono;
     private CountDownTimer hpChrono;
@@ -31,7 +33,6 @@ public class StatsActivity extends AppCompatActivity {
     private int hpTestScore;
     private int seekbarAdd;
 
-    public static PokemonsData data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,10 @@ public class StatsActivity extends AppCompatActivity {
 
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
         attackDefenseButton = findViewById(R.id.toggleButtonAttackDef);
-        speedTestScore = -1;
-        hpTestScore = -1;
 
         Button previousStep = findViewById(R.id.previousStepButtonStats);
         Button nextStep = findViewById(R.id.nextStepButtonStats);
-        ToggleButton meleeDistanceButton = findViewById(R.id.toggleButtonMeleeDist);
+        meleeDistanceButton = findViewById(R.id.toggleButtonMeleeDist);
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to types activity");
@@ -81,6 +80,10 @@ public class StatsActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(TypesActivity.data);
+        attackDefenseButton.setChecked(false);
+        meleeDistanceButton.setChecked(false);
+        speedTestScore = -1;
+        hpTestScore = -1;
     }
 
     /** Show the mini game corresponding to the attack or defense choice

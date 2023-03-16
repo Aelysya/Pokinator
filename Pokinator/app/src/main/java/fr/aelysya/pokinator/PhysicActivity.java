@@ -18,22 +18,24 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class PhysicActivity extends AppCompatActivity {
 
-    private Toast currentToast;
     public static PokemonsData data;
+
+    SeekBar sizeBar;
+    SeekBar weightBar;
+    ImageView bodyImage;
+    ImageView scalePlates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_physic);
 
-        currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
-
         Button previousStep = findViewById(R.id.previousStepButtonPhys);
         Button nextStep = findViewById(R.id.nextStepButtonPhys);
-        SeekBar sizeBar = findViewById(R.id.sizeBar);
-        SeekBar weightBar = findViewById(R.id.weightBar);
-        ImageView bodyImage = findViewById(R.id.bodyImage);
-        ImageView scalePlates = findViewById(R.id.scalePlates);
+        sizeBar = findViewById(R.id.sizeBar);
+        weightBar = findViewById(R.id.weightBar);
+        bodyImage = findViewById(R.id.bodyImage);
+        scalePlates = findViewById(R.id.scalePlates);
 
         sizeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -45,21 +47,11 @@ public class PhysicActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-        int px = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                10,
-                getResources().getDisplayMetrics()
-        );
 
         weightBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -71,14 +63,10 @@ public class PhysicActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         previousStep.setOnClickListener(view -> {
@@ -102,5 +90,12 @@ public class PhysicActivity extends AppCompatActivity {
         super.onStart();
         //Set the data to the ones stocked in previous activity in case of the user goes back in the app
         data = new PokemonsData(PersoActivity.data);
+        //Reset the widgets
+        sizeBar.setProgress(50);
+        weightBar.setProgress(50);
+        bodyImage.setTranslationY(0);
+        bodyImage.setScaleX(1);
+        bodyImage.setScaleY(1);
+        scalePlates.setRotation(0.0f);
     }
 }

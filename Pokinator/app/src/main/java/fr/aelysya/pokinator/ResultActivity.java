@@ -1,8 +1,10 @@
 package fr.aelysya.pokinator;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +23,6 @@ import java.util.Random;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private Toast currentToast;
     public static PokemonsData data;
 
 
@@ -30,16 +31,25 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        currentToast = Toast.makeText(getApplicationContext(), "Empty toast", Toast.LENGTH_SHORT);
         data = new PokemonsData(PhysicActivity.data);
 
         TextView pokemonInfo = findViewById(R.id.pokemonInfo);
         ImageView pokemonImage = findViewById(R.id.pokemonImage);
         pokemonInfo.setText(getString(R.string.pokemon_info, data.getLastPokemonNumber(), data.getLastPokemonName()));
+        Button backHome = findViewById(R.id.returnHomeButton);
+
+        backHome.setOnClickListener(view ->{
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            this.finish();
+        });
 
 
         Glide.with(ResultActivity.this).load(constructURL(data.getLastPokemonNumber())).into(pokemonImage);
     }
+
+    @Override
+    public void onBackPressed(){} //Set method to do nothing to prevent the user from going back when they are in the final activity
 
     /** Compute the URL to find the final pokémon image and show it
      * @param number The pokémon's pokédex number

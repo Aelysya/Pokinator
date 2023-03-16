@@ -81,10 +81,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed(){} //Set method to do nothing to prevent the user from going back to a previous activity in case they already completed the form once
+
     /** Make the phone vibrate
      * @param duration_ms Vibration duration in milliseconds
      */
-    public void vibrate(long duration_ms) {
+    private void vibrate(long duration_ms) {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if(duration_ms < 1)
             duration_ms = 1;

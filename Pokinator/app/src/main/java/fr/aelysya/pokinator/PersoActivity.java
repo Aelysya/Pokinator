@@ -11,22 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PersoActivity extends AppCompatActivity {
 
-    private Toast currentToast;
     public static PokemonsData data;
+    RatingBar eggBar;
+    RatingBar capBar;
+    RatingBar expBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perso);
 
-        currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
-
         Button previousStep = findViewById(R.id.previousStepButtonPerso);
         Button nextStep = findViewById(R.id.nextStepButtonPerso);
 
-        RatingBar eggBar = findViewById(R.id.eggRating);
-        RatingBar capBar = findViewById(R.id.captureRating);
-        RatingBar expBar = findViewById(R.id.experienceRating);
+        eggBar = findViewById(R.id.eggRating);
+        capBar = findViewById(R.id.captureRating);
+        expBar = findViewById(R.id.experienceRating);
 
         previousStep.setOnClickListener(view -> {
             if(getIntent().getBooleanExtra("skippedStats", true)){
@@ -66,6 +66,10 @@ public class PersoActivity extends AppCompatActivity {
         } else {
             data = new PokemonsData(StatsActivity.data);
         }
+        //Reset the widgets
+        eggBar.setRating(1);
+        capBar.setRating(1);
+        expBar.setRating(1);
     }
 
     @Override

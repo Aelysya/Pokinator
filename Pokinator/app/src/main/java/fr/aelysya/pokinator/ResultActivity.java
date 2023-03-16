@@ -19,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Random;
 
 public class ResultActivity extends AppCompatActivity {
@@ -39,6 +40,8 @@ public class ResultActivity extends AppCompatActivity {
         Button backHome = findViewById(R.id.returnHomeButton);
 
         backHome.setOnClickListener(view ->{
+            data.savePokemon();
+            Toast.makeText(this, R.string.pokemon_saved, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             this.finish();

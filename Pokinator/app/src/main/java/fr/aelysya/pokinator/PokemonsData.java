@@ -1,11 +1,16 @@
 package fr.aelysya.pokinator;
 
+import android.os.Environment;
 import android.util.Log;
 
 import com.opencsv.CSVReader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -546,5 +551,32 @@ public class PokemonsData {
      */
     public int getLastPokemonNumber(){
         return NUMBERS.get(0);
+    }
+
+    /**
+     * Save the last pokémon's information in a file
+     */
+    public void savePokemon(){
+        Log.d("Saving capture information", "Information saved in \"pokinator_capture_result_" + NAMES.get(0) + "\".txt\" file");
+        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File out = new File(folder, "pokinator_capture_result_" + NAMES.get(0) + ".txt");
+        try (FileOutputStream fos = new FileOutputStream(out)) {
+            PrintStream ps = new PrintStream(fos);
+            ps.println("Capture information");
+            ps.println("Pokémon N°" + NUMBERS.get(0) + " - " + NAMES.get(0) + " (generation " + GENERATIONS.get(0) + ")");
+            ps.println("Type: " + FIRST_TYPES.get(0) + " " + SECONDARY_TYPES.get(0));
+            ps.println("Statistics: "
+                    + STATS.get(0)[0] + " HP, "
+                    + STATS.get(0)[1] + " ATK, "
+                    + STATS.get(0)[2] + " DEF, "
+                    + STATS.get(0)[3] + " SP-ATK, "
+                    + STATS.get(0)[4] + " SP-DEF, "
+                    + STATS.get(0)[5] + " SPEED");
+            ps.println("Size: " + SIZES.get(0) + " m");
+            ps.println("Weight: " + WEIGHTS.get(0) + " Kg");
+            ps.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

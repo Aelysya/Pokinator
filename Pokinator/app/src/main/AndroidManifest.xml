@@ -24,29 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PreferencesActivity"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity
-            android:name=".TypesActivity"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity
-            android:name=".StatsActivity"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity
-            android:name=".PersoActivity"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity
-            android:name=".PhysicActivity"
-            android:launchMode="singleInstance">
-        </activity>
-        <activity
-            android:name=".ResultActivity">
-        </activity>
+        <activity android:name=".PreferencesActivity"/>
+        <activity android:name=".TypesActivity"/>
+        <activity android:name=".StatsActivity"/>
+        <activity android:name=".PersoActivity"/>
+        <activity android:name=".PhysicActivity"/>
+        <activity android:name=".ResultActivity"/>
     </application>
 
 </manifest>

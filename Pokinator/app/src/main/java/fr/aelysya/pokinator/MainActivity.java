@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toast currentToast;
-    public static PokemonsData data = new PokemonsData();
+    public static PokemonsData data;
     public static boolean versionIsXavier;
     public static boolean shinyCharmEnabled;
     private ImageView shinyCharm;
@@ -48,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         nameInput = findViewById(R.id.nameInput);
 
         //Load the CSV with all the data
+        data = new PokemonsData();
         data.loadCSV(new InputStreamReader(getResources().openRawResource(R.raw.pokemon)));
+        DataHistory.getInstance().setHistory("main", data);
 
         logo.setOnClickListener(view -> {
             Log.d("Main logo clicked", "Switching version");
@@ -75,14 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 currentToast.show();
             } else {
                 Log.d("Form progression", "Proceeding to preferences activity");
-                Intent intent = new Intent(this, PreferencesActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, PreferencesActivity.class));
+                finish();
             }
         });
     }
-
-    @Override
-    public void onBackPressed(){} //Set method to do nothing to prevent the user from going back to a previous activity in case they already completed the form once
 
     /** Make the phone vibrate
      * @param duration_ms Vibration duration in milliseconds
@@ -96,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
                     VibrationEffect.DEFAULT_AMPLITUDE));
         }
     }
-
-    public void killAllActivities(){
-        finish();
-        System.exit(0);
-    }
-
 
     //Mystery gift code management part
     private List<ImageView> codeImageViews;

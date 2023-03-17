@@ -22,7 +22,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        data = new PokemonsData(PhysicActivity.data);
+        data = new PokemonsData(DataHistory.getInstance().getHistory("physic"));
 
         TextView pokemonInfo = findViewById(R.id.pokemonInfo);
         ImageView pokemonImage = findViewById(R.id.pokemonImage);
@@ -32,8 +32,7 @@ public class ResultActivity extends AppCompatActivity {
         Button save = findViewById(R.id.saveButton);
 
         backHome.setOnClickListener(view ->{
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         });
 
@@ -42,9 +41,7 @@ public class ResultActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.pokemon_saved, Toast.LENGTH_LONG).show();
         });
 
-        quit.setOnClickListener(view -> {
-            finish();
-        });
+        quit.setOnClickListener(view -> finish());
 
 
         Glide.with(ResultActivity.this).load(constructURL(data.getLastPokemonNumber())).into(pokemonImage);

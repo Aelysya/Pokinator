@@ -28,16 +28,23 @@ public class PersoActivity extends AppCompatActivity {
         capBar = findViewById(R.id.captureRating);
         expBar = findViewById(R.id.experienceRating);
 
+        if(getIntent().getBooleanExtra("skippedStats", true)){
+            data = new PokemonsData(DataHistory.getInstance().getHistory("types"));
+        } else {
+            data = new PokemonsData(DataHistory.getInstance().getHistory("stats"));
+        }
+
         previousStep.setOnClickListener(view -> {
+            Intent intent;
             if(getIntent().getBooleanExtra("skippedStats", true)){
                 Log.d("Form progression", "Going back to types activity");
-                Intent intent = new Intent(this, TypesActivity.class);
-                startActivity(intent);
+                intent = new Intent(this, TypesActivity.class);
             } else {
                 Log.d("Form progression", "Going back to stats activity");
-                Intent intent = new Intent(this, StatsActivity.class);
-                startActivity(intent);
+                intent = new Intent(this, StatsActivity.class);
             }
+            startActivity(intent);
+            finish();
         });
         nextStep.setOnClickListener(view -> {
             //Filter the data
@@ -51,30 +58,10 @@ public class PersoActivity extends AppCompatActivity {
                 data.filterMaxExperience(expBar.getRating() > 3.0f);
             }
             data.logData();
+            DataHistory.getInstance().setHistory("perso", data);
             Log.d("Form progression", "Proceeding to physic activity");
-            Intent intent = new Intent(this, PhysicActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PhysicActivity.class));
+            finish();
         });
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        if(getIntent().getBooleanExtra("skippedStats", true)){
-            data = new PokemonsData(TypesActivity.data);
-        } else {
-            data = new PokemonsData(StatsActivity.data);
-        }
-        //Reset the widgets
-        eggBar.setRating(1);
-        capBar.setRating(1);
-        expBar.setRating(1);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent){
-        super.onNewIntent(intent);
-        setIntent(intent);
     }
 }

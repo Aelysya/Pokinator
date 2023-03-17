@@ -43,14 +43,15 @@ public class TypesActivity extends AppCompatActivity {
         lastDisabledTextsTop = new ArrayList<>();
         preferredType = "";
         dislikedType = "";
+        data = new PokemonsData(DataHistory.getInstance().getHistory("preferences"));
 
         Button previousStep = findViewById(R.id.previousStepButtonTypes);
         Button nextStep = findViewById(R.id.nextStepButtonTypes);
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to preferences activity");
-            Intent intent = new Intent(this, PreferencesActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PreferencesActivity.class));
+            finish();
         });
         nextStep.setOnClickListener(view -> {
             if(preferredType.equals("") || dislikedType.equals("")){
@@ -63,61 +64,11 @@ public class TypesActivity extends AppCompatActivity {
                 data.filterPreferredType(preferredType);
                 data.filterDislikedType(dislikedType);
                 data.logData();
+                DataHistory.getInstance().setHistory("types", data);
                 //Start the popup window to ask the user if they want to answer stats questions
                 launchPopupWindow(findViewById(R.id.backgroundType));
             }
         });
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        data = new PokemonsData(PreferencesActivity.data);
-
-        //Reset the widgets
-        for(TextView t : lastDisabledTextsTop){
-            t.setEnabled(true);
-            t.setTextColor(ContextCompat.getColor(this, R.color.white));
-        }
-        for(TextView t : lastDisabledTextsBottom){
-            t.setEnabled(true);
-            t.setTextColor(ContextCompat.getColor(this, R.color.white));
-        }
-
-        for(ImageView i : lastDisabledImagesTop){
-            i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
-        }
-        for(ImageView i : lastDisabledImagesBottom){
-            i.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.MULTIPLY);
-        }
-        lastDisabledTextsBottom.clear();
-        lastDisabledImagesBottom.clear();
-        lastDisabledTextsTop.clear();
-        lastDisabledImagesTop.clear();
-
-        LayerDrawable layerDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.type_background);
-        assert layerDrawable != null;
-        //Reset background to full blank
-        layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(this, R.drawable.blank));
-        layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(this, R.drawable.blank));
-        ImageView typeBack = findViewById(R.id.backgroundType);
-        typeBack.setImageDrawable(layerDrawable);
-
-        if(!preferredType.equals("")){
-            int textId = this.getResources().getIdentifier(preferredType + "Text", "id", getPackageName());
-            TextView lastText = findViewById(textId);
-            lastText.setTextColor(ContextCompat.getColor(this, R.color.white));
-        }
-        if(!dislikedType.equals("")){
-            int textId = this.getResources().getIdentifier(dislikedType + "Text2", "id", getPackageName());
-            TextView lastText = findViewById(textId);
-            lastText.setTextColor(ContextCompat.getColor(this, R.color.white));
-        }
-
-        preferredType = "";
-        dislikedType = "";
-
         disableAbsentTypes();
     }
 
@@ -165,12 +116,13 @@ public class TypesActivity extends AppCompatActivity {
             Intent intent = new Intent(this, PersoActivity.class);
             intent.putExtra("skippedStats", true);
             startActivity(intent);
+            finish();
         });
         yesButton.setOnClickListener(v -> {
             popupWindow.dismiss();
             Log.d("Form progression", "Proceeding to stats activity");
-            Intent intent = new Intent(this, StatsActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, StatsActivity.class));
+            finish();
         });
     }
 

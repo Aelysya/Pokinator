@@ -42,10 +42,13 @@ public class PreferencesActivity extends AppCompatActivity {
         generationBoxes.add(findViewById(R.id.generation8));
         generationBoxes.add(findViewById(R.id.generation9));
 
+        data = new PokemonsData(DataHistory.getInstance().getHistory("main"));
+        boxesChecked = 0;
+
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to main activity");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
         nextStep.setOnClickListener(view -> {
             if(boxesChecked != 3){
@@ -68,23 +71,12 @@ public class PreferencesActivity extends AppCompatActivity {
                 }
                 data.filterGeneration(generations);
                 data.logData();
+                DataHistory.getInstance().setHistory("preferences", data);
                 Log.d("Form progression", "Proceeding to types activity");
-                Intent intent = new Intent(this, TypesActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, TypesActivity.class));
+                finish();
             }
         });
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        data = new PokemonsData(MainActivity.data);
-        //Reset the widgets
-        for(CheckBox c : generationBoxes){
-            c.setChecked(false);
-        }
-        boxesChecked = 0;
     }
 
     /** Verify that the total amount of checkBoxes checked is not over 3

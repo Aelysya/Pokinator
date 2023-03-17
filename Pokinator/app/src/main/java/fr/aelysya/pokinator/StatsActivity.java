@@ -45,11 +45,12 @@ public class StatsActivity extends AppCompatActivity {
         Button previousStep = findViewById(R.id.previousStepButtonStats);
         Button nextStep = findViewById(R.id.nextStepButtonStats);
         meleeDistanceButton = findViewById(R.id.toggleButtonMeleeDist);
+        data = DataHistory.getInstance().getHistory("types");
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to types activity");
-            Intent intent = new Intent(this, TypesActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, TypesActivity.class));
+            finish();
         });
 
         nextStep.setOnClickListener(view -> {
@@ -66,24 +67,15 @@ public class StatsActivity extends AppCompatActivity {
                     data.filterHP(hpTestScore == 0);
                 }
                 data.logData();
+                DataHistory.getInstance().setHistory("stats", data);
                 Log.d("Form progression", "Proceeding to perso activity");
                 Intent intent = new Intent(this, PersoActivity.class);
                 intent.putExtra("skippedStats", false);
                 startActivity(intent);
+                finish();
             }
         });
 
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        data = new PokemonsData(TypesActivity.data);
-        attackDefenseButton.setChecked(false);
-        meleeDistanceButton.setChecked(false);
-        speedTestScore = -1;
-        hpTestScore = -1;
     }
 
     /** Show the mini game corresponding to the attack or defense choice

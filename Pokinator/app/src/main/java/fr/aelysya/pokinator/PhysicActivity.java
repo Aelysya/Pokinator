@@ -29,6 +29,7 @@ public class PhysicActivity extends AppCompatActivity {
         weightBar = findViewById(R.id.weightBar);
         bodyImage = findViewById(R.id.bodyImage);
         scalePlates = findViewById(R.id.scalePlates);
+        data = new PokemonsData(DataHistory.getInstance().getHistory("perso"));
 
         sizeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -64,31 +65,18 @@ public class PhysicActivity extends AppCompatActivity {
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to perso activity");
-            Intent intent = new Intent(this, PersoActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, PersoActivity.class));
+            finish();
         });
         nextStep.setOnClickListener(view -> {
             //Filter the data
             data.filterSize(sizeBar.getProgress());
             data.filterWeight(weightBar.getProgress());
             data.logData();
+            DataHistory.getInstance().setHistory("physic", data);
             Log.d("Form progression", "Proceeding to results activity");
-            Intent intent = new Intent(this, ResultActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, ResultActivity.class));
+            finish();
         });
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        //Set the data to the ones stocked in previous activity in case of the user goes back in the app
-        data = new PokemonsData(PersoActivity.data);
-        //Reset the widgets
-        sizeBar.setProgress(50);
-        weightBar.setProgress(50);
-        bodyImage.setTranslationY(0);
-        bodyImage.setScaleX(1);
-        bodyImage.setScaleY(1);
-        scalePlates.setRotation(0.0f);
     }
 }

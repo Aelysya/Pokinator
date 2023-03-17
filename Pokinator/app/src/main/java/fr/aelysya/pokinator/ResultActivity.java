@@ -1,9 +1,8 @@
 package fr.aelysya.pokinator;
 
+
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,20 +11,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.time.Duration;
 import java.util.Random;
 
 public class ResultActivity extends AppCompatActivity {
 
     public static PokemonsData data;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +28,22 @@ public class ResultActivity extends AppCompatActivity {
         ImageView pokemonImage = findViewById(R.id.pokemonImage);
         pokemonInfo.setText(getString(R.string.pokemon_info, data.getLastPokemonNumber(), data.getLastPokemonName()));
         Button backHome = findViewById(R.id.returnHomeButton);
+        Button quit = findViewById(R.id.quitApplicationButton);
+        Button save = findViewById(R.id.saveButton);
 
         backHome.setOnClickListener(view ->{
-            data.savePokemon();
-            Toast.makeText(this, R.string.pokemon_saved, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            this.finish();
+            finish();
+        });
+
+        save.setOnClickListener(view ->{
+            data.savePokemon();
+            Toast.makeText(this, R.string.pokemon_saved, Toast.LENGTH_LONG).show();
+        });
+
+        quit.setOnClickListener(view -> {
+            finish();
         });
 
 

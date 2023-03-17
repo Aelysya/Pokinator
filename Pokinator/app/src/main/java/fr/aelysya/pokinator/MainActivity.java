@@ -97,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void killAllActivities(){
+        finish();
+        System.exit(0);
+    }
+
 
     //Mystery gift code management part
     private List<ImageView> codeImageViews;

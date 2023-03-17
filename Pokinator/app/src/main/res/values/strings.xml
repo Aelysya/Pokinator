@@ -99,7 +99,9 @@
     <string name="pokemon_image_desc" translatable="false">pokémon image</string>
     <string name="pokemon_info" translatable="false">N°%1$d - %2$s</string>
 
-    <string name="back_home">Return to home page</string>
+    <string name="back_home">Home page</string>
+    <string name="quit_app">Quit</string>
+    <string name="save_info">Save</string>
     <string name="pokemon_saved">Detailed information saved</string>
 
     <string name="del_button" translatable="false">Eff</string>

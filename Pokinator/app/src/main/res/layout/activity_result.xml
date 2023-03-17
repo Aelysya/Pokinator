@@ -8,8 +8,9 @@
 
     <Button
         android:id="@+id/returnHomeButton"
-        android:layout_width="200dp"
+        android:layout_width="160dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
@@ -20,9 +21,42 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/quitApplicationButton"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/quit_app"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/save_info"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/quitApplicationButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokemonInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/pokemonInfo"
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/resultText"

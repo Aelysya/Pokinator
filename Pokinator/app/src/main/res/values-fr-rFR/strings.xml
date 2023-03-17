@@ -61,6 +61,8 @@
     <string name="question_size_weight">Utilisez les sliders ci-dessous pour déterminer la taille et le poids de votre pokémon</string>
     <string name="category_res">Et hop !</string>
     <string name="res_text">Vous avez attrapé un nouveau Pokémon</string>
-    <string name="back_home">Retour à l\'accueil</string>
+    <string name="back_home">Accueil</string>
     <string name="pokemon_saved">Informations détaillées sauvegardées</string>
+    <string name="quit_app">Quitter</string>
+    <string name="save_info">Sauvegarder</string>
 </resources>

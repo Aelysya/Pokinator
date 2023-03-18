@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_preferences" >
+
+    <Button
+        android:id="@+id/previousStepButtonPref"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/previous_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/nextStepButtonPref"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/preferencesTitle"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:text="@string/category_preferences"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/legendaryQuestion"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:fontFamily="@font/pokemon_font"
+        android:padding="5dp"
+        android:text="@string/question_legendaries"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preferencesTitle"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/generationQuestion"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:fontFamily="@font/pokemon_font"
+        android:padding="5dp"
+        android:text="@string/question_generations"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/legendaryQuestion"
+        app:layout_constraintTop_toTopOf="@+id/legendaryQuestion"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/keepLegendariesSwitch"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/legendaryQuestion"
+        app:layout_constraintStart_toStartOf="@+id/legendaryQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/legendaryQuestion"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <CheckBox
+        android:id="@+id/generation1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_one"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generationQuestion"
+        app:layout_constraintTop_toTopOf="@+id/keepLegendariesSwitch"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/generation4"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_four"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation1"
+        app:layout_constraintTop_toBottomOf="@+id/generation1"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/generation7"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_seven"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation4"
+        app:layout_constraintTop_toBottomOf="@+id/generation4" />
+
+    <CheckBox
+        android:id="@+id/generation8"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_eight"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation5"
+        app:layout_constraintTop_toTopOf="@+id/generation7" />
+
+    <CheckBox
+        android:id="@+id/generation9"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_nine"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation6"
+        app:layout_constraintTop_toTopOf="@+id/generation8" />
+
+    <CheckBox
+        android:id="@+id/generation5"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_five"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation2"
+        app:layout_constraintTop_toTopOf="@+id/generation4"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/generation6"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_six"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/generation3"
+        app:layout_constraintTop_toTopOf="@+id/generation5"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/generation2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_two"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/generation1"
+        app:layout_constraintTop_toTopOf="@+id/generation1"
+        tools:ignore="TextContrastCheck" />
+
+    <CheckBox
+        android:id="@+id/generation3"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/pokemon_font"
+        android:onClick="verifyAmountOfCheckedBoxes"
+        android:text="@string/generation_three"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/generation2"
+        app:layout_constraintTop_toTopOf="@+id/generation1"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

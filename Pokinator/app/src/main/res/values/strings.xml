@@ -90,7 +90,7 @@
     <string name="capture_rating" translatable="false">Capture rate rating bar</string>
     <string name="experience_rating" translatable="false">Experience rating bar</string>
 
-    <string name="question_size_weight">Use the sliders below to determine the size and weight of your pokémon</string>
+    <string name="question_size_weight">Use the sliders to determine the size and weight of your pokémon</string>
     <string name="scale_foot_desc" translatable="false">scale foot</string>
     <string name="scale_plates_desc" translatable="false">scale plates</string>
     <string name="pokemon_body_desc" translatable="false">pokémon body</string>

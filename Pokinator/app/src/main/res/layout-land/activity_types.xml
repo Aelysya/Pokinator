@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundType"
+        android:layout_width="1200dp"
+        android:layout_height="800dp"
+        android:contentDescription="@string/types_back_desc"
+        android:rotation="-90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.5"
+        app:srcCompat="@drawable/type_background"
+        tools:ignore="ImageContrastCheck" />
+
+    <Button
+        android:id="@+id/previousStepButtonTypes"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/previous_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/nextStepButtonTypes"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="start|top"
+        android:paddingHorizontal="20sp"
+        android:paddingVertical="10sp"
+        android:text="@string/next_step"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/prefNormal"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/normal_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prefTypeQuestion"
+        app:srcCompat="@drawable/normal_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disNormal"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/normal_type"
+        app:layout_constraintStart_toStartOf="@+id/disTypeQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/disTypeQuestion"
+        app:srcCompat="@drawable/normal_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefWater"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/water_type"
+        app:layout_constraintStart_toStartOf="@+id/prefNormal"
+        app:layout_constraintTop_toBottomOf="@+id/prefNormal"
+        app:srcCompat="@drawable/water_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disWater"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/water_type"
+        app:layout_constraintStart_toStartOf="@+id/disNormal"
+        app:layout_constraintTop_toBottomOf="@+id/disNormal"
+        app:srcCompat="@drawable/water_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefFighting"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/fighting_type"
+        app:layout_constraintStart_toStartOf="@+id/prefWater"
+        app:layout_constraintTop_toBottomOf="@+id/prefWater"
+        app:srcCompat="@drawable/fighting_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disFighting"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/fighting_type"
+        app:layout_constraintStart_toStartOf="@+id/disWater"
+        app:layout_constraintTop_toBottomOf="@+id/disWater"
+        app:srcCompat="@drawable/fighting_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefFlying"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/flying_type"
+        app:layout_constraintStart_toStartOf="@+id/prefWater"
+        app:layout_constraintTop_toBottomOf="@+id/prefFighting"
+        app:srcCompat="@drawable/flying_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disFlying"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/flying_type"
+        app:layout_constraintStart_toStartOf="@+id/disFighting"
+        app:layout_constraintTop_toBottomOf="@+id/disFighting"
+        app:srcCompat="@drawable/flying_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefRock"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/flying_type"
+        app:layout_constraintStart_toStartOf="@+id/prefWater"
+        app:layout_constraintTop_toBottomOf="@+id/prefFlying"
+        app:srcCompat="@drawable/rock_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disRock"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/flying_type"
+        app:layout_constraintStart_toStartOf="@+id/disFlying"
+        app:layout_constraintTop_toBottomOf="@+id/disFlying"
+        app:srcCompat="@drawable/rock_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefDark"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/dark_type"
+        app:layout_constraintStart_toStartOf="@+id/prefWater"
+        app:layout_constraintTop_toBottomOf="@+id/prefRock"
+        app:srcCompat="@drawable/dark_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disDark"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/dark_type"
+        app:layout_constraintStart_toStartOf="@+id/disRock"
+        app:layout_constraintTop_toBottomOf="@+id/disRock"
+        app:srcCompat="@drawable/dark_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefPoison"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/poison_type"
+        app:layout_constraintStart_toStartOf="@+id/prefElectric"
+        app:layout_constraintTop_toBottomOf="@+id/prefElectric"
+        app:srcCompat="@drawable/poison_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disPoison"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/poison_type"
+        app:layout_constraintStart_toStartOf="@+id/disGrass"
+        app:layout_constraintTop_toBottomOf="@+id/disWater"
+        app:srcCompat="@drawable/poison_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefPsychic"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/psychic_type"
+        app:layout_constraintStart_toStartOf="@+id/prefElectric"
+        app:layout_constraintTop_toBottomOf="@+id/prefPoison"
+        app:srcCompat="@drawable/psychic_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disPsychic"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/psychic_type"
+        app:layout_constraintStart_toStartOf="@+id/disGrass"
+        app:layout_constraintTop_toBottomOf="@+id/disFighting"
+        app:srcCompat="@drawable/psychic_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefGhost"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/psychic_type"
+        android:tintMode="multiply"
+        app:layout_constraintStart_toStartOf="@+id/prefPoison"
+        app:layout_constraintTop_toBottomOf="@+id/prefPsychic"
+        app:srcCompat="@drawable/ghost_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disGhost"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/psychic_type"
+        app:layout_constraintStart_toStartOf="@+id/disPoison"
+        app:layout_constraintTop_toBottomOf="@+id/disFlying"
+        app:srcCompat="@drawable/ghost_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefSteel"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/steel_type"
+        app:layout_constraintStart_toStartOf="@+id/prefElectric"
+        app:layout_constraintTop_toBottomOf="@+id/prefGhost"
+        app:srcCompat="@drawable/steel_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disSteel"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/steel_type"
+        app:layout_constraintStart_toStartOf="@+id/disGrass"
+        app:layout_constraintTop_toBottomOf="@+id/disRock"
+        app:srcCompat="@drawable/steel_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefGround"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/ground_type"
+        app:layout_constraintStart_toStartOf="@+id/prefIce"
+        app:layout_constraintTop_toBottomOf="@+id/prefElectric"
+        app:srcCompat="@drawable/ground_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disGround"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/ground_type"
+        app:layout_constraintStart_toStartOf="@+id/disIce"
+        app:layout_constraintTop_toTopOf="@+id/disPoison"
+        app:srcCompat="@drawable/ground_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefBug"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bug_type"
+        app:layout_constraintStart_toStartOf="@+id/prefIce"
+        app:layout_constraintTop_toBottomOf="@+id/prefGround"
+        app:srcCompat="@drawable/bug_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disBug"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bug_type"
+        app:layout_constraintStart_toStartOf="@+id/disGround"
+        app:layout_constraintTop_toBottomOf="@+id/disPoison"
+        app:srcCompat="@drawable/bug_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefDragon"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bug_type"
+        app:layout_constraintStart_toStartOf="@+id/prefIce"
+        app:layout_constraintTop_toBottomOf="@+id/prefBug"
+        app:srcCompat="@drawable/dragon_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disDragon"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/bug_type"
+        app:layout_constraintStart_toStartOf="@+id/disBug"
+        app:layout_constraintTop_toBottomOf="@+id/disPsychic"
+        app:srcCompat="@drawable/dragon_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefFairy"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/fairy_type"
+        app:layout_constraintStart_toStartOf="@+id/prefIce"
+        app:layout_constraintTop_toBottomOf="@+id/prefDragon"
+        app:srcCompat="@drawable/fairy_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disFairy"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/fairy_type"
+        app:layout_constraintStart_toStartOf="@+id/disDragon"
+        app:layout_constraintTop_toBottomOf="@+id/disGhost"
+        app:srcCompat="@drawable/fairy_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefElectric"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/electric_type"
+        app:layout_constraintStart_toStartOf="@+id/prefGrass"
+        app:layout_constraintTop_toBottomOf="@+id/prefNormal"
+        app:srcCompat="@drawable/electric_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disElectric"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/electric_type"
+        app:layout_constraintStart_toStartOf="@+id/disGrass"
+        app:layout_constraintTop_toBottomOf="@+id/disNormal"
+        app:srcCompat="@drawable/electric_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefIce"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/ice_type"
+        app:layout_constraintStart_toStartOf="@+id/prefFire"
+        app:layout_constraintTop_toBottomOf="@+id/prefFire"
+        app:srcCompat="@drawable/ice_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disIce"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/ice_type"
+        app:layout_constraintStart_toStartOf="@+id/disFire"
+        app:layout_constraintTop_toTopOf="@+id/disElectric"
+        app:srcCompat="@drawable/ice_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefFire"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/fire_type"
+        app:layout_constraintStart_toEndOf="@+id/prefGrass"
+        app:layout_constraintTop_toTopOf="@+id/prefGrass"
+        app:srcCompat="@drawable/fire_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disFire"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/fire_type"
+        app:layout_constraintStart_toEndOf="@+id/disGrass"
+        app:layout_constraintTop_toTopOf="@+id/disGrass"
+        app:srcCompat="@drawable/fire_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/prefGrass"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/grass_type"
+        app:layout_constraintStart_toEndOf="@+id/prefNormal"
+        app:layout_constraintTop_toTopOf="@+id/prefNormal"
+        app:srcCompat="@drawable/grass_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/disGrass"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@string/grass_type"
+        app:layout_constraintStart_toEndOf="@+id/disNormal"
+        app:layout_constraintTop_toTopOf="@+id/disNormal"
+        app:srcCompat="@drawable/grass_icon"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/normalText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/normal_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefNormal"
+        app:layout_constraintTop_toTopOf="@+id/prefNormal"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/normalText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/normal_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disNormal"
+        app:layout_constraintTop_toTopOf="@+id/disNormal"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/waterText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/water_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefWater"
+        app:layout_constraintTop_toBottomOf="@+id/prefNormal"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/waterText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/water_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disWater"
+        app:layout_constraintTop_toBottomOf="@+id/disNormal"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fightingText"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/fighting_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefFighting"
+        app:layout_constraintTop_toBottomOf="@+id/prefWater"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fightingText2"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/fighting_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disFighting"
+        app:layout_constraintTop_toBottomOf="@+id/disWater"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/flyingText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/flying_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefFlying"
+        app:layout_constraintTop_toBottomOf="@+id/prefFighting"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/flyingText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/flying_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disFlying"
+        app:layout_constraintTop_toBottomOf="@+id/disFighting"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/rockText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/rock_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefRock"
+        app:layout_constraintTop_toBottomOf="@+id/prefFlying"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/rockText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/rock_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disRock"
+        app:layout_constraintTop_toBottomOf="@+id/disFlying"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/darkText"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/dark_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefDark"
+        app:layout_constraintTop_toBottomOf="@+id/prefRock"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/darkText2"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/dark_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disDark"
+        app:layout_constraintTop_toBottomOf="@+id/disRock"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/steelText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/steel_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefSteel"
+        app:layout_constraintTop_toBottomOf="@+id/prefRock"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/steelText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/steel_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disSteel"
+        app:layout_constraintTop_toBottomOf="@+id/disGhost"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fairyText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/fairy_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefFairy"
+        app:layout_constraintTop_toBottomOf="@+id/prefRock"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fairyText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/fairy_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disFairy"
+        app:layout_constraintTop_toBottomOf="@+id/disDragon"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/ghostText"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/ghost_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefGhost"
+        app:layout_constraintTop_toBottomOf="@+id/prefFlying"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/ghostText2"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/ghost_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disGhost"
+        app:layout_constraintTop_toBottomOf="@+id/disPsychic"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/dragonText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/dragon_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefDragon"
+        app:layout_constraintTop_toBottomOf="@+id/prefFlying"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/dragonText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/dragon_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disDragon"
+        app:layout_constraintTop_toBottomOf="@+id/disBug"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/psychicText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/psychic_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefPsychic"
+        app:layout_constraintTop_toBottomOf="@+id/prefFighting"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/psychicText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/psychic_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disPsychic"
+        app:layout_constraintTop_toBottomOf="@+id/disPoison"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/bugText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/bug_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefBug"
+        app:layout_constraintTop_toBottomOf="@+id/prefFighting"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/bugText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/bug_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disBug"
+        app:layout_constraintTop_toBottomOf="@+id/disGround"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/poisonText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/poison_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefPoison"
+        app:layout_constraintTop_toBottomOf="@+id/prefWater"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/poisonText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/poison_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disPoison"
+        app:layout_constraintTop_toTopOf="@+id/disPoison"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/groundText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/ground_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefGround"
+        app:layout_constraintTop_toBottomOf="@+id/prefWater"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/groundText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/ground_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disGround"
+        app:layout_constraintTop_toTopOf="@+id/disGround"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/electricText"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/electric_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefElectric"
+        app:layout_constraintTop_toTopOf="@+id/prefElectric"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/electricText2"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/electric_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disElectric"
+        app:layout_constraintTop_toTopOf="@+id/disElectric"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/iceText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/ice_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefIce"
+        app:layout_constraintTop_toTopOf="@+id/prefIce"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/iceText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/ice_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disIce"
+        app:layout_constraintTop_toTopOf="@+id/disIce"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/grassText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/grass_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefGrass"
+        app:layout_constraintTop_toTopOf="@+id/prefGrass"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/grassText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/grass_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disGrass"
+        app:layout_constraintTop_toTopOf="@+id/disGrass"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fireText"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeTopBackground"
+        android:text="@string/fire_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/prefFire"
+        app:layout_constraintTop_toTopOf="@+id/prefFire"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/fireText2"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:fontFamily="@font/pokemon_font"
+        android:gravity="center"
+        android:onClick="computeBottomBackground"
+        android:text="@string/fire_type"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/disFire"
+        app:layout_constraintTop_toTopOf="@+id/disFire"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/prefTypeQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pokemon_font"
+        android:text="@string/question_pref_type"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/prefNormal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/disTypeQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/pokemon_font"
+        android:text="@string/question_dis_type"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/prefFire"
+        app:layout_constraintTop_toTopOf="@+id/prefTypeQuestion" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

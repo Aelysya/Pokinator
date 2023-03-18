@@ -48,6 +48,13 @@ public class TypesActivity extends AppCompatActivity {
         Button previousStep = findViewById(R.id.previousStepButtonTypes);
         Button nextStep = findViewById(R.id.nextStepButtonTypes);
 
+        ImageView typeBack = findViewById(R.id.backgroundType);
+        LayerDrawable layerDrawable = (LayerDrawable) ContextCompat.getDrawable(this, R.drawable.type_background);
+        assert layerDrawable != null;
+        layerDrawable.setDrawableByLayerId(R.id.topBack, ContextCompat.getDrawable(this, R.drawable.blank));
+        layerDrawable.setDrawableByLayerId(R.id.bottomBack, ContextCompat.getDrawable(this, R.drawable.blank));
+        typeBack.setImageDrawable(layerDrawable);
+
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to preferences activity");
             startActivity(new Intent(this, PreferencesActivity.class));

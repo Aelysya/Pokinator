@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,9 +29,7 @@ public class TypesActivity extends AppCompatActivity {
     public static PokemonsData data;
     private String preferredType;
     private String dislikedType;
-    private List<TextView> lastDisabledTextsTop;
     private List<TextView> lastDisabledTextsBottom;
-    private List<ImageView> lastDisabledImagesTop;
     private List<ImageView> lastDisabledImagesBottom;
 
     @Override
@@ -38,9 +38,7 @@ public class TypesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_types);
         currentToast = Toast.makeText(getApplicationContext(), "Empty Toast", Toast.LENGTH_SHORT);
         lastDisabledImagesBottom = new ArrayList<>();
-        lastDisabledImagesTop = new ArrayList<>();
         lastDisabledTextsBottom = new ArrayList<>();
-        lastDisabledTextsTop = new ArrayList<>();
         preferredType = "";
         dislikedType = "";
         data = new PokemonsData(DataHistory.getInstance().getHistory("preferences"));
@@ -57,7 +55,8 @@ public class TypesActivity extends AppCompatActivity {
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to preferences activity");
-            startActivity(new Intent(this, PreferencesActivity.class));
+            vibrate();
+            startActivity(new Intent(this, PreferencesActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
         nextStep.setOnClickListener(view -> {
@@ -77,6 +76,16 @@ public class TypesActivity extends AppCompatActivity {
             }
         });
         disableAbsentTypes();
+    }
+
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 
     /**
@@ -120,15 +129,18 @@ public class TypesActivity extends AppCompatActivity {
         noButton.setOnClickListener(v -> {
             popupWindow.dismiss();
             Log.d("Form progression", "Proceeding to perso activity, skipping stats activity");
+            vibrate();
             Intent intent = new Intent(this, PersoActivity.class);
             intent.putExtra("skippedStats", true);
+            intent.putExtra("userName", getIntent().getStringExtra("userName"));
             startActivity(intent);
             finish();
         });
         yesButton.setOnClickListener(v -> {
             popupWindow.dismiss();
             Log.d("Form progression", "Proceeding to stats activity");
-            startActivity(new Intent(this, StatsActivity.class));
+            vibrate();
+            startActivity(new Intent(this, StatsActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
     }
@@ -299,9 +311,7 @@ public class TypesActivity extends AppCompatActivity {
      */
     private void disableTopType(int textId, int imageId){
         TextView prefText = findViewById(textId);
-        lastDisabledTextsTop.add(prefText);
         ImageView prefImage = findViewById(imageId);
-        lastDisabledImagesTop.add(prefImage);
         prefText.setEnabled(false);
         prefText.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
         prefImage.setColorFilter(ContextCompat.getColor(this, R.color.medium_gray), PorterDuff.Mode.MULTIPLY);

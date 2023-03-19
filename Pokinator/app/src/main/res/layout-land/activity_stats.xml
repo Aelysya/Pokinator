@@ -9,10 +9,8 @@
 
     <Button
         android:id="@+id/nextStepButtonStats"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
         android:gravity="start|top"
@@ -26,10 +24,8 @@
 
     <Button
         android:id="@+id/previousStepButtonStats"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/pokemon_font"
         android:gravity="start|top"
@@ -45,12 +41,12 @@
         android:id="@+id/statsTitle"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        android:layout_marginStart="10dp"
         android:fontFamily="@font/pokemon_font"
         android:gravity="center"
         android:text="@string/category_stats"
         android:textColor="@color/black"
         android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,7 +100,7 @@
         android:id="@+id/statMeleeDistQuestion"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/pokemon_font"
         android:text="@string/question_stat_melee_dist"
         android:textColor="@color/black"
@@ -133,10 +129,10 @@
         android:id="@+id/statFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/nextStepButtonStats"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/toggleButtonMeleeDist"
-        app:layout_constraintTop_toBottomOf="@+id/statsTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -60,7 +60,7 @@
     <string name="speed_test_result_text">Votre score est de %1$d clicks</string>
     <string name="question_size_weight">Utilisez les curseurs pour déterminer la taille et le poids de votre pokémon</string>
     <string name="category_res">Et hop !</string>
-    <string name="res_text">Vous avez attrapé un nouveau Pokémon</string>
+    <string name="res_text">Félicitations %1$s, vous avez attrapé un nouveau Pokémon</string>
     <string name="back_home">Accueil</string>
     <string name="pokemon_saved">Informations détaillées sauvegardées</string>
     <string name="quit_app">Quitter</string>

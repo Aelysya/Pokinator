@@ -109,7 +109,7 @@
         android:id="@+id/pokemonImage"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/pokemon_image_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

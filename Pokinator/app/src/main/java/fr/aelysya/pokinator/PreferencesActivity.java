@@ -1,7 +1,10 @@
 package fr.aelysya.pokinator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,14 +50,17 @@ public class PreferencesActivity extends AppCompatActivity {
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to main activity");
+            vibrate();
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
+
         nextStep.setOnClickListener(view -> {
             if(boxesChecked != 3){
                 currentToast.cancel();
                 currentToast.setText(R.string.not_enough_boxes_checked);
                 currentToast.show();
+                vibrate();
             } else {
                 //Filter the data
                 data.filterLegendaries(keepLegendaries.isChecked());
@@ -73,10 +79,21 @@ public class PreferencesActivity extends AppCompatActivity {
                 data.logData();
                 DataHistory.getInstance().setHistory("preferences", data);
                 Log.d("Form progression", "Proceeding to types activity");
-                startActivity(new Intent(this, TypesActivity.class));
+                vibrate();
+                startActivity(new Intent(this, TypesActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
                 finish();
             }
         });
+    }
+
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 
     /** Verify that the total amount of checkBoxes checked is not over 3

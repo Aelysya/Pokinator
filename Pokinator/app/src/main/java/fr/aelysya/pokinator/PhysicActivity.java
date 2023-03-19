@@ -1,7 +1,10 @@
 package fr.aelysya.pokinator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -65,7 +68,8 @@ public class PhysicActivity extends AppCompatActivity {
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to perso activity");
-            startActivity(new Intent(this, PersoActivity.class));
+            vibrate();
+            startActivity(new Intent(this, PersoActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
         nextStep.setOnClickListener(view -> {
@@ -75,8 +79,19 @@ public class PhysicActivity extends AppCompatActivity {
             data.logData();
             DataHistory.getInstance().setHistory("physic", data);
             Log.d("Form progression", "Proceeding to results activity");
-            startActivity(new Intent(this, ResultActivity.class));
+            vibrate();
+            startActivity(new Intent(this, ResultActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
+    }
+
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 }

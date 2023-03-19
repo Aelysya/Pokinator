@@ -1,8 +1,11 @@
 package fr.aelysya.pokinator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +52,8 @@ public class StatsActivity extends AppCompatActivity {
 
         previousStep.setOnClickListener(view -> {
             Log.d("Form progression", "Going back to types activity");
-            startActivity(new Intent(this, TypesActivity.class));
+            vibrate();
+            startActivity(new Intent(this, TypesActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
 
@@ -58,6 +62,7 @@ public class StatsActivity extends AppCompatActivity {
                 currentToast.cancel();
                 currentToast.setText(R.string.mini_game_not_done);
                 currentToast.show();
+                vibrate();
             } else {
                 //Filter the data
                 data.filterAtkDef(meleeDistanceButton.isChecked(), !attackDefenseButton.isChecked());
@@ -69,13 +74,24 @@ public class StatsActivity extends AppCompatActivity {
                 data.logData();
                 DataHistory.getInstance().setHistory("stats", data);
                 Log.d("Form progression", "Proceeding to perso activity");
+                vibrate();
                 Intent intent = new Intent(this, PersoActivity.class);
                 intent.putExtra("skippedStats", false);
+                intent.putExtra("userName", getIntent().getStringExtra("userName"));
                 startActivity(intent);
                 finish();
             }
         });
+    }
 
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 
     /** Show the mini game corresponding to the attack or defense choice
@@ -152,7 +168,7 @@ public class StatsActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
+                vibrate();
             }
         }.start();
     }
@@ -190,6 +206,7 @@ public class StatsActivity extends AppCompatActivity {
                 speedExplain.setVisibility(View.VISIBLE);
                 speedExplain.setText(getString(R.string.speed_test_result_text, speedTestScore));
                 speedExplain.setTextColor(speedTestScore <= 70 ? ContextCompat.getColor(getBaseContext(), R.color.red) : ContextCompat.getColor(getBaseContext(), R.color.green));
+                vibrate();
             }
         }.start();
     }

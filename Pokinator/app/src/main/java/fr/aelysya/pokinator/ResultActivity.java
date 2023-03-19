@@ -1,8 +1,11 @@
 package fr.aelysya.pokinator;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,13 +28,17 @@ public class ResultActivity extends AppCompatActivity {
         data = new PokemonsData(DataHistory.getInstance().getHistory("physic"));
 
         TextView pokemonInfo = findViewById(R.id.pokemonInfo);
+        TextView resultText = findViewById(R.id.resultText);
         ImageView pokemonImage = findViewById(R.id.pokemonImage);
         pokemonInfo.setText(getString(R.string.pokemon_info, data.getLastPokemonNumber(), data.getLastPokemonName()));
         Button backHome = findViewById(R.id.returnHomeButton);
         Button quit = findViewById(R.id.quitApplicationButton);
         Button save = findViewById(R.id.saveButton);
 
+        resultText.setText(getString(R.string.res_text, getIntent().getStringExtra("userName")));
+
         backHome.setOnClickListener(view ->{
+            vibrate();
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
@@ -39,12 +46,23 @@ public class ResultActivity extends AppCompatActivity {
         save.setOnClickListener(view ->{
             data.savePokemon();
             Toast.makeText(this, R.string.pokemon_saved, Toast.LENGTH_LONG).show();
+            vibrate();
         });
 
         quit.setOnClickListener(view -> finish());
 
 
         Glide.with(ResultActivity.this).load(constructURL(data.getLastPokemonNumber())).into(pokemonImage);
+    }
+
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 
     @Override

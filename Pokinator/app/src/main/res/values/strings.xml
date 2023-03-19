@@ -95,7 +95,7 @@
     <string name="scale_plates_desc" translatable="false">scale plates</string>
     <string name="pokemon_body_desc" translatable="false">pokémon body</string>
 
-    <string name="res_text">You caught a new Pokémon</string>
+    <string name="res_text">Congratulations %1$s, you caught a new Pokémon</string>
     <string name="pokemon_image_desc" translatable="false">pokémon image</string>
     <string name="pokemon_info" translatable="false">N°%1$d - %2$s</string>
 

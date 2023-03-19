@@ -1,8 +1,11 @@
 package fr.aelysya.pokinator;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -43,6 +46,8 @@ public class PersoActivity extends AppCompatActivity {
                 Log.d("Form progression", "Going back to stats activity");
                 intent = new Intent(this, StatsActivity.class);
             }
+            vibrate();
+            intent.putExtra("userName", getIntent().getStringExtra("userName"));
             startActivity(intent);
             finish();
         });
@@ -60,8 +65,19 @@ public class PersoActivity extends AppCompatActivity {
             data.logData();
             DataHistory.getInstance().setHistory("perso", data);
             Log.d("Form progression", "Proceeding to physic activity");
-            startActivity(new Intent(this, PhysicActivity.class));
+            vibrate();
+            startActivity(new Intent(this, PhysicActivity.class).putExtra("userName", getIntent().getStringExtra("userName")));
             finish();
         });
+    }
+
+    /** Make the phone vibrate
+     */
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if(v != null && v.hasVibrator()) {
+            v.vibrate(VibrationEffect.createOneShot(50,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 }

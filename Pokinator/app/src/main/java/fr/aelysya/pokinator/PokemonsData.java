@@ -302,14 +302,16 @@ public class PokemonsData {
     public void filterAtkDef(boolean checkSpecial, boolean prefAttack){
         Log.d("Data filter", "Attacks and defenses stat filter begin, number of pokémons before: " + STATS.size());
         //Not using a forEach to track the index automatically
-        for(int i = 0; i < STATS.size(); ++i){
-            if((checkSpecial && prefAttack && STATS.get(i)[4] > STATS.get(i)[3]) //special and prefer SP-ATK and (SP-DEF > SP-ATK)
-            || (checkSpecial && !prefAttack && STATS.get(i)[4] < STATS.get(i)[3]) //special and prefer SP-DEF and (SP-ATK > SP-DEF)
-            || (!checkSpecial && prefAttack && STATS.get(i)[2] > STATS.get(i)[1]) //physical and prefer ATK and (DEF > ATK)
-            || (!checkSpecial && !prefAttack && STATS.get(i)[2] < STATS.get(i)[1]) //physical and prefer DEF and (ATK > DEF)
-            ){
-                removeLine(i);
-                i--; //Rectify the iterator position
+        if(STATS.size() >= 15){
+            for(int i = 0; i < STATS.size(); ++i){
+                if((checkSpecial && prefAttack && STATS.get(i)[4] > STATS.get(i)[3]) //special and prefer SP-ATK and (SP-DEF > SP-ATK)
+                        || (checkSpecial && !prefAttack && STATS.get(i)[4] < STATS.get(i)[3]) //special and prefer SP-DEF and (SP-ATK > SP-DEF)
+                        || (!checkSpecial && prefAttack && STATS.get(i)[2] > STATS.get(i)[1]) //physical and prefer ATK and (DEF > ATK)
+                        || (!checkSpecial && !prefAttack && STATS.get(i)[2] < STATS.get(i)[1]) //physical and prefer DEF and (ATK > DEF)
+                ){
+                    removeLine(i);
+                    i--; //Rectify the iterator position
+                }
             }
         }
         Log.d("Data filter", "Attacks and defenses stat filter end, number of pokémons left: " + STATS.size());
